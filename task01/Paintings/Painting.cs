@@ -2,7 +2,8 @@
 {
     /// <summary>
     /// Class for painting. Painting contains name of painting(Name), name of author(Author),
-    /// year of realease, genre of painting(Genre) and number of hall place
+    /// year of realease, genre of painting(Genre), number of hall place and date of receipt of the painting
+    /// by storage
     /// </summary>
     public class Painting
     {
@@ -11,14 +12,24 @@
         public int YearOfRealese { get; private set; }
         public string Genre { get; private set; }
         public int NumberOfHallPlace { get; set; }
+        public DateTime DateOfReceipt { get; private set; }
 
-        public Painting(string Name, string Author, int YearOfRealese, string Genre, int NumberOfHallPlace)
+        public Painting(string Name, string Author, int YearOfRealese, string Genre, int NumberOfHallPlace, DateTime DateOfReceipt)
         {
             this.Name = Name;
             this.Author = Author;
             this.YearOfRealese = YearOfRealese; 
             this.Genre = Genre;
             this.NumberOfHallPlace = NumberOfHallPlace;
+            this.DateOfReceipt = DateOfReceipt;
+        }
+        /// <summary>
+        /// Count how long the painting has been in storage
+        /// </summary>
+        /// <returns>the time the painting was in storage</returns>
+        private DateTime GetStorageTime()
+        {
+            return new DateTime(DateTime.Today.Month - DateOfReceipt.Month,DateTime.Today.Day - DateOfReceipt.Day, DateTime.Today.Year - DateOfReceipt.Year);
         }
 
         public override string ToString()
