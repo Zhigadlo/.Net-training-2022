@@ -52,7 +52,8 @@
 
         public override int GetHashCode()
         {
-            return YearOfRealese + NumberOfHallPlace;
+            return YearOfRealese.GetHashCode() + NumberOfHallPlace.GetHashCode() + Name.GetHashCode() +
+                Author.GetHashCode() + Genre.GetHashCode() + DateOfReceipt.GetHashCode();
         }
     }
 }
