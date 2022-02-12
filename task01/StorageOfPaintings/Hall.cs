@@ -16,5 +16,33 @@ namespace StorageOfPaintings
             Paintings = paintings;
         }
 
+        public override string ToString()
+        {
+            return $"Gallery hall number {Number} with {Paintings.Count} paintings";
+        }
+
+        public override int GetHashCode()
+        {
+            return Number.GetHashCode() + Paintings.GetHashCode();
+        }
+
+        public override bool Equals(object? obj)
+        {
+            bool IsEqual = true;
+            foreach(Painting painting in Paintings)
+            {
+                if(!painting.Equals(obj))
+                {
+                    IsEqual = false;
+                    break;
+                }
+            }
+
+            if (obj == null || !(obj is Hall))
+                return false;
+            else
+                return IsEqual;
+        }
+
     }
 }
