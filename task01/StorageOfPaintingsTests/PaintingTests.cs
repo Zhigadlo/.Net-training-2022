@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StorageOfPaintings;
 using Paintings;
-using System.Collections.Generic;
 using System;
 
 namespace StorageOfPaintingsTests
