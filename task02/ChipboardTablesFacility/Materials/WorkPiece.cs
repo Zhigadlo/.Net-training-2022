@@ -1,5 +1,8 @@
 ﻿namespace Materials
 {
+    /// <summary>
+    /// Piece of material for getting details for tables
+    /// </summary>
     public class WorkPiece
     {
         public int Width { get; set; }
