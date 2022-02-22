@@ -6,5 +6,6 @@ namespace TableDetails
     {
         public int Square { get; set; }
         public int Height { get; set; }
+        public Material Material { get; set; }
     }
 }
