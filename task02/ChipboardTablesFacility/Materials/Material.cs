@@ -5,6 +5,7 @@
     /// </summary>
     public enum Material
     {
-        Chipboard = 50, Metal = 80
+        Chipboard = 50, 
+        Metal = 80
     }
 }

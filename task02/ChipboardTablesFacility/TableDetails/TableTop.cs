@@ -15,7 +15,7 @@ namespace TableDetails
             this.Height = Height;
             Material = material;
             int Volume = Square * Height;
-            Price = Volume * (int)material * Volume * priceForProcessing;
+            Price = Volume * ((int)material + priceForProcessing);
         }
     }
 }

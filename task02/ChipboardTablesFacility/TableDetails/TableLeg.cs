@@ -14,7 +14,7 @@ namespace TableDetails
             Height = height;
             Material = material;
             int Volume = Square * Height;
-            Price = (int)material * Volume + priceForProcessing * Volume;
+            Price = Volume * ((int)material + priceForProcessing);
         }
     }
 }

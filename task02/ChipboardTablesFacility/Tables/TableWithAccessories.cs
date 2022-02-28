@@ -2,24 +2,16 @@
 
 namespace Tables
 {
-    public class TableWithAccessories : ITable
+    public class TableWithAccessories : Table
     {
-        public List<TableLeg> tableLegs { get; set; }
-        public TableTop tableTop { get; set; }
-        public int Price { get; set; }
 
-        private int _priceForProcessing = 7;
-        private int _priceForAccessories = 10;
+        private Dictionary<TableAccessories, int> _tableAccessories;
 
-        public TableWithAccessories(TableLeg leg, int countOfLegs, TableTop top)
+        public TableWithAccessories(TableLeg leg, int countOfLegs, TableTop top, Dictionary<TableAccessories, int> tableAccessories) : base(leg, countOfLegs, top)
         {
-            tableLegs = new List<TableLeg>();
-            for (int i = 0; i < countOfLegs; i++)
-                tableLegs.Add(leg);
-
-            tableTop = top;
-            Price = top.Price + leg.Price * countOfLegs + _priceForProcessing + _priceForAccessories;
-
+            _tableAccessories = tableAccessories;
+            foreach (var accessory in tableAccessories)
+                Price += (int)accessory.Value;
         }
     }
 }

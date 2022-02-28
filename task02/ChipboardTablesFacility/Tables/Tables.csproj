@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Materials\Materials.csproj" />
+    <ProjectReference Include="..\TableDetails\TableDetails.csproj" />
   </ItemGroup>
 
 </Project>

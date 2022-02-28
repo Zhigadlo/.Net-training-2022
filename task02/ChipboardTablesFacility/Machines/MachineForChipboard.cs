@@ -10,7 +10,7 @@ namespace Machines
 {
     public class MachineForChipboard : IMachineForTableLeg, IMachineForTableTop
     {
-        private int _priceForSm3 = 3;
+        private int _priceForSm3 = (int)Material.Chipboard;
         public TableLeg GetTableLeg(WorkPiece workPiece, int height, int width, int length)
         {
             workPiece.Height -= height;

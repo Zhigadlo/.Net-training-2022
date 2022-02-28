@@ -5,7 +5,7 @@ namespace Machines
 {
     public class MachineForMetal : IMachineForTableLeg
     {
-        private int _priceForSm3 = 6;
+        private int _priceForSm3 = (int)Material.Metal;
         /// <summary>
         /// Method for making a metal leg for table
         /// </summary>
@@ -16,9 +16,15 @@ namespace Machines
         /// <returns>A table leg</returns>
         public TableLeg GetTableLeg(WorkPiece workPiece, int height, int width, int length)
         {
-            workPiece.Height -= height;
-            workPiece.Width -= width;
-            workPiece.Length -= length;
+            if (height <= workPiece.Height)
+            {
+                workPiece.Width -= width;
+                workPiece.Length -= length;
+            }
+            else
+            {
+                throw new Exception("Work piece is too small for this detail");
+            }
 
             return new TableLeg(width * length, height, workPiece.Material, _priceForSm3);
         }
@@ -32,9 +38,15 @@ namespace Machines
         /// <returns>A table leg</returns>
         public TableLeg GetTableLeg(WorkPiece workPiece, int height, int radius)
         {
-            workPiece.Height -= height;
-            workPiece.Width -= radius * 2;
-            workPiece.Length -= radius * 2;
+            if (height <= workPiece.Height)
+            {
+                workPiece.Width -= radius * 2;
+                workPiece.Length -= radius * 2;
+            }
+            else
+            {
+                throw new Exception("Work piece is too small for this detail");
+            }
 
             return new TableLeg(radius * radius, height, workPiece.Material, _priceForSm3);
         }
