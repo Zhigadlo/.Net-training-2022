@@ -1,7 +1,7 @@
-﻿using Materials;
-using TableDetails;
+﻿using Facility.Materials;
+using Facility.TableDetails;
 
-namespace Machines
+namespace Facility.Machines
 {
     public class MachineForMetal : IMachineForTableLeg
     {
@@ -16,15 +16,12 @@ namespace Machines
         /// <returns>A table leg</returns>
         public TableLeg GetTableLeg(WorkPiece workPiece, int height, int width, int length)
         {
-            if (height <= workPiece.Height)
-            {
-                workPiece.Width -= width;
-                workPiece.Length -= length;
-            }
-            else
-            {
+            workPiece.Width -= width;
+            workPiece.Length -= length;
+            workPiece.Height -= height;
+
+            if (workPiece.Height < height && workPiece.Width < width && workPiece.Length < length)
                 throw new Exception("Work piece is too small for this detail");
-            }
 
             return new TableLeg(width * length, height, workPiece.Material, _priceForSm3);
         }
@@ -38,17 +35,16 @@ namespace Machines
         /// <returns>A table leg</returns>
         public TableLeg GetTableLeg(WorkPiece workPiece, int height, int radius)
         {
-            if (height <= workPiece.Height)
-            {
-                workPiece.Width -= radius * 2;
-                workPiece.Length -= radius * 2;
-            }
-            else
-            {
-                throw new Exception("Work piece is too small for this detail");
-            }
+            var diagonal = 2 * radius;
 
-            return new TableLeg(radius * radius, height, workPiece.Material, _priceForSm3);
+            if (workPiece.Height < height && workPiece.Width < diagonal && workPiece.Length < diagonal)
+                throw new Exception("Work piece is too small for this detail");
+
+            workPiece.Width -= diagonal;
+            workPiece.Length -= diagonal;
+            workPiece.Height -= height;
+
+            return new TableLeg(Math.PI * radius * radius, height, workPiece.Material, _priceForSm3);
         }
     }
 }

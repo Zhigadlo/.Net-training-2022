@@ -3,15 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Materials", "Materials\Materials.csproj", "{E0581E21-26D0-4218-A777-68BCEC845086}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Facility", "Machines\Facility.csproj", "{2405A7A2-404B-4EB2-BEA2-71CF37904E2A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tables", "Tables\Tables.csproj", "{404FB7B6-8966-47AE-808D-ECE5B2BD763E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TableDetails", "TableDetails\TableDetails.csproj", "{5B05481F-3BD4-4436-8B31-D5139B172028}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Machines", "Machines\Machines.csproj", "{2405A7A2-404B-4EB2-BEA2-71CF37904E2A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChipboardFacilityTests", "ChipboardFacilityTests\ChipboardFacilityTests.csproj", "{8A7E1BD5-F23A-4C0A-9203-7BEAC8660A3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChipboardFacilityTests", "ChipboardFacilityTests\ChipboardFacilityTests.csproj", "{8A7E1BD5-F23A-4C0A-9203-7BEAC8660A3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,18 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E0581E21-26D0-4218-A777-68BCEC845086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0581E21-26D0-4218-A777-68BCEC845086}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0581E21-26D0-4218-A777-68BCEC845086}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0581E21-26D0-4218-A777-68BCEC845086}.Release|Any CPU.Build.0 = Release|Any CPU
-		{404FB7B6-8966-47AE-808D-ECE5B2BD763E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{404FB7B6-8966-47AE-808D-ECE5B2BD763E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{404FB7B6-8966-47AE-808D-ECE5B2BD763E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{404FB7B6-8966-47AE-808D-ECE5B2BD763E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B05481F-3BD4-4436-8B31-D5139B172028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B05481F-3BD4-4436-8B31-D5139B172028}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B05481F-3BD4-4436-8B31-D5139B172028}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B05481F-3BD4-4436-8B31-D5139B172028}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2405A7A2-404B-4EB2-BEA2-71CF37904E2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2405A7A2-404B-4EB2-BEA2-71CF37904E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2405A7A2-404B-4EB2-BEA2-71CF37904E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU

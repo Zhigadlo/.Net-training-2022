@@ -1,7 +1,7 @@
-﻿using TableDetails;
-using Materials;
+﻿using Facility.Materials;
+using Facility.TableDetails;
 
-namespace Machines
+namespace Facility.Machines
 {
     public interface IMachineForTableTop
     {

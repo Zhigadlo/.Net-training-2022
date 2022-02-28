@@ -1,11 +1,11 @@
-﻿namespace Materials
+﻿namespace Facility.Materials
 {
     /// <summary>
     /// Enum with materials and their prices
     /// </summary>
     public enum Material
     {
-        Chipboard = 50, 
-        Metal = 80
+        Chipboard = 2,
+        Metal = 8
     }
 }
