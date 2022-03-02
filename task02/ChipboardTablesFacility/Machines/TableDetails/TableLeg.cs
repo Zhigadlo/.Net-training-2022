@@ -8,7 +8,7 @@ namespace Facility.TableDetails
         public double Height { get; set; }
         public double Price { get; private set; }
         public Material Material { get; set; }
-        public TableLeg(double square, int height, Material material, int priceForProcessing)
+        public TableLeg(double square, double height, Material material, double priceForProcessing)
         {
             Square = square;
             Height = height;

@@ -5,6 +5,6 @@ namespace Facility.Machines
 {
     public interface IMachineForTableLeg
     {
-        public TableLeg GetTableLeg(WorkPiece workPiece, int height, int width, int length);
+        public TableLeg GetTableLeg(WorkPiece workPiece, double height, double width, double length);
     }
 }

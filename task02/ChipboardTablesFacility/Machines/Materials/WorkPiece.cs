@@ -21,9 +21,6 @@
             _price = (int)material * width * height * length;
         }
 
-        public double GetPrice()
-        {
-            return _price;
-        }
+        public double GetPrice() => _price;
     }
 }

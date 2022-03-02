@@ -5,6 +5,6 @@ namespace Facility.Machines
 {
     public interface IMachineForTableTop
     {
-        public TableTop GetTableTop(WorkPiece workPiece, int height, int width, int length);
+        public TableTop GetTableTop(WorkPiece workPiece, double height, double width, double length);
     }
 }
