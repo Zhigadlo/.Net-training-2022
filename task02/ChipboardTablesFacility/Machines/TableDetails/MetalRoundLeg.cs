@@ -11,13 +11,13 @@ namespace Facility.TableDetails
         public MaterialType Material { get; }
         public double Radius { get; }
 
-        public MetalRoundLeg(MaterialType material, double height, double radius, double priceForProcessing)
+        public MetalRoundLeg(double height, double radius, double price)
         {
             Square = radius * radius * Math.PI;
             Height = height;
-            Material = material;
+            Material = MaterialType.Metal;
             Radius = radius;
-            Price = Square * height * (int)material + priceForProcessing;
+            Price = price;
         }
     }
 }

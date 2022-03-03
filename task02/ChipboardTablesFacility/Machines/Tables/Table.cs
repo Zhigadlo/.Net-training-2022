@@ -1,4 +1,6 @@
-﻿namespace Facility.Tables
+﻿using Facility.Interfaces;
+
+namespace Facility.Tables
 {
     public abstract class Table
     {

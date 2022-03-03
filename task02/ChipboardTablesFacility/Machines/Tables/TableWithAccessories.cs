@@ -1,4 +1,5 @@
 ﻿using Facility.TableDetails;
+using Facility.Interfaces;
 
 namespace Facility.Tables
 {
