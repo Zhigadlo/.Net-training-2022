@@ -3,6 +3,7 @@ using Facility.Materials;
 using Facility.TableDetails;
 using Facility.Tables;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
@@ -15,9 +16,9 @@ namespace ChipboardFacilityTests
         [TestInitialize]
         public void TestInitialize()
         {
-            WorkPiece pieceOfChipboardForTopOfTable = new WorkPiece(1000, 50, 1000, Material.Chipboard);
-            WorkPiece pieceOfChipboardForLegsOfTable = new WorkPiece(100, 100, 100, Material.Chipboard);
-            WorkPiece pieceOfMetal = new WorkPiece(120, 100, 50, Material.Metal);
+            WorkPiece pieceOfChipboardForTopOfTable = new WorkPiece(1000, 50, 1000, MaterialType.Chipboard);
+            WorkPiece pieceOfChipboardForLegsOfTable = new WorkPiece(100, 100, 100, MaterialType.Chipboard);
+            WorkPiece pieceOfMetal = new WorkPiece(120, 100, 50, MaterialType.Metal);
 
             MachineForChipboard chipboardMachine = new MachineForChipboard();
             MachineForMetal metalMachine = new MachineForMetal();
@@ -25,8 +26,8 @@ namespace ChipboardFacilityTests
             var tableTop1 = chipboardMachine.GetTableTop(pieceOfChipboardForTopOfTable, 1, 100, 200);
             var tableTop2 = chipboardMachine.GetTableTop(pieceOfChipboardForTopOfTable, 2, 120, 120);
 
-            List<TableLeg> legsForTable1 = new List<TableLeg>();
-            List<TableLeg> legsForTable2 = new List<TableLeg>();
+            List<ITableLeg> legsForTable1 = new List<ITableLeg>();
+            List<ITableLeg> legsForTable2 = new List<ITableLeg>();
 
             Dictionary<TableAccessories, int> accessories = new Dictionary<TableAccessories, int>
             {
@@ -44,8 +45,8 @@ namespace ChipboardFacilityTests
             _tables.Add(new TableWithAccessories(legsForTable1, tableTop1, accessories));
             _tables.Add(new OrdinaryTable(legsForTable2, tableTop2));
         }
-
         [TestMethod]
+        //[NUnit.Framework.TestCase(108235, 0)]
         public void MachinesTest1()
         {
             double expectedPrice = 108235;

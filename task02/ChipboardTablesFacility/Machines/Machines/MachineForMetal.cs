@@ -1,11 +1,12 @@
 ﻿using Facility.Materials;
+using Facility.Interfaces;
 using Facility.TableDetails;
 
 namespace Facility.Machines
 {
     public class MachineForMetal : IMachineForTableLeg
     {
-        private int _priceForSm3 = (int)Material.Metal;
+        private int _priceForSm3 = (int)MaterialType.Metal;
         /// <summary>
         /// Method for making a metal leg for table
         /// </summary>
@@ -14,7 +15,7 @@ namespace Facility.Machines
         /// <param name="width"></param>
         /// <param name="length"></param>
         /// <returns>A table leg</returns>
-        public TableLeg GetTableLeg(WorkPiece workPiece, double height, double width, double length)
+        public ITableLeg GetTableLeg(WorkPiece workPiece, double height, double width, double length)
         {
             workPiece.Width -= width;
             workPiece.Length -= length;
@@ -33,7 +34,7 @@ namespace Facility.Machines
         /// <param name="height"></param>
         /// <param name="radius"></param>
         /// <returns>A table leg</returns>
-        public TableLeg GetTableLeg(WorkPiece workPiece, double height, double radius)
+        public ITableLeg GetTableLeg(WorkPiece workPiece, double height, double radius)
         {
             var diagonal = 2 * radius;
 

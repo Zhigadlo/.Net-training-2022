@@ -8,17 +8,16 @@
         public double Width { get; set; }
         public double Height { get; set; }
         public double Length { get; set; }
+        public MaterialType ChipboardType { get; private set; }
 
         private double _price;
-        public Material Material { get; private set; }
-
-        public WorkPiece(int height, int width, int length, Material material)
+        public WorkPiece(MaterialType chipboardType, int height, int width, int length)
         {
             Width = width;
             Height = height;
             Length = length;
-            Material = material;
-            _price = (int)material * width * height * length;
+            ChipboardType = chipboardType;
+            _price = (int)chipboardType * width * height * length;
         }
 
         public double GetPrice() => _price;

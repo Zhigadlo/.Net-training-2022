@@ -1,17 +1,16 @@
-﻿using Facility.TableDetails;
-
-namespace Facility.Tables
+﻿namespace Facility.Tables
 {
     public abstract class Table
     {
-        public List<TableLeg> tableLegs;
-        public TableTop tableTop;
+        public string Name { get; set; }
+        public List<ITableLeg> tableLegs;
+        public ITableTop tableTop;
         public double Price;
         private double _coeffForBuild = 0.05;
 
-        public Table(List<TableLeg> legs, TableTop top)
+        public Table(List<ITableLeg> legs, ITableTop top)
         {
-            tableLegs = new List<TableLeg>();
+            tableLegs = new List<ITableLeg>();
             double priceForLegs = 0;
             for (int i = 0; i < legs.Count; i++)
             {

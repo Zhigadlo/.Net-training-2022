@@ -1,10 +1,8 @@
-﻿using Facility.TableDetails;
-
-namespace Facility.Tables
+﻿namespace Facility.Tables
 {
     public class OrdinaryTable : Table
     {
-        public OrdinaryTable(List<TableLeg> legs, TableTop top) : base(legs, top)
+        public OrdinaryTable(List<ITableLeg> legs, ITableTop top) : base(legs, top)
         {
 
         }

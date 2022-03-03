@@ -7,7 +7,7 @@ namespace Facility.Tables
 
         private Dictionary<TableAccessories, int> _tableAccessories;
 
-        public TableWithAccessories(List<TableLeg> legs, TableTop top, Dictionary<TableAccessories, int> tableAccessories) : base(legs, top)
+        public TableWithAccessories(List<ITableLeg> legs, ITableTop top, Dictionary<TableAccessories, int> tableAccessories) : base(legs, top)
         {
             _tableAccessories = tableAccessories;
             foreach (var accessory in tableAccessories)
