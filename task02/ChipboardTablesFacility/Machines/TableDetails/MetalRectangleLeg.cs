@@ -3,7 +3,7 @@ using Facility.Materials;
 
 namespace Facility.TableDetails
 {
-    public class MetalRectangleLeg : ITableLeg
+    public class MetalRectangleLeg : IDetail
     {
         public double Square { get; }
         public double Height { get; }

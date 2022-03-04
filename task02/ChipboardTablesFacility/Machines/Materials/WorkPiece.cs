@@ -20,6 +20,13 @@
             _price = (int)chipboardType * width * height * length;
         }
 
+        public void Cut(double height, double width, double length)
+        {
+            if (Height >= height && Width >= width && Length >= length)
+                Height -= height;
+            else
+                throw new Exception("This work piece is too small for this detail");
+        }
         public double GetPrice() => _price;
     }
 }

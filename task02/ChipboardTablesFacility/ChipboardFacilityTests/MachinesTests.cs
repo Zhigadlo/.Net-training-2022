@@ -20,7 +20,7 @@ namespace ChipboardFacilityTests
             WorkPiece pieceOfChipboardForLegsOfTable = new WorkPiece(100, 100, 100, MaterialType.Chipboard);
             WorkPiece pieceOfMetal = new WorkPiece(120, 100, 50, MaterialType.Metal);
 
-            MachineForChipboard chipboardMachine = new MachineForChipboard();
+            UniversalMachine chipboardMachine = new UniversalMachine();
             MachineForMetal metalMachine = new MachineForMetal();
 
             var tableTop1 = chipboardMachine.GetTableTop(pieceOfChipboardForTopOfTable, 1, 100, 200);

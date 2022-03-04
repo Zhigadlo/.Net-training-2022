@@ -3,7 +3,7 @@ using Facility.Materials;
 
 namespace Facility.TableDetails
 {
-    public class ChipboardRectaangleLeg : ITableLeg
+    public class ChipboardRectangleLeg : IDetail
     {
         public double Square { get; }
         public double Height { get; }
@@ -12,7 +12,7 @@ namespace Facility.TableDetails
         public double Width { get; }
         public double Length { get; }
 
-        public ChipboardRectaangleLeg(MaterialType material, double height, double width, double lenght, double priceForProcessing)
+        public ChipboardRectangleLeg(MaterialType material, double height, double width, double lenght, double priceForProcessing)
         {
             Material = material;
             Height = height;

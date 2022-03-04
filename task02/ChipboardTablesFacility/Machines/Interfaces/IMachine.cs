@@ -2,12 +2,10 @@
 
 namespace Facility.Interfaces
 {
-    public interface IMachineForTableRoundDetails
+    public interface IMachine
     {
         public MaterialType MaterialForProcessing { get; }
         public double PriceForProcessing { get; }
-        
-
-        public ITableTop GetTableTop(WorkPiece workPiece, double height, double width, double length);
+        public double MaxHeight { get; }
     }
 }
