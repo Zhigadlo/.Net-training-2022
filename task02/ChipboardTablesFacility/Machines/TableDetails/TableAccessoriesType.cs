@@ -3,7 +3,7 @@
     /// <summary>
     /// Enum for types of furniture
     /// </summary>
-    public enum TableAccessories
+    public enum TableAccessoriesType
     {
         Corners = 4,
         Eurochools = 6,

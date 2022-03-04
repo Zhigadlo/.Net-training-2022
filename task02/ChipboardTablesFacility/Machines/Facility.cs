@@ -2,21 +2,22 @@
 using Facility.Materials;
 using Facility.TableDetails;
 using Facility.Tables;
+using Facility.Interfaces;
 
 namespace Facility
 {
     public class Facility
     {
-        private List<Table> _tables;
+        private List<ITable> _tables;
         private List<IDetail> _tableDetails;
         private List<WorkPiece> _workPieces;
         private MachineForChipboard _machineForChipboard;
         private MachineForMetal _machineForMetal;
-        private Dictionary<TableAccessories, int> _tableAccessories;
+        private Dictionary<TableAccessoriesType, int> _tableAccessories;
 
-        public Facility(List<WorkPiece> workPieces, Dictionary<TableAccessories, int> tableAccessories)
+        public Facility(List<WorkPiece> workPieces, Dictionary<TableAccessoriesType, int> tableAccessories)
         {
-            _tables = new List<Table>();
+            _tables = new List<ITable>();
             _workPieces = new List<WorkPiece>();
             _tableDetails = new List<IDetail>();
             _machineForChipboard = new MachineForChipboard();
@@ -49,7 +50,7 @@ namespace Facility
 
             _tables.Add(new OrdinaryTable(legsForTable, topForTable));
         }
-        private void GetTable(List<ITableLeg> legsForTable, ITableTop topForTable, Dictionary<TableAccessories, int> accessories)
+        private void GetTable(List<ITableLeg> legsForTable, ITableTop topForTable, Dictionary<TableAccessoriesType, int> accessories)
         {
             _tables.Add(new TableWithAccessories(legsForTable, topForTable, accessories));
         }

@@ -29,11 +29,11 @@ namespace ChipboardFacilityTests
             List<ITableLeg> legsForTable1 = new List<ITableLeg>();
             List<ITableLeg> legsForTable2 = new List<ITableLeg>();
 
-            Dictionary<TableAccessories, int> accessories = new Dictionary<TableAccessories, int>
+            Dictionary<TableAccessoriesType, int> accessories = new Dictionary<TableAccessoriesType, int>
             {
-                { TableAccessories.Ties, 5 },
-                { TableAccessories.Shkants, 12 },
-                { TableAccessories.Corners, 4 }
+                { TableAccessoriesType.Ties, 5 },
+                { TableAccessoriesType.Shkants, 12 },
+                { TableAccessoriesType.Corners, 4 }
             };
 
             for (int i = 0; i < 4; i++)
