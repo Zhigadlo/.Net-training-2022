@@ -4,49 +4,32 @@ using Facility.Interfaces;
 
 namespace Facility.Machines
 {
-    public class MachineForRoundedDetails : IMachine, IMachineForOvalDetail, IMachineForRoundDetails
+    public class MachineForRoundedDetails : IMachine
     {
         public MaterialType MaterialForProcessing { get; }
         public double PriceForProcessing { get; }
         public double MaxHeight { get; }
+
+        private MachineForRoundDetails _machineForRoundDetails;
+        private MachineForOvalDetails _machineForOvalDetails;
 
         public MachineForRoundedDetails(MaterialType materialForProcessing, double priceForProcessing, double maxHeight)
         {
             MaterialForProcessing = materialForProcessing;
             PriceForProcessing = priceForProcessing;
             MaxHeight = maxHeight;
+            _machineForOvalDetails = new MachineForOvalDetails();
+            _machineForRoundDetails = new MachineForRoundDetails();
         }
-
+        
         public OvalTableTop GetOvalTableTop(WorkPiece workPiece, double height, double smallRadius, double largeRadius)
         {
-            if (height < MaxHeight)
-            {
-                workPiece.Cut(height, smallRadius * 2, largeRadius * 2);
-
-                OvalTableTop ovalTableTop = new OvalTableTop(MaterialForProcessing, height, largeRadius, smallRadius, PriceForProcessing);
-
-                return ovalTableTop;
-            }
-            else
-            {
-                throw new Exception("This work piece is too large for this machine");
-            }
+            return _machineForOvalDetails.GetOvalTableTop(workPiece, height, smallRadius, largeRadius);
         }
 
         public RoundTableTop GetRoundTableTop(WorkPiece workPiece, double height, double radius)
         {
-            if (height < MaxHeight)
-            {
-                workPiece.Cut(height, radius * 2, radius * 2);
-
-                RoundTableTop roundTableTop = new RoundTableTop(MaterialForProcessing, height, radius, PriceForProcessing);
-
-                return roundTableTop;
-            }
-            else
-            {
-                throw new Exception("This work piece is too large for this machine");
-            }
+            return _machineForRoundDetails.GetRoundTableTop(workPiece, height, radius);
         }
     }
 }

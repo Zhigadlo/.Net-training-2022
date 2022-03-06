@@ -12,7 +12,7 @@ namespace ChipboardFacilityTests
     [TestClass]
     public class MachinesTests
     {
-        private static List<Table> _tables = new List<Table>();
+        private static List<ITable> _tables = new List<ITable>();
         [TestInitialize]
         public void TestInitialize()
         {
@@ -26,8 +26,8 @@ namespace ChipboardFacilityTests
             var tableTop1 = chipboardMachine.GetTableTop(pieceOfChipboardForTopOfTable, 1, 100, 200);
             var tableTop2 = chipboardMachine.GetTableTop(pieceOfChipboardForTopOfTable, 2, 120, 120);
 
-            List<ITableLeg> legsForTable1 = new List<ITableLeg>();
-            List<ITableLeg> legsForTable2 = new List<ITableLeg>();
+            List<IDetail> legsForTable1 = new List<IDetail>();
+            List<IDetail> legsForTable2 = new List<IDetail>();
 
             Dictionary<TableAccessoriesType, int> accessories = new Dictionary<TableAccessoriesType, int>
             {

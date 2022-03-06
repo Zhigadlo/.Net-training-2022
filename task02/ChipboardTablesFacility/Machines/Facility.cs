@@ -22,9 +22,56 @@ namespace Facility
             _workPieces = workPieces;
         }
 
-
         public int GetCountOfTables() => _tables.Count;
+        public List<ITable> GetTables() => _tables;
+        public List<IDetail> GetTableDetails() => _tableDetails;
+        
+        public List<ITable> SortTablesByName()
+        {
+            return _tables.OrderBy(t => t.Name).ToList();
+        }
 
+        public List<ITable> SortTablesByPrice()
+        {
+            return _tables.OrderBy(p => p.Price).ToList();
+        }
+
+        public List<WorkPiece> FindRequiredWorkPiecesForTable(List<IDetail> details)
+        {
+            List<WorkPiece> requiredWorkPieces = new List<WorkPiece>();
+
+            int j = 0;
+
+            for(int i = 0; i < _workPieces.Count; i++)
+            {
+                if(_workPieces[i].Height <=)
+                {
+
+                }
+            }
+
+            return requiredWorkPieces;
+        }
+
+        public WorkPiece GetWorkPieceWithMinLossOfMaterial(IDetail detail)
+        {
+            WorkPiece requiredWorkPiece;
+
+            double heightLoss = detail.Height - _workPieces[0].Height;
+            double squareLoss = detail.Square - _workPieces[0].Width * _workPieces[0].Length;
+
+            foreach (WorkPiece workPiece in _workPieces)
+            {
+                if (detail.Height - workPiece.Height <= heightLoss && detail.Square - workPiece.Length * workPiece.Width <= squareLoss)
+                {
+                    heightLoss = detail.Height - workPiece.Height;
+                    squareLoss = detail.Square - workPiece.Width * workPiece.Length;
+                    requiredWorkPiece = workPiece;
+                }
+            }
+
+            return requiredWorkPiece;
+        }
     }
 
 }
