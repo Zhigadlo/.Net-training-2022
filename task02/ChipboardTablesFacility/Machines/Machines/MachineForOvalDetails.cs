@@ -10,6 +10,13 @@ namespace Facility.Machines
         public double PriceForProcessing { get; }
         public double MaxHeight { get; }
 
+        public MachineForOvalDetails(MaterialType materialType, double maxHeight, double priceForProcessing)
+        {
+            MaterialForProcessing = materialType;
+            PriceForProcessing = priceForProcessing;
+            MaxHeight = maxHeight;
+        }
+
         public OvalTableTop GetOvalTableTop(WorkPiece workPiece, double height, double smallRadius, double largeRadius)
         {
             if (height < MaxHeight)
@@ -27,21 +34,19 @@ namespace Facility.Machines
         }
 
         public override int GetHashCode() => MaterialForProcessing.GetHashCode() + PriceForProcessing.GetHashCode() + MaxHeight.GetHashCode();
-
         public override bool Equals(object obj)
         {
             if (obj == null || obj is not MachineForOvalDetails)
                 return false;
             else
             {
-                MachineForOvalDetails newObj = (MachineForOvalDetails)obj;
+                MachineForOvalDetails newObj = obj as MachineForOvalDetails;
 
                 return MaterialForProcessing == newObj.MaterialForProcessing &&
                         PriceForProcessing == newObj.PriceForProcessing &&
                         MaxHeight == newObj.MaxHeight;
             }
         }
-
         public override string ToString()
         {
             return "Machine for oval details.";

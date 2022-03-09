@@ -44,7 +44,7 @@
                 return false;
             else
             {
-                WorkPiece newObj = (WorkPiece)obj;
+                WorkPiece newObj = obj as WorkPiece;
 
                 return Width == newObj.Width &&
                         Length == newObj.Length &&

@@ -19,5 +19,23 @@ namespace Facility.TableDetails
             Radius = radius;
             Price = price;
         }
+
+        public override int GetHashCode() => Square.GetHashCode() + Height.GetHashCode() + Price.GetHashCode() + Material.GetHashCode() + Radius.GetHashCode();
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not MetalRoundLeg)
+                return false;
+            else
+            {
+                MetalRoundLeg newObj = obj as MetalRoundLeg;
+
+                return Square == newObj.Square && Height == newObj.Height &&
+                        Price == newObj.Price && Radius == newObj.Radius && Material == newObj.Material;
+            }
+        }
+        public override string ToString()
+        {
+            return $"Metal round leg {Radius}x{Height}";
+        }
     }
 }

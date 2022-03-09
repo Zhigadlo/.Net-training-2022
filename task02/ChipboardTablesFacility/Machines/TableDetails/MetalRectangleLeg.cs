@@ -21,5 +21,23 @@ namespace Facility.TableDetails
             Width = width;
             Length = length;
         }
+
+        public override int GetHashCode() => Square.GetHashCode() + Height.GetHashCode() + Price.GetHashCode() + Material.GetHashCode() + Width.GetHashCode() + Length.GetHashCode();
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not ChipboardRectangleLeg)
+                return false;
+            else
+            {
+                ChipboardRectangleLeg newObj = obj as ChipboardRectangleLeg;
+
+                return Square == newObj.Square && Height == newObj.Height && Width == newObj.Width &&
+                        Price == newObj.Price && Length == newObj.Length && Material == newObj.Material;
+            }
+        }
+        public override string ToString()
+        {
+            return $"Metal rectangle leg {Width}x{Length}x{Height}";
+        }
     }
 }

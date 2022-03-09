@@ -10,6 +10,13 @@ namespace Facility.Machines
         public double PriceForProcessing { get; }
         public double MaxHeight { get; }
 
+        public MachineForRectangularDetails(MaterialType materialType, double maxHeight, double priceForProcessing)
+        {
+            MaterialForProcessing = materialType;
+            PriceForProcessing = priceForProcessing;
+            MaxHeight = maxHeight;
+        }
+
         public ChipboardRectangleLeg GetRectangleLeg(WorkPiece workPiece, double height, double width, double length)
         {
             if (height < MaxHeight)
@@ -25,7 +32,6 @@ namespace Facility.Machines
                 throw new Exception("This work piece is too large for this machine");
             }
         }
-
         public RectangularTableTop GetRectangularTableTop(WorkPiece workPiece, double height, double width, double length)
         {
             if (height < MaxHeight)
@@ -40,6 +46,25 @@ namespace Facility.Machines
             {
                 throw new Exception("This work piece is too large for this machine");
             }
+        }
+
+        public override int GetHashCode() => MaterialForProcessing.GetHashCode() + PriceForProcessing.GetHashCode() + MaxHeight.GetHashCode();
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not MachineForRectangularDetails)
+                return false;
+            else
+            {
+                MachineForRectangularDetails newObj = obj as MachineForRectangularDetails;
+
+                return MaterialForProcessing == newObj.MaterialForProcessing &&
+                        PriceForProcessing == newObj.PriceForProcessing &&
+                        MaxHeight == newObj.MaxHeight;
+            }
+        }
+        public override string ToString()
+        {
+            return "Machine for rectangular details.";
         }
     }
 }

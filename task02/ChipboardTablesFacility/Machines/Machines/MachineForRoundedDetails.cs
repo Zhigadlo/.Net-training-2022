@@ -18,18 +18,37 @@ namespace Facility.Machines
             MaterialForProcessing = materialForProcessing;
             PriceForProcessing = priceForProcessing;
             MaxHeight = maxHeight;
-            _machineForOvalDetails = new MachineForOvalDetails();
-            _machineForRoundDetails = new MachineForRoundDetails();
+            _machineForOvalDetails = new MachineForOvalDetails(materialForProcessing, maxHeight, priceForProcessing);
+            _machineForRoundDetails = new MachineForRoundDetails(materialForProcessing, maxHeight, priceForProcessing);
         }
-        
         public OvalTableTop GetOvalTableTop(WorkPiece workPiece, double height, double smallRadius, double largeRadius)
         {
             return _machineForOvalDetails.GetOvalTableTop(workPiece, height, smallRadius, largeRadius);
         }
-
         public RoundTableTop GetRoundTableTop(WorkPiece workPiece, double height, double radius)
         {
             return _machineForRoundDetails.GetRoundTableTop(workPiece, height, radius);
         }
+
+        public override int GetHashCode() => MaterialForProcessing.GetHashCode() + PriceForProcessing.GetHashCode() + MaxHeight.GetHashCode();
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not MachineForRoundedDetails)
+                return false;
+            else
+            {
+                MachineForRoundedDetails newObj = obj as MachineForRoundedDetails;
+
+                return MaterialForProcessing == newObj.MaterialForProcessing &&
+                        PriceForProcessing == newObj.PriceForProcessing &&
+                        MaxHeight == newObj.MaxHeight;
+            }
+        }
+        public override string ToString()
+        {
+            return "Machine for rounded details.";
+        }
+
+
     }
 }

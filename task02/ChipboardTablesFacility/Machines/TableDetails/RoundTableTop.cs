@@ -19,5 +19,23 @@ namespace Facility.TableDetails
             Square = 2 * Math.PI * Radius;
             Price = Square * height * (int)material + priceForProcessing;
         }
+
+        public override int GetHashCode() => Square.GetHashCode() + Height.GetHashCode() + Price.GetHashCode() + Material.GetHashCode() + Radius.GetHashCode();
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not RoundTableTop)
+                return false;
+            else                                                                           
+            {
+                RoundTableTop newObj = obj as RoundTableTop;
+
+                return Square == newObj.Square && Height == newObj.Height && Radius == newObj.Radius &&
+                        Price == newObj.Price && Material == newObj.Material;
+            }
+        }
+        public override string ToString()
+        {
+            return $"Chipboard rectangle leg {Radius}x{Height}";
+        }
     }
 }

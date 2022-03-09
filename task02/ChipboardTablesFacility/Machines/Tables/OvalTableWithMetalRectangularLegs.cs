@@ -28,5 +28,23 @@ namespace Facility.Tables
         }
 
         public double GetChipboardConsumption() => TableTop.Height * TableTop.Square;
+
+        public override int GetHashCode() => Name.GetHashCode() + TableLegs.GetHashCode() + TableTop.GetHashCode() + Price.GetHashCode() + LegsCount.GetHashCode();
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not OvalTableWithMetalRectangularLegs)
+                return false;
+            else
+            {
+                OvalTableWithMetalRectangularLegs newObj = obj as OvalTableWithMetalRectangularLegs;
+
+                return Name == newObj.Name && TableLegs == newObj.TableLegs && TableTop == newObj.TableTop &&
+                        Price == newObj.Price && LegsCount == newObj.LegsCount;
+            }
+        }
+        public override string ToString()
+        {
+            return $"Oval table with metal legs. Name = {Name}";
+        }
     }
 }

@@ -35,5 +35,23 @@ namespace Facility.Tables
             
             return consumption;
         }
+
+        public override int GetHashCode() => Name.GetHashCode() + TableLegs.GetHashCode() + TableTop.GetHashCode() + Price.GetHashCode() + LegsCount.GetHashCode();
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not RectangularChipboardTable)
+                return false;
+            else
+            {
+                RectangularChipboardTable newObj = obj as RectangularChipboardTable;
+
+                return Name == newObj.Name && TableLegs == newObj.TableLegs && TableTop == newObj.TableTop &&
+                        Price == newObj.Price && LegsCount == newObj.LegsCount;
+            }
+        }
+        public override string ToString()
+        {
+            return $"Rectangular table with rectangular legs. Name = {Name}";
+        }
     }
 }

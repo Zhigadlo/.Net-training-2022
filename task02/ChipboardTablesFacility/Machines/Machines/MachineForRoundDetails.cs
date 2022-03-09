@@ -10,6 +10,13 @@ namespace Facility.Machines
         public double PriceForProcessing { get; }
         public double MaxHeight { get; }
 
+        public MachineForRoundDetails(MaterialType materialType, double maxHeight, double priceForProcessing)
+        {
+            MaterialForProcessing = materialType;
+            PriceForProcessing = priceForProcessing;
+            MaxHeight = maxHeight;
+        }
+
         public RoundTableTop GetRoundTableTop(WorkPiece workPiece, double height, double radius)
         {
             if (height < MaxHeight)
@@ -24,6 +31,25 @@ namespace Facility.Machines
             {
                 throw new Exception("This work piece is too large for this machine");
             }
+        }
+
+        public override int GetHashCode() => MaterialForProcessing.GetHashCode() + PriceForProcessing.GetHashCode() + MaxHeight.GetHashCode();
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not MachineForRoundDetails)
+                return false;
+            else
+            {
+                MachineForRoundDetails newObj = obj as MachineForRoundDetails;
+
+                return MaterialForProcessing == newObj.MaterialForProcessing &&
+                        PriceForProcessing == newObj.PriceForProcessing &&
+                        MaxHeight == newObj.MaxHeight;
+            }
+        }
+        public override string ToString()
+        {
+            return "Machine for round details.";
         }
     }
 }
