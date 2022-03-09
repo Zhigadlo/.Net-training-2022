@@ -1,11 +1,15 @@
 ﻿namespace Facility.Interfaces
 {
-    public interface ITable
+    public interface ITable <Top, Leg> 
+        where Top : IDetail
+        where Leg : IDetail
     {
         public string Name { get; set; }
-        public List<IDetail> TableLegs { get; }
-        public IDetail TableTop { get; }
         public double Price { get; }
-        public double GetPriceForBuild();
+        public int LegsCount { get; }
+        public Top TableTop { get; }
+        public List<Leg> TableLegs { get; }
+
+        public double GetChipboardConsumption();
     }
 }

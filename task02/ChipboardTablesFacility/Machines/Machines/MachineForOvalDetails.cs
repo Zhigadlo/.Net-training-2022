@@ -25,5 +25,27 @@ namespace Facility.Machines
                 throw new Exception("This work piece is too large for this machine");
             }
         }
+
+        public override int GetHashCode() => MaterialForProcessing.GetHashCode() + PriceForProcessing.GetHashCode() + MaxHeight.GetHashCode();
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not MachineForOvalDetails)
+                return false;
+            else
+            {
+                MachineForOvalDetails newObj = (MachineForOvalDetails)obj;
+
+                return MaterialForProcessing == newObj.MaterialForProcessing &&
+                        PriceForProcessing == newObj.PriceForProcessing &&
+                        MaxHeight == newObj.MaxHeight;
+            }
+        }
+
+        public override string ToString()
+        {
+            return "Machine for oval details.";
+        }
+
     }
 }

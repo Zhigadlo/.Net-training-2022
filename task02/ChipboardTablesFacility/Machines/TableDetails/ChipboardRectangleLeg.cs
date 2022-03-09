@@ -12,7 +12,7 @@ namespace Facility.TableDetails
         public double Width { get; }
         public double Length { get; }
 
-        public ChipboardRectangleLeg(MaterialType material, double height, double width, double lenght, double priceForProcessing)
+        public ChipboardRectangleLeg(MaterialType material, double height, double width, double lenght, double priceForProcessing) 
         {
             Material = material;
             Height = height;

@@ -4,7 +4,7 @@ using Facility.TableDetails;
 
 namespace Facility.Machines
 {
-    public class MachineForRoundDetails : IMachineForRoundDetails
+    public class MachineForRoundDetails : IMachine
     {
         public MaterialType MaterialForProcessing { get; }
         public double PriceForProcessing { get; }
