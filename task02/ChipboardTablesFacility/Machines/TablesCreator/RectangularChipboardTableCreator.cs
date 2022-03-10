@@ -1,5 +1,6 @@
 ﻿using Facility.Tables;
 using Facility.TableDetails;
+using Facility.TablesCreator.Interfaces;
 
 namespace Facility.TablesCreator
 {

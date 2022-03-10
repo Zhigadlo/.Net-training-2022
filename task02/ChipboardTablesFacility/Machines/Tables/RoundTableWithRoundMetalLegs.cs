@@ -7,7 +7,7 @@ namespace Facility.Tables
     {
         public string Name { get; set; }
         public double Price { get; }
-        public List<MetalRoundLeg> TableLegs { get; }
+        public MetalRoundLeg TableLeg { get; }
         public RoundTableTop TableTop { get; }
         public int LegsCount { get; }
 
@@ -16,20 +16,13 @@ namespace Facility.Tables
             Name = name;
             TableTop = top;
             LegsCount = countOfLegs;
-            double priceForLegs = 0;
-            TableLegs = new List<MetalRoundLeg>();
-            for (int i = 0; i < countOfLegs; i++)
-            {
-                TableLegs.Add(leg);
-                priceForLegs += leg.Price;
-            }
-
-            Price = top.Price + priceForLegs;
+            TableLeg = leg;
+            Price = top.Price + LegsCount * leg.Price;
         }
 
         public double GetChipboardConsumption() => TableTop.Height * TableTop.Square;
 
-        public override int GetHashCode() => Name.GetHashCode() + TableLegs.GetHashCode() + TableTop.GetHashCode() + Price.GetHashCode() + LegsCount.GetHashCode();
+        public override int GetHashCode() => Name.GetHashCode() + TableLeg.GetHashCode() + TableTop.GetHashCode() + Price.GetHashCode() + LegsCount.GetHashCode();
         public override bool Equals(object obj)
         {
             if (obj == null || obj is not RoundTableWithRoundMetalLegs)
@@ -38,7 +31,7 @@ namespace Facility.Tables
             {
                 RoundTableWithRoundMetalLegs newObj = obj as RoundTableWithRoundMetalLegs;
 
-                return Name == newObj.Name && TableLegs == newObj.TableLegs && TableTop == newObj.TableTop &&
+                return Name == newObj.Name && TableLeg == newObj.TableLeg && TableTop == newObj.TableTop &&
                         Price == newObj.Price && LegsCount == newObj.LegsCount;
             }
         }

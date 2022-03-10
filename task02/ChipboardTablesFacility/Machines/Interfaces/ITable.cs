@@ -8,7 +8,7 @@
         public double Price { get; }
         public int LegsCount { get; }
         public Top TableTop { get; }
-        public List<Leg> TableLegs { get; }
+        public Leg TableLeg { get; }
 
         public double GetChipboardConsumption();
     }

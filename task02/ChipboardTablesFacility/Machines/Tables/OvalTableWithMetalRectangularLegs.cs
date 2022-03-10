@@ -6,7 +6,7 @@ namespace Facility.Tables
     public class OvalTableWithMetalRectangularLegs : ITable <OvalTableTop, MetalRectangleLeg>
     {
         public string Name { get; set; }
-        public List<MetalRectangleLeg> TableLegs { get; }
+        public MetalRectangleLeg TableLeg { get; }
         public OvalTableTop TableTop { get; }
         public double Price { get; }
         public int LegsCount { get; }
@@ -16,20 +16,13 @@ namespace Facility.Tables
             Name = name;
             LegsCount = countOfLegs;
             TableTop = top;
-            double priceForLegs = 0;
-            TableLegs = new List<MetalRectangleLeg>();
-            for(int i = 0; i < countOfLegs; i++)
-            {
-                TableLegs.Add(leg);
-                priceForLegs += leg.Price;
-            }
-
-            Price = top.Price + priceForLegs;
+            TableLeg = leg;
+            Price = top.Price + LegsCount * leg.Price;
         }
 
         public double GetChipboardConsumption() => TableTop.Height * TableTop.Square;
 
-        public override int GetHashCode() => Name.GetHashCode() + TableLegs.GetHashCode() + TableTop.GetHashCode() + Price.GetHashCode() + LegsCount.GetHashCode();
+        public override int GetHashCode() => Name.GetHashCode() + TableLeg.GetHashCode() + TableTop.GetHashCode() + Price.GetHashCode() + LegsCount.GetHashCode();
         public override bool Equals(object obj)
         {
             if (obj == null || obj is not OvalTableWithMetalRectangularLegs)
@@ -38,7 +31,7 @@ namespace Facility.Tables
             {
                 OvalTableWithMetalRectangularLegs newObj = obj as OvalTableWithMetalRectangularLegs;
 
-                return Name == newObj.Name && TableLegs == newObj.TableLegs && TableTop == newObj.TableTop &&
+                return Name == newObj.Name && TableLeg == newObj.TableLeg && TableTop == newObj.TableTop &&
                         Price == newObj.Price && LegsCount == newObj.LegsCount;
             }
         }

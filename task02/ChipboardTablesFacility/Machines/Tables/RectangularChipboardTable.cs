@@ -6,7 +6,7 @@ namespace Facility.Tables
     public class RectangularChipboardTable : ITable <RectangularTableTop, ChipboardRectangleLeg>
     {
         public string Name { get; set; }
-        public List<ChipboardRectangleLeg> TableLegs { get; }
+        public ChipboardRectangleLeg TableLeg { get; }
         public RectangularTableTop TableTop { get; }
         public double Price { get; }
         public int LegsCount { get; }
@@ -14,29 +14,17 @@ namespace Facility.Tables
         {
             Name = name;
             LegsCount = countOfLegs;
-            TableLegs = new List<ChipboardRectangleLeg>();
-            double priceForLegs = 0;
-            for(int i = 0; i < countOfLegs; i++)
-            {
-                TableLegs.Add(leg);
-                priceForLegs += leg.Price;
-            }
-
+            TableLeg = leg;
             TableTop = top;
-            Price = top.Price + priceForLegs;
+            Price = top.Price + LegsCount * leg.Price;
         }
 
         public double GetChipboardConsumption()
         {
-            double consumption = TableTop.Height * TableTop.Square;
-
-            foreach (var leg in TableLegs)
-                consumption += leg.Height * leg.Square;
-            
-            return consumption;
+            return TableTop.Square * TableTop.Height + LegsCount * TableLeg.Height * TableLeg.Square;
         }
 
-        public override int GetHashCode() => Name.GetHashCode() + TableLegs.GetHashCode() + TableTop.GetHashCode() + Price.GetHashCode() + LegsCount.GetHashCode();
+        public override int GetHashCode() => Name.GetHashCode() + TableLeg.GetHashCode() + TableTop.GetHashCode() + Price.GetHashCode() + LegsCount.GetHashCode();
         public override bool Equals(object obj)
         {
             if (obj == null || obj is not RectangularChipboardTable)
@@ -45,7 +33,7 @@ namespace Facility.Tables
             {
                 RectangularChipboardTable newObj = obj as RectangularChipboardTable;
 
-                return Name == newObj.Name && TableLegs == newObj.TableLegs && TableTop == newObj.TableTop &&
+                return Name == newObj.Name && TableLeg == newObj.TableLeg && TableTop == newObj.TableTop &&
                         Price == newObj.Price && LegsCount == newObj.LegsCount;
             }
         }

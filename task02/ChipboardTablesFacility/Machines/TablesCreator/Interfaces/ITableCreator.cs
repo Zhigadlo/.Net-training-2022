@@ -1,6 +1,6 @@
 ﻿using Facility.Interfaces;
 
-namespace Facility.TablesCreator
+namespace Facility.TablesCreator.Interfaces
 {
     public interface ITableCreator <Top, Leg, Table>  
         where Top : IDetail 

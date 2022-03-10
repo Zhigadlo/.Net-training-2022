@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ChipboardFacility>
+  <Facility.Tables.OvalTableWithRectangularChipboardLegs>
+    <Name>OvalTable</Name>
+    <Price>476.88495559215386</Price>
+    <LegsCount>5</LegsCount>
+    <TableTop>Chipboard rectangle leg 1x2x0.05</TableTop>
+    <TableLeg>Chipboard rectangle leg 1x1x10</TableLeg>
+  </Facility.Tables.OvalTableWithRectangularChipboardLegs>
+</ChipboardFacility>
