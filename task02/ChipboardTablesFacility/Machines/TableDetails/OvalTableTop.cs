@@ -11,10 +11,12 @@ namespace Facility.TableDetails
         public double Price { get; }
         public double SmallRadius { get; }
         public double LargeRadius { get; }
+        public double PriceForProcessing { get; }
 
         public OvalTableTop(MaterialType material, double Height, double largeRadius, double smallRadius, double priceForProcessing)
         {
             Material = material;
+            PriceForProcessing = priceForProcessing;
             this.Height = Height;
             Square = largeRadius * smallRadius * Math.PI;
             SmallRadius = smallRadius;
@@ -32,7 +34,8 @@ namespace Facility.TableDetails
                 OvalTableTop newObj = obj as OvalTableTop;
 
                 return Square == newObj.Square && Height == newObj.Height && SmallRadius == newObj.SmallRadius &&
-                        Price == newObj.Price && LargeRadius == newObj.LargeRadius && Material == newObj.Material;
+                        Price == newObj.Price && LargeRadius == newObj.LargeRadius && Material == newObj.Material &&
+                        PriceForProcessing == newObj.PriceForProcessing;
             }
         }
         public override string ToString()

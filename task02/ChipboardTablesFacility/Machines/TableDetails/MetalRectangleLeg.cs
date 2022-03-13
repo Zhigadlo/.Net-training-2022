@@ -25,11 +25,11 @@ namespace Facility.TableDetails
         public override int GetHashCode() => Square.GetHashCode() + Height.GetHashCode() + Price.GetHashCode() + Material.GetHashCode() + Width.GetHashCode() + Length.GetHashCode();
         public override bool Equals(object obj)
         {
-            if (obj == null || obj is not ChipboardRectangleLeg)
+            if (obj == null || obj is not RectangleChipboardLeg)
                 return false;
             else
             {
-                ChipboardRectangleLeg newObj = obj as ChipboardRectangleLeg;
+                RectangleChipboardLeg newObj = obj as RectangleChipboardLeg;
 
                 return Square == newObj.Square && Height == newObj.Height && Width == newObj.Width &&
                         Price == newObj.Price && Length == newObj.Length && Material == newObj.Material;

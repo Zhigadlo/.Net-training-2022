@@ -17,13 +17,13 @@ namespace Facility.Machines
             MaxHeight = maxHeight;
         }
 
-        public ChipboardRectangleLeg GetRectangleLeg(WorkPiece workPiece, double height, double width, double length)
+        public RectangleChipboardLeg GetRectangleLeg(WorkPiece workPiece, double height, double width, double length)
         {
             if (height < MaxHeight)
             {
                 workPiece.Cut(height, width, length);
 
-                ChipboardRectangleLeg rectangleLeg = new ChipboardRectangleLeg(MaterialForProcessing, height, width, length, PriceForProcessing);
+                RectangleChipboardLeg rectangleLeg = new RectangleChipboardLeg(MaterialForProcessing, height, width, length, PriceForProcessing);
 
                 return rectangleLeg;
             }

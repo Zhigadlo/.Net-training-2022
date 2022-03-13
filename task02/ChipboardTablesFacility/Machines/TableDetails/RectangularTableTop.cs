@@ -11,10 +11,12 @@ namespace Facility.TableDetails
         public double Price { get; }
         public double Width { get; }
         public double Length { get; }
+        public double PriceForProcessing { get;}
 
         public RectangularTableTop(MaterialType material, double height, double width, double lenght, double priceForProcessing)
         {
             Square = width * lenght;
+            PriceForProcessing = priceForProcessing;
             Height = height;
             Width = width;
             Length = lenght;
@@ -32,7 +34,8 @@ namespace Facility.TableDetails
                 RectangularTableTop newObj = obj as RectangularTableTop;
 
                 return Square == newObj.Square && Height == newObj.Height && Width == newObj.Width &&
-                        Price == newObj.Price && Length == newObj.Length && Material == newObj.Material;
+                        Price == newObj.Price && Length == newObj.Length && Material == newObj.Material &&
+                        PriceForProcessing == newObj.PriceForProcessing;
             }
         }
         public override string ToString()

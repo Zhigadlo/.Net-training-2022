@@ -28,7 +28,7 @@ namespace Facility.Machines
         {
             return _machineForOvalDetails.GetOvalTableTop(workPiece, height, smallRadius, largeRadius);
         }
-        public ChipboardRectangleLeg GetRectangleLeg(WorkPiece workPiece, double height, double width, double length)
+        public RectangleChipboardLeg GetRectangleLeg(WorkPiece workPiece, double height, double width, double length)
         {
             return _machineForRectangularDetails.GetRectangleLeg(workPiece, height, width, length);
         }

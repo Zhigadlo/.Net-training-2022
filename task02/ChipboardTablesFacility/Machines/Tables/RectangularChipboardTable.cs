@@ -3,14 +3,14 @@ using Facility.TableDetails;
 
 namespace Facility.Tables
 {
-    public class RectangularChipboardTable : ITable <RectangularTableTop, ChipboardRectangleLeg>
+    public class RectangularChipboardTable : ITable <RectangularTableTop, RectangleChipboardLeg>
     {
         public string Name { get; set; }
-        public ChipboardRectangleLeg TableLeg { get; }
+        public RectangleChipboardLeg TableLeg { get; }
         public RectangularTableTop TableTop { get; }
         public double Price { get; }
         public int LegsCount { get; }
-        public RectangularChipboardTable(string name, RectangularTableTop top, int countOfLegs ,ChipboardRectangleLeg leg)
+        public RectangularChipboardTable(string name, RectangularTableTop top, int countOfLegs ,RectangleChipboardLeg leg)
         {
             Name = name;
             LegsCount = countOfLegs;

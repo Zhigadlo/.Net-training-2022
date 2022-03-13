@@ -3,15 +3,15 @@ using Facility.TableDetails;
 
 namespace Facility.Tables
 {
-    public class OvalTableWithRectangularChipboardLegs : ITable<OvalTableTop, ChipboardRectangleLeg>
+    public class OvalTableWithRectangularChipboardLegs : ITable<OvalTableTop, RectangleChipboardLeg>
     {
         public string Name { get; set; }
         public double Price { get; }
         public int LegsCount { get; }
         public OvalTableTop TableTop { get; }
-        public ChipboardRectangleLeg TableLeg { get; }
+        public RectangleChipboardLeg TableLeg { get; }
 
-        public OvalTableWithRectangularChipboardLegs(string name, OvalTableTop top, int countOfLegs, ChipboardRectangleLeg leg)
+        public OvalTableWithRectangularChipboardLegs(string name, OvalTableTop top, int countOfLegs, RectangleChipboardLeg leg)
         {
             Name = name;
             LegsCount = countOfLegs;
