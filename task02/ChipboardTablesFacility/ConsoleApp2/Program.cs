@@ -24,11 +24,13 @@ RectangularChipboardTableWithAccessories table2 = new RectangularChipboardTableW
 OvalTableWithMetalRectangularLegs table3 = new OvalTableWithMetalRectangularLegs("OvalTable3", top, 3, metalRectangleLeg);
 RectangularChipboardTable table4 = new RectangularChipboardTable("RectangularTable4", rectangularTableTop, 6, leg);
 RoundTableWithRoundMetalLegs table5 = new RoundTableWithRoundMetalLegs("OvalTable5", roundTop, 5, metalRoundLeg);
-string path = @"D:/Epam-тренинг/external training/.Net-training-2022/task02/ChipboardTablesFacility/Machines/Parsing/XMLFile1.xml";
+string path = @"D:/Epam-тренинг/external training/.Net-training-2022/task02/ChipboardTablesFacility/Machines/Parsing/XMLFile2.xml";
 
-XMLParsing.WriteListOfObjects(path, table2, table, table1, table3, table4, table5);
+XMLStreamParsing xmlParser = new XMLStreamParsing();
+xmlParser.WriteObject(path, table2);
+//xmlParser.WriteListOfObjects(path, table2, table, table1, table3, table4, table5);
 
-RectangularChipboardTableWithAccessoriesCreator creator = new RectangularChipboardTableWithAccessoriesCreator();
+/*RectangularChipboardTableWithAccessoriesCreator creator = new RectangularChipboardTableWithAccessoriesCreator();
 
 var tables = creator.GetTablesFromXmlFile(path);
 
@@ -41,4 +43,4 @@ foreach (var tabl in tables)
     Console.WriteLine("LegMaterial: " + tabl.TableLeg.Material);
     Console.WriteLine("TopMaterial: " + tabl.TableTop.Material);
     Console.WriteLine("LegsCount: " + tabl.LegsCount);
-}
+}*/

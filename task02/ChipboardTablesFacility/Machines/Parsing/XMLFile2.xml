@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RectangularChipboardTableWithAccessories>
+<TableAccessories>
+	<KeyValuePair key="Shkants" value="5" />
+	<KeyValuePair key="Corners" value="3" />
+	<KeyValuePair key="BoltNut" value="10" />
+</TableAccessories>
+<Name>Eban</Name>
+<RectangleChipboardLeg>
+<Square>1</Square>
+<Height>10</Height>
+<Price>85</Price>
+<Material>ConstructionChipboard</Material>
+<Width>1</Width>
+<Length>1</Length>
+<PriceForProcessing>5</PriceForProcessing>
+</RectangleChipboardLeg>
+<RectangularTableTop>
+<Square>6</Square>
+<Height>0.07</Height>
+<Material>SpecialChipboard</Material>
+<Price>104.2</Price>
+<Width>2</Width>
+<Length>3</Length>
+<PriceForProcessing>100</PriceForProcessing>
+</RectangularTableTop>
+<Price>359.2</Price>
+<LegsCount>3</LegsCount>
+</RectangularChipboardTableWithAccessories>

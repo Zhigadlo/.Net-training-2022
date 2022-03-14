@@ -3,9 +3,9 @@ using System.Xml;
 
 namespace Facility.Parsing
 {
-    public class XMLParsing
+    public class XMLParsing : IParsing
     {
-        public static void WriteObject(string path, object obj)
+        public void WriteObject(string path, object obj)
         {
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
@@ -16,10 +16,9 @@ namespace Facility.Parsing
             WriteItem(obj, writer);
 
             writer.Close();
-
         }
 
-        public static void WriteListOfObjects(string path, params object[] objectList)
+        public void WriteListOfObjects(string path, params object[] objectList)
         {
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
@@ -36,11 +35,7 @@ namespace Facility.Parsing
             writer.Close();
         }
 
-        public void Read()
-        {
-
-        }
-        private static void WriteItem(object obj, XmlWriter writer)
+        private void WriteItem(object obj, XmlWriter writer)
         {
             writer.WriteStartElement(obj.GetType().Name);
             var properties = GetProperties(obj);
@@ -64,14 +59,14 @@ namespace Facility.Parsing
             }
             writer.WriteEndElement();
         }
-        private static System.Reflection.PropertyInfo[] GetProperties(object obj)
+        private System.Reflection.PropertyInfo[] GetProperties(object obj)
         {
             return obj.GetType()
                 .GetProperties()
                 .ToArray();
         }
 
-        private static void WriteDictionary(System.Reflection.PropertyInfo property, object obj, XmlWriter writer)
+        private void WriteDictionary(System.Reflection.PropertyInfo property, object obj, XmlWriter writer)
         {
             writer.WriteStartElement(property.Name);
             var dict = (Dictionary<TableAccessoriesType, int>)property.GetValue(obj);
@@ -81,9 +76,6 @@ namespace Facility.Parsing
                 writer.WriteAttributeString("key", item.Key.ToString());
                 writer.WriteAttributeString("value", item.Value.ToString());
                 writer.WriteEndElement();
-                //writer.WriteElementString("Key", item.Key.ToString());
-                //writer.WriteElementString("Value", item.Value.ToString());
-
             }
             writer.WriteEndElement();
         }
