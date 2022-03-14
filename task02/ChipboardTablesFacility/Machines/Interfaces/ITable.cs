@@ -1,6 +1,6 @@
 ﻿namespace Facility.Interfaces
 {
-    public interface ITable <Top, Leg> 
+    public interface ITable<Top, Leg>
         where Top : IDetail
         where Leg : IDetail
     {

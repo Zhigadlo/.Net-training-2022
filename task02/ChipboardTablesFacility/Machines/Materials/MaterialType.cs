@@ -10,4 +10,23 @@
         SpecialChipboard = 10,
         Metal = 12
     }
+    public class Material
+    {
+        public static MaterialType Parse(string str)
+        {
+            switch (str)
+            {
+                case "Metal":
+                    return MaterialType.Metal;
+                case "ConstructionChipboard":
+                    return MaterialType.ConstructionChipboard;
+                case "GeneralPurposeChipboard":
+                    return MaterialType.GeneralPurposeChipboard;
+                case "SpecialChipboard":
+                    return MaterialType.SpecialChipboard;
+                default:
+                    throw new Exception("Wrong type of material");
+            }
+        }
+    }
 }

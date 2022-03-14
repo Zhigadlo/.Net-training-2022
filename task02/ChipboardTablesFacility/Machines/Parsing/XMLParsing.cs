@@ -1,6 +1,4 @@
-﻿using Facility.Interfaces;
-using Facility.TableDetails;
-using Facility.Tables;
+﻿using Facility.TableDetails;
 using System.Xml;
 
 namespace Facility.Parsing
@@ -60,12 +58,9 @@ namespace Facility.Parsing
                 }
                 else
                 {
-                    //writer.WriteStartElement(property.PropertyType.Name);
                     writer.WriteElementString(property.Name, value.ToString());
-                    //writer.WriteAttributeString(property.Name, value.ToString());
-                    //writer.WriteEndElement();
                 }
-                
+
             }
             writer.WriteEndElement();
         }
@@ -80,11 +75,15 @@ namespace Facility.Parsing
         {
             writer.WriteStartElement(property.Name);
             var dict = (Dictionary<TableAccessoriesType, int>)property.GetValue(obj);
-            foreach(var item in dict)
+            foreach (var item in dict)
             {
-                writer.WriteStartElement(item.Key.ToString());
-                writer.WriteAttributeString("count", item.Value.ToString());
+                writer.WriteStartElement("KeyValuePair");
+                writer.WriteAttributeString("key", item.Key.ToString());
+                writer.WriteAttributeString("value", item.Value.ToString());
                 writer.WriteEndElement();
+                //writer.WriteElementString("Key", item.Key.ToString());
+                //writer.WriteElementString("Value", item.Value.ToString());
+
             }
             writer.WriteEndElement();
         }

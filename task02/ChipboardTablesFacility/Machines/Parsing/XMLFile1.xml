@@ -2,9 +2,9 @@
 <Tables>
   <RectangularChipboardTableWithAccessories>
     <TableAccessories>
-      <Shkants count="5" />
-      <Corners count="3" />
-      <BoltNut count="10" />
+      <KeyValuePair key="Shkants" value="5" />
+      <KeyValuePair key="Corners" value="3" />
+      <KeyValuePair key="BoltNut" value="10" />
     </TableAccessories>
     <Name>Eban</Name>
     <RectangleChipboardLeg>
@@ -51,4 +51,92 @@
       <PriceForProcessing>5</PriceForProcessing>
     </RectangleChipboardLeg>
   </OvalTableWithRectangularChipboardLegs>
+  <OvalTableWithRectangularChipboardLegs>
+    <Name>OvalTable2</Name>
+    <Price>476.88495559215386</Price>
+    <LegsCount>5</LegsCount>
+    <OvalTableTop>
+      <Square>6.283185307179586</Square>
+      <Height>0.05</Height>
+      <Material>GeneralPurposeChipboard</Material>
+      <Price>51.88495559215387</Price>
+      <SmallRadius>1</SmallRadius>
+      <LargeRadius>2</LargeRadius>
+      <PriceForProcessing>50</PriceForProcessing>
+    </OvalTableTop>
+    <RectangleChipboardLeg>
+      <Square>1</Square>
+      <Height>10</Height>
+      <Price>85</Price>
+      <Material>ConstructionChipboard</Material>
+      <Width>1</Width>
+      <Length>1</Length>
+      <PriceForProcessing>5</PriceForProcessing>
+    </RectangleChipboardLeg>
+  </OvalTableWithRectangularChipboardLegs>
+  <OvalTableWithMetalRectangularLegs>
+    <Name>OvalTable3</Name>
+    <MetalRectangleLeg>
+      <Square>0.0012</Square>
+      <Height>5</Height>
+      <Price>20</Price>
+      <Material>Metal</Material>
+      <Width>0.03</Width>
+      <Length>0.04</Length>
+    </MetalRectangleLeg>
+    <OvalTableTop>
+      <Square>6.283185307179586</Square>
+      <Height>0.05</Height>
+      <Material>GeneralPurposeChipboard</Material>
+      <Price>51.88495559215387</Price>
+      <SmallRadius>1</SmallRadius>
+      <LargeRadius>2</LargeRadius>
+      <PriceForProcessing>50</PriceForProcessing>
+    </OvalTableTop>
+    <Price>111.88495559215387</Price>
+    <LegsCount>3</LegsCount>
+  </OvalTableWithMetalRectangularLegs>
+  <RectangularChipboardTable>
+    <Name>RectangularTable4</Name>
+    <RectangleChipboardLeg>
+      <Square>1</Square>
+      <Height>10</Height>
+      <Price>85</Price>
+      <Material>ConstructionChipboard</Material>
+      <Width>1</Width>
+      <Length>1</Length>
+      <PriceForProcessing>5</PriceForProcessing>
+    </RectangleChipboardLeg>
+    <RectangularTableTop>
+      <Square>6</Square>
+      <Height>0.07</Height>
+      <Material>SpecialChipboard</Material>
+      <Price>104.2</Price>
+      <Width>2</Width>
+      <Length>3</Length>
+      <PriceForProcessing>100</PriceForProcessing>
+    </RectangularTableTop>
+    <Price>614.2</Price>
+    <LegsCount>6</LegsCount>
+  </RectangularChipboardTable>
+  <RoundTableWithRoundMetalLegs>
+    <Name>OvalTable5</Name>
+    <Price>220.47786842338604</Price>
+    <MetalRoundLeg>
+      <Square>0.2827433388230814</Square>
+      <Height>0.8</Height>
+      <Price>23</Price>
+      <Material>Metal</Material>
+      <Radius>0.3</Radius>
+    </MetalRoundLeg>
+    <RoundTableTop>
+      <Square>18.84955592153876</Square>
+      <Height>0.8</Height>
+      <Material>GeneralPurposeChipboard</Material>
+      <Price>105.47786842338604</Price>
+      <Radius>3</Radius>
+      <PriceForProcessing>15</PriceForProcessing>
+    </RoundTableTop>
+    <LegsCount>5</LegsCount>
+  </RoundTableWithRoundMetalLegs>
 </Tables>

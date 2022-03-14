@@ -11,7 +11,7 @@ namespace Facility.TableDetails
         public double Price { get; }
         public double Width { get; }
         public double Length { get; }
-        public double PriceForProcessing { get;}
+        public double PriceForProcessing { get; }
 
         public RectangularTableTop(MaterialType material, double height, double width, double lenght, double priceForProcessing)
         {

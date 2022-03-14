@@ -27,7 +27,7 @@ namespace Facility.TableDetails
         {
             if (obj == null || obj is not RoundTableTop)
                 return false;
-            else                                                                           
+            else
             {
                 RoundTableTop newObj = obj as RoundTableTop;
 

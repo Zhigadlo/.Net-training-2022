@@ -1,6 +1,6 @@
-﻿using Facility.Materials;
+﻿using Facility.Interfaces;
+using Facility.Materials;
 using Facility.TableDetails;
-using Facility.Interfaces;
 
 namespace Facility.Machines
 {

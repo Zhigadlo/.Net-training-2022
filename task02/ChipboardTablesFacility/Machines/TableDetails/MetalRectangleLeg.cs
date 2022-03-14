@@ -8,7 +8,7 @@ namespace Facility.TableDetails
         public double Square { get; }
         public double Height { get; }
         public double Price { get; }
-        public MaterialType Material{ get; }
+        public MaterialType Material { get; }
         public double Width { get; }
         public double Length { get; }
 

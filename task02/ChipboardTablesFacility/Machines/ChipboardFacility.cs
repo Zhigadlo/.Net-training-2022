@@ -1,8 +1,7 @@
-﻿using Facility.Machines;
+﻿using Facility.Interfaces;
 using Facility.Materials;
 using Facility.TableDetails;
 using Facility.Tables;
-using Facility.Interfaces;
 
 namespace Facility
 {
@@ -36,7 +35,7 @@ namespace Facility
             return _tables.OrderBy(p => p.Price).ToList();
         }
 
-        public OvalTableWithMetalRectangularLegs MakeOvalTableWithMetalRectangularLegs(string name,OvalTableTop top, int countOflegs, MetalRectangleLeg leg)
+        public OvalTableWithMetalRectangularLegs MakeOvalTableWithMetalRectangularLegs(string name, OvalTableTop top, int countOflegs, MetalRectangleLeg leg)
         {
             return new OvalTableWithMetalRectangularLegs(name, top, countOflegs, leg);
         }
@@ -71,9 +70,9 @@ namespace Facility
         }
         public ITable<IDetail, IDetail> FindTableByChipboardComsuption(double chipboardComsuption)
         {
-            foreach(var table in _tables)
+            foreach (var table in _tables)
             {
-                if(chipboardComsuption == table.GetChipboardConsumption())
+                if (chipboardComsuption == table.GetChipboardConsumption())
                 {
                     return table;
                 }

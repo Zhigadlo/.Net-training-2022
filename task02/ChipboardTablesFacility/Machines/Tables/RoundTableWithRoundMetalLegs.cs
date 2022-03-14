@@ -3,7 +3,7 @@ using Facility.TableDetails;
 
 namespace Facility.Tables
 {
-    public class RoundTableWithRoundMetalLegs : ITable <RoundTableTop, MetalRoundLeg>
+    public class RoundTableWithRoundMetalLegs : ITable<RoundTableTop, MetalRoundLeg>
     {
         public string Name { get; set; }
         public double Price { get; }

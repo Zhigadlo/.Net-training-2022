@@ -13,7 +13,7 @@ namespace Facility.TableDetails
         public double Length { get; }
         public double PriceForProcessing { get; }
 
-        public RectangleChipboardLeg(MaterialType material, double height, double width, double lenght, double priceForProcessing) 
+        public RectangleChipboardLeg(MaterialType material, double height, double width, double lenght, double priceForProcessing)
         {
             Material = material;
             PriceForProcessing = priceForProcessing;

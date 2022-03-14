@@ -3,7 +3,7 @@ using Facility.TableDetails;
 
 namespace Facility.Tables
 {
-    public class OvalTableWithMetalRectangularLegs : ITable <OvalTableTop, MetalRectangleLeg>
+    public class OvalTableWithMetalRectangularLegs : ITable<OvalTableTop, MetalRectangleLeg>
     {
         public string Name { get; set; }
         public MetalRectangleLeg TableLeg { get; }

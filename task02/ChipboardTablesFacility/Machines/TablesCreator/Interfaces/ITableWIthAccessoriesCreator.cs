@@ -9,5 +9,6 @@ namespace Facility.TablesCreator.Interfaces
         where Table : ITable<Top, Leg>
     {
         public Table CreateTable(string name, Top top, int countOfLegs, Leg leg, Dictionary<TableAccessoriesType, int> tableAccessories);
+        public List<Table> GetTablesFromXmlFile(string path);
     }
 }
