@@ -9,5 +9,6 @@ namespace Facility.TablesCreator.Interfaces
     {
         public Table CreateTable(string name, Top top, int countOfLegs, Leg leg);
         public List<Table> GetTablesFromXmlFile(string path);
+        public List<Table> GetTablesFromXmlFileStream(string path);
     }
 }

@@ -57,37 +57,66 @@ namespace Facility.TablesCreator
             return tables;
         }
 
-        public List<RoundTableWithRoundMetalLegs> GetTablesFromXmlFileByStream(string path)
+        public List<RoundTableWithRoundMetalLegs> GetTablesFromXmlFileStream(string path)
         {
             List<RoundTableWithRoundMetalLegs> tables = new List<RoundTableWithRoundMetalLegs>();
 
             StreamReader reader = new StreamReader(path);
 
-            string[] charForRemove = new string[] { " ", "\n", "\t" };
-
             string textFromXml = reader.ReadToEnd();
-            var filtredXml = String.Concat(textFromXml.Split('\t'));
-            var foundObj = Regex.Matches(filtredXml, @"<(RoundTableWithRoundMetalLegs)\b[^>]*>\s*([\w\W]*?)\s*</RoundTableWithRoundMetalLegs>");
-            string obj = string.Join("\n", foundObj.Cast<Match>().Select(x => x.Value).ToArray());
-            var foundValues = Regex.Matches(obj, @"(?<=>)(\w+?)(?=<)");
-            string values = string.Join("\n", foundValues.Cast<Match>().Select(x => x.Value).ToArray());
+            var str = string.Concat(textFromXml.Split('\t'));
 
-            string[] strValues = values.Split('\n');
+            var foundStr = Regex.Matches(str, @"<(RoundTableWithRoundMetalLegs)\b[^>]*>\s*([\w\W]*?)\s*</RoundTableWithRoundMetalLegs>");
+            var s = string.Join("\n", foundStr.Cast<Match>().Select(x => x.Value).ToArray());
+            var foundValues = Regex.Matches(s, @"(?<=>)(\w+?)(\.[0-9]+)?(?=<)");
+            var values = string.Join("\n", foundValues.Cast<Match>().Select(x => x.Value).ToArray());
+
+            var strValues = values.Split('\n').ToList();
+
+            List<string[]> objValues = new List<string[]>();
+            int i = 0;
+            string[] arr = new string[14];
+            foreach (string value in strValues)
+            {
+                arr[i] = value;
+                if (i == arr.Length - 1)
+                {
+                    objValues.Add(arr);
+                    arr = new string[arr.Length];
+                    i = 0;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            foreach (string[] obj in objValues)
+            {
+                string name = obj[0];
+
+                double height = double.Parse(obj[3]);
+                double legPrice = double.Parse(obj[4]);
+                double radius = double.Parse(obj[6]);
+
+                MetalRoundLeg leg = new MetalRoundLeg(height, radius, legPrice);
+
+                height = double.Parse(obj[8]);
+                Materials.MaterialType material = Materials.Material.Parse(obj[9]);
+
+                radius = double.Parse(obj[11]);
+                double priceForProcessing = double.Parse(obj[12]);
+
+                RoundTableTop top = new RoundTableTop(material, height, radius, priceForProcessing);
+
+                int legCount = int.Parse(obj[13]);
+
+                tables.Add(new RoundTableWithRoundMetalLegs(name, top, legCount, leg));
+            }
 
             reader.Close();
+
             return tables;
-        }
-
-        public string FindValueFromElement(string text,string nameOfElement)
-        {
-            bool result = Regex.IsMatch(text, "\\b" + nameOfElement + "\\b");
-
-            return null;
-        }
-
-        public string StringFilter(string str, params char[] chars)
-        {
-            return String.Concat(str.Split(chars));
         }
     }
 }

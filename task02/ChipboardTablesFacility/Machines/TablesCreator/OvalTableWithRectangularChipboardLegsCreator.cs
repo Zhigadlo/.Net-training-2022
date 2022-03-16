@@ -61,18 +61,16 @@ namespace Facility.TablesCreator
 
         public List<OvalTableWithRectangularChipboardLegs> GetTablesFromXmlFileStream(string path)
         {
-            XmlReader xmlReader = XmlReader.Create(path);
-
             List<OvalTableWithRectangularChipboardLegs> tables = new List<OvalTableWithRectangularChipboardLegs>();
 
             StreamReader reader = new StreamReader(path);
 
             string textFromXml = reader.ReadToEnd();
-            var str = String.Concat(textFromXml.Split('\t'));
+            var str = string.Concat(textFromXml.Split('\t'));
 
             var foundStr = Regex.Matches(str, @"<(OvalTableWithRectangularChipboardLegs)\b[^>]*>\s*([\w\W]*?)\s*</OvalTableWithRectangularChipboardLegs>");
             var s = string.Join("\n", foundStr.Cast<Match>().Select(x => x.Value).ToArray());
-            var foundValues = Regex.Matches(s, @"(?<=>)(\w+?)(\.[0-9]+)(?=<)");
+            var foundValues = Regex.Matches(s, @"(?<=>)(\w+?)(\.[0-9]+)?(?=<)");
             var values = string.Join("\n", foundValues.Cast<Match>().Select(x => x.Value).ToArray());
 
             var strValues = values.Split('\n').ToList();
@@ -98,7 +96,7 @@ namespace Facility.TablesCreator
             foreach (string[] obj in objValues)
             {
                 string name = obj[0];
-                int legCount = int.Parse(obj[1]);
+                int legCount = int.Parse(obj[2]);
 
                 double height = double.Parse(obj[4]);
                 Materials.MaterialType material = Materials.Material.Parse(obj[5]);
@@ -120,6 +118,8 @@ namespace Facility.TablesCreator
 
                 tables.Add(new OvalTableWithRectangularChipboardLegs(name,top, legCount, leg));
             }
+
+            reader.Close();
 
             return tables;
         }
