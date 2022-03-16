@@ -4,6 +4,7 @@ using Facility.Parsing;
 using Facility.TableDetails;
 using Facility.Tables;
 using Facility.TablesCreator;
+using System.Text.RegularExpressions;
 
 RectangleChipboardLeg leg = new RectangleChipboardLeg(MaterialType.ConstructionChipboard, 10, 1, 1, 5);
 OvalTableTop top = new OvalTableTop(MaterialType.GeneralPurposeChipboard, 0.05, 2, 1, 50);
@@ -24,15 +25,18 @@ RectangularChipboardTableWithAccessories table2 = new RectangularChipboardTableW
 OvalTableWithMetalRectangularLegs table3 = new OvalTableWithMetalRectangularLegs("OvalTable3", top, 3, metalRectangleLeg);
 RectangularChipboardTable table4 = new RectangularChipboardTable("RectangularTable4", rectangularTableTop, 6, leg);
 RoundTableWithRoundMetalLegs table5 = new RoundTableWithRoundMetalLegs("OvalTable5", roundTop, 5, metalRoundLeg);
-string path = @"D:/Epam-тренинг/external training/.Net-training-2022/task02/ChipboardTablesFacility/Machines/Parsing/XMLFile2.xml";
-
+string path1 = @"D:/Epam-тренинг/external training/.Net-training-2022/task02/ChipboardTablesFacility/Machines/Parsing/XMLFile1.xml";
+string path2 = @"D:/Epam-тренинг/external training/.Net-training-2022/task02/ChipboardTablesFacility/Machines/Parsing/XMLFile2.xml";
 XMLStreamParsing xmlParser = new XMLStreamParsing();
-xmlParser.WriteObject(path, table2);
+//XMLParsing parser = new XMLParsing();
+//parser.WriteListOfObjects(path1, table, table1, table2, table3, table4, table5);
+xmlParser.WriteListOfObjects(path2, table, table1, table2, table3, table4, table5);
+
 //xmlParser.WriteListOfObjects(path, table2, table, table1, table3, table4, table5);
 
-/*RectangularChipboardTableWithAccessoriesCreator creator = new RectangularChipboardTableWithAccessoriesCreator();
+OvalTableWithRectangularChipboardLegsCreator creator = new OvalTableWithRectangularChipboardLegsCreator();
 
-var tables = creator.GetTablesFromXmlFile(path);
+var tables = creator.GetTablesFromXmlFile(path2);
 
 foreach (var tabl in tables)
 {
@@ -42,5 +46,5 @@ foreach (var tabl in tables)
     Console.WriteLine("TableLegPrice: " + tabl.TableLeg.Price);
     Console.WriteLine("LegMaterial: " + tabl.TableLeg.Material);
     Console.WriteLine("TopMaterial: " + tabl.TableTop.Material);
-    Console.WriteLine("LegsCount: " + tabl.LegsCount);
-}*/
+    Console.WriteLine("LegsCount: " + tabl.LegsCount + "\n");
+}

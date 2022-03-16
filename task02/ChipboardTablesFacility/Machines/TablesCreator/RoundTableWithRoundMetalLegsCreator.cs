@@ -1,6 +1,7 @@
 ﻿using Facility.TableDetails;
 using Facility.Tables;
 using Facility.TablesCreator.Interfaces;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace Facility.TablesCreator
@@ -54,6 +55,39 @@ namespace Facility.TablesCreator
             } while (xmlReader.ReadToFollowing("RoundTableWithRoundMetalLegs"));
 
             return tables;
+        }
+
+        public List<RoundTableWithRoundMetalLegs> GetTablesFromXmlFileByStream(string path)
+        {
+            List<RoundTableWithRoundMetalLegs> tables = new List<RoundTableWithRoundMetalLegs>();
+
+            StreamReader reader = new StreamReader(path);
+
+            string[] charForRemove = new string[] { " ", "\n", "\t" };
+
+            string textFromXml = reader.ReadToEnd();
+            var filtredXml = String.Concat(textFromXml.Split('\t'));
+            var foundObj = Regex.Matches(filtredXml, @"<(RoundTableWithRoundMetalLegs)\b[^>]*>\s*([\w\W]*?)\s*</RoundTableWithRoundMetalLegs>");
+            string obj = string.Join("\n", foundObj.Cast<Match>().Select(x => x.Value).ToArray());
+            var foundValues = Regex.Matches(obj, @"(?<=>)(\w+?)(?=<)");
+            string values = string.Join("\n", foundValues.Cast<Match>().Select(x => x.Value).ToArray());
+
+            string[] strValues = values.Split('\n');
+
+            reader.Close();
+            return tables;
+        }
+
+        public string FindValueFromElement(string text,string nameOfElement)
+        {
+            bool result = Regex.IsMatch(text, "\\b" + nameOfElement + "\\b");
+
+            return null;
+        }
+
+        public string StringFilter(string str, params char[] chars)
+        {
+            return String.Concat(str.Split(chars));
         }
     }
 }

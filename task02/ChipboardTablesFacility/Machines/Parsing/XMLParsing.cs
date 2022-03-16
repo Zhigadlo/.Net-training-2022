@@ -17,7 +17,6 @@ namespace Facility.Parsing
 
             writer.Close();
         }
-
         public void WriteListOfObjects(string path, params object[] objectList)
         {
             XmlWriterSettings settings = new XmlWriterSettings();
@@ -65,7 +64,6 @@ namespace Facility.Parsing
                 .GetProperties()
                 .ToArray();
         }
-
         private void WriteDictionary(System.Reflection.PropertyInfo property, object obj, XmlWriter writer)
         {
             writer.WriteStartElement(property.Name);

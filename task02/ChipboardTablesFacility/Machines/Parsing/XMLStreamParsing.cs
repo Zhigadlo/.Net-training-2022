@@ -18,7 +18,6 @@ namespace Facility.Parsing
 
             writer.Close(); new NotImplementedException();
         }
-
         public void WriteObject(string path, object obj)
         {
             StreamWriter writer = new StreamWriter(path, false);
@@ -54,7 +53,6 @@ namespace Facility.Parsing
             }
             WriteEndElement(obj.GetType().Name, writer);
         }
-
         private System.Reflection.PropertyInfo[] GetProperties(object obj)
         {
             return obj.GetType()
@@ -71,7 +69,6 @@ namespace Facility.Parsing
             }
             WriteEndElement(property.Name, writer);
         }
-
         private void WriteStartDocument(StreamWriter writer)
         {
             writer.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
