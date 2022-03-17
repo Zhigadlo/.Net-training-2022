@@ -4,6 +4,8 @@ using Facility.Parsing;
 using Facility.TableDetails;
 using Facility.Tables;
 using Facility.TablesCreator;
+using Newtonsoft.Json;
+using Facility.Interfaces;
 using System.Text.RegularExpressions;
 
 RectangleChipboardLeg leg = new RectangleChipboardLeg(MaterialType.ConstructionChipboard, 10, 1, 1, 5);
@@ -28,19 +30,27 @@ RoundTableWithRoundMetalLegs table5 = new RoundTableWithRoundMetalLegs("OvalTabl
 string path1 = @"D:/Epam-тренинг/external training/.Net-training-2022/task02/ChipboardTablesFacility/Machines/Parsing/XMLFile1.xml";
 string path2 = @"D:/Epam-тренинг/external training/.Net-training-2022/task02/ChipboardTablesFacility/Machines/Parsing/XMLFile2.xml";
 string newpath = @"C:/Users/Lenovo/Desktop/xmlfile.xml";
+string jsonpath = "C:/Users/Lenovo/Desktop/newjsonfile.json";
 XMLStreamParsing xmlParser = new XMLStreamParsing();
 //XMLParsing parser = new XMLParsing();
 //parser.WriteListOfObjects(path1, table, table1, table2, table3, table4, table5);
 xmlParser.WriteListOfObjects(path2, table, table1, table2, table3, table4, table5);
 
+JsonParsing.WriteJsonFile(table, "C:/Users/Lenovo/Desktop/newjsonfile.json");
+
 //xmlParser.WriteListOfObjects(path, table2, table, table1, table3, table4, table5);
 
-RectangularChipboardTableWithAccessoriesCreator creator = new RectangularChipboardTableWithAccessoriesCreator();
+OvalTableWithMetalRectangularLegsCreator creator = new OvalTableWithMetalRectangularLegsCreator();
+StreamReader reader = new StreamReader(jsonpath);
 
-var tables = creator.GetTablesFromXmlFileStream(path2);
+string json = reader.ReadToEnd();
+reader.Close();
+var tabl = JsonConvert.DeserializeObject<OvalTableWithRectangularChipboardLegs>(json);
+//var tables = creator.GetTablesFromJsonFile(path2);
 
-foreach (var tabl in tables)
-{
+
+//foreach (var tabl in tables)
+//{
     Console.WriteLine("Name: " + tabl.Name);
     Console.WriteLine("TablePrice: " + tabl.Price);
     Console.WriteLine("TableTopPrice: " + tabl.TableTop.Price);
@@ -48,11 +58,11 @@ foreach (var tabl in tables)
     Console.WriteLine("LegMaterial: " + tabl.TableLeg.Material);
     Console.WriteLine("TopMaterial: " + tabl.TableTop.Material);
     Console.WriteLine("LegsCount: " + tabl.LegsCount + "\n");
-    foreach (KeyValuePair<TableAccessoriesType, int> kvp in tabl.TableAccessories)
+    /*foreach (KeyValuePair<TableAccessoriesType, int> kvp in tabl.TableAccessories)
         Console.WriteLine($"{kvp.Key} - {kvp.Value}");
-    Console.WriteLine("=========");
+    Console.WriteLine("=========");*/
 
-}
+//}
 
 /*StreamReader reader = new StreamReader(newpath);
 
