@@ -1,13 +1,16 @@
 ﻿using Facility.Interfaces;
 using Facility.Materials;
+using System.Text.Json.Serialization;
 
 namespace Facility.TableDetails
 {
     public class MetalRectangleLeg : IDetail
     {
+        [JsonIgnore]
         public double Square { get; }
         public double Height { get; }
         public double Price { get; }
+        [JsonIgnore]
         public MaterialType Material { get; }
         public double Width { get; }
         public double Length { get; }

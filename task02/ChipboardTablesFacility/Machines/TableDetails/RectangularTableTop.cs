@@ -1,25 +1,28 @@
 ﻿using Facility.Interfaces;
 using Facility.Materials;
+using System.Text.Json.Serialization;
 
 namespace Facility.TableDetails
 {
     public class RectangularTableTop : IDetail
     {
+        [JsonIgnore]
         public double Square { get; }
         public double Height { get; }
         public MaterialType Material { get; }
+        [JsonIgnore]
         public double Price { get; }
         public double Width { get; }
         public double Length { get; }
         public double PriceForProcessing { get; }
 
-        public RectangularTableTop(MaterialType material, double height, double width, double lenght, double priceForProcessing)
+        public RectangularTableTop(MaterialType material, double height, double width, double length, double priceForProcessing)
         {
-            Square = width * lenght;
+            Square = width * length;
             PriceForProcessing = priceForProcessing;
             Height = height;
             Width = width;
-            Length = lenght;
+            Length = length;
             Material = material;
             Price = Square * height * (int)material + priceForProcessing;
         }

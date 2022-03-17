@@ -3,11 +3,12 @@ using Facility.Interfaces;
 using Facility.TableDetails;
 using Facility.Materials;
 using Facility.Machines;
+using System;
 
 
 namespace Facility
 {
-    public class Facility
+    public class FacilityMethods
     {
         public static ITable<IDetail, IDetail> FindTableByChipboardComsuption(double chipboardComsuption, List<ITable<IDetail, IDetail>> tables)
         {
@@ -41,6 +42,6 @@ namespace Facility
             workPieces.Remove(requiredWorkPiece);
             return requiredWorkPiece;
         }
-    
+
     }
 }

@@ -1,23 +1,25 @@
 ﻿using Facility.Interfaces;
 using Facility.TableDetails;
+using System.Text.Json.Serialization;
 
 namespace Facility.Tables
 {
     public class RoundTableWithRoundMetalLegs : ITable<RoundTableTop, MetalRoundLeg>
     {
         public string Name { get; set; }
+        [JsonIgnore]
         public double Price { get; }
         public MetalRoundLeg TableLeg { get; }
         public RoundTableTop TableTop { get; }
         public int LegsCount { get; }
 
-        public RoundTableWithRoundMetalLegs(string name, RoundTableTop top, int countOfLegs, MetalRoundLeg leg)
+        public RoundTableWithRoundMetalLegs(string name, RoundTableTop tableTop, int legsCount, MetalRoundLeg tableLeg)
         {
             Name = name;
-            TableTop = top;
-            LegsCount = countOfLegs;
-            TableLeg = leg;
-            Price = top.Price + LegsCount * leg.Price;
+            TableTop = tableTop;
+            LegsCount = legsCount;
+            TableLeg = tableLeg;
+            Price = tableTop.Price + LegsCount * tableLeg.Price;
         }
 
         public double GetChipboardConsumption() => TableTop.Height * TableTop.Square;

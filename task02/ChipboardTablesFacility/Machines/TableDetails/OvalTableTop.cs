@@ -1,13 +1,16 @@
 ﻿using Facility.Interfaces;
 using Facility.Materials;
+using System.Text.Json.Serialization;
 
 namespace Facility.TableDetails
 {
     public class OvalTableTop : IDetail
     {
+        [JsonIgnore]
         public double Square { get; }
         public double Height { get; }
         public MaterialType Material { get; }
+        [JsonIgnore]
         public double Price { get; }
         public double SmallRadius { get; }
         public double LargeRadius { get; }

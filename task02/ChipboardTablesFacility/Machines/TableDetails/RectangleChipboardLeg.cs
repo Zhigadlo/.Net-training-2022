@@ -1,26 +1,29 @@
 ﻿using Facility.Interfaces;
 using Facility.Materials;
+using System.Text.Json.Serialization;
 
 namespace Facility.TableDetails
 {
     public class RectangleChipboardLeg : IDetail
     {
+        [JsonIgnore]
         public double Square { get; }
         public double Height { get; }
+        [JsonIgnore]
         public double Price { get; }
         public MaterialType Material { get; }
         public double Width { get; }
         public double Length { get; }
         public double PriceForProcessing { get; }
 
-        public RectangleChipboardLeg(MaterialType material, double height, double width, double lenght, double priceForProcessing)
+        public RectangleChipboardLeg(MaterialType material, double height, double width, double length, double priceForProcessing)
         {
             Material = material;
             PriceForProcessing = priceForProcessing;
             Height = height;
             Width = width;
-            Length = lenght;
-            Square = width * lenght;
+            Length = length;
+            Square = width * length;
             Price = Square * Height * (int)material + priceForProcessing;
         }
 

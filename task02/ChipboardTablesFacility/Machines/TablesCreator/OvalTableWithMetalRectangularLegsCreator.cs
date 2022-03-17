@@ -3,7 +3,6 @@ using Facility.Tables;
 using Facility.TablesCreator.Interfaces;
 using System.Text.RegularExpressions;
 using System.Xml;
-using Newtonsoft.Json;
 
 namespace Facility.TablesCreator
 {
@@ -127,7 +126,7 @@ namespace Facility.TablesCreator
             return tables;
         }
 
-        public List<OvalTableWithMetalRectangularLegs> GetTablesFromJsonFile(string path)
+        /*public List<OvalTableWithMetalRectangularLegs> GetTablesFromJsonFile(string path)
         {
             StreamReader reader = new StreamReader(path);
 
@@ -138,6 +137,6 @@ namespace Facility.TablesCreator
             reader.Close();
 
             return tables;
-        }
+        }*/
     }
 }

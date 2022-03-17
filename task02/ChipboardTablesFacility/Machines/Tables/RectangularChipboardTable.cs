@@ -1,5 +1,6 @@
 ﻿using Facility.Interfaces;
 using Facility.TableDetails;
+using System.Text.Json.Serialization;
 
 namespace Facility.Tables
 {
@@ -8,15 +9,16 @@ namespace Facility.Tables
         public string Name { get; set; }
         public RectangleChipboardLeg TableLeg { get; }
         public RectangularTableTop TableTop { get; }
+        [JsonIgnore]
         public double Price { get; }
         public int LegsCount { get; }
-        public RectangularChipboardTable(string name, RectangularTableTop top, int countOfLegs, RectangleChipboardLeg leg)
+        public RectangularChipboardTable(string name, RectangularTableTop tableTop, int legsCount, RectangleChipboardLeg tableLeg)
         {
             Name = name;
-            LegsCount = countOfLegs;
-            TableLeg = leg;
-            TableTop = top;
-            Price = top.Price + LegsCount * leg.Price;
+            LegsCount = legsCount;
+            TableLeg = tableLeg;
+            TableTop = tableTop;
+            Price = tableTop.Price + LegsCount * tableLeg.Price;
         }
 
         public double GetChipboardConsumption()

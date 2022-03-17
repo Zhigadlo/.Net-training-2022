@@ -1,13 +1,16 @@
 ﻿using Facility.Interfaces;
 using Facility.Materials;
+using System.Text.Json.Serialization;
 
 namespace Facility.TableDetails
 {
     public class RoundTableTop : IDetail
     {
+        [JsonIgnore]
         public double Square { get; }
         public double Height { get; }
         public MaterialType Material { get; }
+        [JsonIgnore]
         public double Price { get; }
         public double Radius { get; }
         public double PriceForProcessing { get; }

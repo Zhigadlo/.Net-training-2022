@@ -1,23 +1,25 @@
 ﻿using Facility.Interfaces;
 using Facility.TableDetails;
+using System.Text.Json.Serialization;
 
 namespace Facility.Tables
 {
     public class OvalTableWithRectangularChipboardLegs : ITable<OvalTableTop, RectangleChipboardLeg>
     {
         public string Name { get; set; }
+        [JsonIgnore]
         public double Price { get; }
         public int LegsCount { get; }
         public OvalTableTop TableTop { get; }
         public RectangleChipboardLeg TableLeg { get; }
 
-        public OvalTableWithRectangularChipboardLegs(string name, OvalTableTop top, int countOfLegs, RectangleChipboardLeg leg)
+        public OvalTableWithRectangularChipboardLegs(string name, OvalTableTop tableTop, int legsCount, RectangleChipboardLeg tableLeg)
         {
             Name = name;
-            LegsCount = countOfLegs;
-            TableLeg = leg;
-            TableTop = top;
-            Price = top.Price + LegsCount * leg.Price;
+            LegsCount = legsCount;
+            TableLeg = tableLeg;
+            TableTop = tableTop;
+            Price = tableTop.Price + LegsCount * tableLeg.Price;
         }
 
         public double GetChipboardConsumption()
