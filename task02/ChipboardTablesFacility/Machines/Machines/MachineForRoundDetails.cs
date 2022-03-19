@@ -23,7 +23,7 @@ namespace Facility.Machines
             {
                 workPiece.Cut(height, radius * 2, radius * 2);
 
-                RoundTableTop roundTableTop = new RoundTableTop(MaterialForProcessing, height, radius, PriceForProcessing);
+                RoundTableTop roundTableTop = new RoundTableTop(MaterialForProcessing, radius, height, PriceForProcessing);
 
                 return roundTableTop;
             }

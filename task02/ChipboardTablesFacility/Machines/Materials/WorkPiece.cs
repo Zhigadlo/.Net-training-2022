@@ -12,7 +12,7 @@
         public MaterialType ChipboardType { get; private set; }
 
         private double _price;
-        public WorkPiece(MaterialType chipboardType, int height, int width, int length)
+        public WorkPiece(MaterialType chipboardType, double height, double width, double length)
         {
             Width = width;
             Height = height;
@@ -25,7 +25,12 @@
         public void Cut(double height, double width, double length)
         {
             if (Height >= height && Width >= width && Length >= length)
-                Height -= height;
+                if (Height >= Width && Height >= Length)
+                    Height -= height;
+                else if (Width >= Height && Width >= Length)
+                    Width -= width;
+                else if(Length >= Height && Length >= Width)
+                    Length -= length;
             else
                 throw new Exception("This work piece is too small for this detail");
         }
