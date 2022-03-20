@@ -4,6 +4,9 @@ using Facility.TableDetails;
 
 namespace Facility.Machines
 {
+    /// <summary>
+    /// Universal machine class that contains methods for creating all details 
+    /// </summary>
     public class UniversalMachine : IMachine
     {
         public MaterialType MaterialForProcessing { get; }

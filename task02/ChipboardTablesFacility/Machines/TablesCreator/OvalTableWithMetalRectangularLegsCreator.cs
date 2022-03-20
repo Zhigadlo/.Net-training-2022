@@ -125,18 +125,5 @@ namespace Facility.TablesCreator
 
             return tables;
         }
-
-        /*public List<OvalTableWithMetalRectangularLegs> GetTablesFromJsonFile(string path)
-        {
-            StreamReader reader = new StreamReader(path);
-
-            string json = reader.ReadToEnd();
-
-            List<OvalTableWithMetalRectangularLegs> tables = JsonConvert.DeserializeObject<List<OvalTableWithMetalRectangularLegs>>(json);
-            
-            reader.Close();
-
-            return tables;
-        }*/
     }
 }

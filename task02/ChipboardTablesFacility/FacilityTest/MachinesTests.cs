@@ -1,6 +1,5 @@
 using Xunit;
 using Facility.Machines;
-using Facility.TableDetails;
 using Facility.Materials;
 
 namespace FacilityTest

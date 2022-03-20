@@ -1,5 +1,10 @@
 ﻿namespace Facility.Interfaces
 {
+    /// <summary>
+    /// Table interface
+    /// </summary>
+    /// <typeparam name="Top"></typeparam>
+    /// <typeparam name="Leg"></typeparam>
     public interface ITable<Top, Leg>
         where Top : IDetail
         where Leg : IDetail

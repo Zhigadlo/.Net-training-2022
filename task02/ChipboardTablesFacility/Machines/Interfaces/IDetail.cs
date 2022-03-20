@@ -2,6 +2,9 @@
 
 namespace Facility.Interfaces
 {
+    /// <summary>
+    /// Some detail interface including Square, Height, Price and Material fields 
+    /// </summary>
     public interface IDetail
     {
         public double Square { get; }

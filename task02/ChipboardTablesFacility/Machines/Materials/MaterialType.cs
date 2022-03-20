@@ -12,6 +12,12 @@
     }
     public class Material
     {
+        /// <summary>
+        /// Parsing method from string to MaterialType
+        /// </summary>
+        /// <param name="str">String with name of material type</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static MaterialType Parse(string str)
         {
             switch (str)

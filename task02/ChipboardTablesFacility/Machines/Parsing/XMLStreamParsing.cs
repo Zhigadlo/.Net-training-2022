@@ -3,6 +3,9 @@ using System.Text;
 
 namespace Facility.Parsing
 {
+    /// <summary>
+    /// Class for write and read from xml file with help streamwriter and streamreader
+    /// </summary>
     public class XMLStreamParsing : IParsing
     {
         public void WriteListOfObjects(string path, params object[] objectList)

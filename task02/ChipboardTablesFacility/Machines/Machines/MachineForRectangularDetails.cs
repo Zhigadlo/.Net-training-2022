@@ -4,6 +4,9 @@ using Facility.TableDetails;
 
 namespace Facility.Machines
 {
+    /// <summary>
+    /// Machine class that contains methods for creating rectangular details
+    /// </summary>
     public class MachineForRectangularDetails : IMachine
     {
         public MaterialType MaterialForProcessing { get; }

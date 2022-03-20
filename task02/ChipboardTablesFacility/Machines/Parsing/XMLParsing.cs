@@ -3,6 +3,9 @@ using System.Xml;
 
 namespace Facility.Parsing
 {
+    /// <summary>
+    /// Class for write and read xml file with help xmlwriter and xmlreader
+    /// </summary>
     public class XMLParsing : IParsing
     {
         public void WriteObject(string path, object obj)

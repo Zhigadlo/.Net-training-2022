@@ -2,8 +2,18 @@
 
 namespace Facility.Parsing
 {
+    /// <summary>
+    /// Json parser, can parse some object to json file
+    /// </summary>
+    /// <typeparam name="T">Type of object for parse</typeparam>
     public class JsonParsing<T>
     {
+
+        /// <summary>
+        /// Write object in json file
+        /// </summary>
+        /// <param name="obj">onject</param>
+        /// <param name="path">file path</param>
         public static void WriteObjectInJsonFile(T obj, string path)
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
@@ -16,6 +26,11 @@ namespace Facility.Parsing
             writer.Close();
         }
 
+        /// <summary>
+        /// Read object from json file
+        /// </summary>
+        /// <param name="path">file path</param>
+        /// <returns>object</returns>
         public static T ReadObjectFromJsonFile(string path)
         {
             StreamReader reader = new StreamReader(path);
