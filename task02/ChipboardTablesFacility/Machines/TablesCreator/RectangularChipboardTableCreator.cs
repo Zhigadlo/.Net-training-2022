@@ -114,11 +114,11 @@ namespace Facility.TablesCreator
                 height = double.Parse(obj[9]);
                 material = Materials.Material.Parse(obj[10]);
 
-                double smallRadius = double.Parse(obj[12]);
-                double largeRadius = double.Parse(obj[13]);
+                width = double.Parse(obj[12]);
+                lenght = double.Parse(obj[13]);
                 priceForProcessing = double.Parse(obj[14]);
 
-                RectangularTableTop top = new RectangularTableTop(material, height, largeRadius, smallRadius, priceForProcessing);
+                RectangularTableTop top = new RectangularTableTop(material, height, width, lenght, priceForProcessing);
 
                 int legCount = int.Parse(obj[16]);
 

@@ -123,7 +123,7 @@ namespace Facility.TablesCreator
                 double lenght = double.Parse(objValues[i][6]);
                 double priceForProcessing = double.Parse(objValues[i][7]);
 
-                RectangularTableTop top = new RectangularTableTop(material, height, lenght, width, priceForProcessing);
+                RectangleChipboardLeg leg = new RectangleChipboardLeg(material, height, lenght, width, priceForProcessing);
 
                 height = double.Parse(objValues[i][9]);
                 material = Material.Parse(objValues[i][10]);
@@ -132,7 +132,7 @@ namespace Facility.TablesCreator
                 lenght = double.Parse(objValues[i][13]);
                 priceForProcessing = double.Parse(objValues[i][14]);
 
-                RectangleChipboardLeg leg = new RectangleChipboardLeg(material, height, width, lenght, priceForProcessing);
+                RectangularTableTop top = new RectangularTableTop(material, height, width, lenght, priceForProcessing);
 
                 int legCount = int.Parse(objValues[i][16]);
 

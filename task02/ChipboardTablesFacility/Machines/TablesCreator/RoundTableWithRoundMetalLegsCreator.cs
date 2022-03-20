@@ -107,7 +107,7 @@ namespace Facility.TablesCreator
                 radius = double.Parse(obj[11]);
                 double priceForProcessing = double.Parse(obj[12]);
 
-                RoundTableTop top = new RoundTableTop(material, height, radius, priceForProcessing);
+                RoundTableTop top = new RoundTableTop(material, radius, height, priceForProcessing);
 
                 int legCount = int.Parse(obj[13]);
 
