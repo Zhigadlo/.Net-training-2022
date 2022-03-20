@@ -11,5 +11,35 @@ namespace Facility.Tables
         {
             this.TableAccessories = TableAccessories;
         }
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not RectangularChipboardTableWithAccessories)
+                return false;
+            else
+            {
+                RectangularChipboardTableWithAccessories newObj = obj as RectangularChipboardTableWithAccessories;
+
+                bool isEqual = true;
+                foreach (KeyValuePair<TableAccessoriesType, int> item in TableAccessories)
+                {
+                    if (newObj.TableAccessories.ContainsKey(item.Key))
+                    {
+                        if (item.Value != newObj.TableAccessories[item.Key])
+                        {
+                            isEqual = false;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        isEqual = false;
+                        break;
+                    }
+                }
+
+                return Name == newObj.Name && TableLeg.Equals(newObj.TableLeg) && TableTop.Equals(newObj.TableTop) &&
+                        Price == newObj.Price && LegsCount == newObj.LegsCount && isEqual;
+            }
+        }
     }
 }

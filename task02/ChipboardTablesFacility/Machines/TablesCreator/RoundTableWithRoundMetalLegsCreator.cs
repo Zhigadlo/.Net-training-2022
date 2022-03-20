@@ -45,7 +45,7 @@ namespace Facility.TablesCreator
                 xmlReader.ReadToFollowing("PriceForProcessing");
                 double priceForProcessing = xmlReader.ReadElementContentAsDouble();
 
-                RoundTableTop top = new RoundTableTop(material, topHeight, radius, priceForProcessing);
+                RoundTableTop top = new RoundTableTop(material, radius, topHeight, priceForProcessing);
 
                 xmlReader.ReadToFollowing("LegsCount");
                 int legsCount = xmlReader.ReadElementContentAsInt();

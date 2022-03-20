@@ -33,7 +33,7 @@ namespace Facility.Tables
             {
                 OvalTableWithMetalRectangularLegs newObj = obj as OvalTableWithMetalRectangularLegs;
 
-                return Name == newObj.Name && TableLeg == newObj.TableLeg && TableTop == newObj.TableTop &&
+                return Name == newObj.Name && TableLeg.Equals(newObj.TableLeg) && TableTop.Equals(newObj.TableTop) &&
                         Price == newObj.Price && LegsCount == newObj.LegsCount;
             }
         }

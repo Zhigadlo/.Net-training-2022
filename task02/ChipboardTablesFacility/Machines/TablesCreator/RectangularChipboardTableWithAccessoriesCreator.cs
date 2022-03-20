@@ -62,7 +62,7 @@ namespace Facility.TablesCreator
                 xmlReader.ReadToFollowing("PriceForProcessing");
                 priceForProcessing = xmlReader.ReadElementContentAsDouble();
 
-                RectangularTableTop top = new RectangularTableTop(material, topHeight, lenght, width, priceForProcessing);
+                RectangularTableTop top = new RectangularTableTop(material, topHeight, width, lenght, priceForProcessing);
 
                 xmlReader.ReadToFollowing("LegsCount");
                 int legsCount = xmlReader.ReadElementContentAsInt();
