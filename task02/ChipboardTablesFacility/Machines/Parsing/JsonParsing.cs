@@ -20,7 +20,7 @@ namespace Facility.Parsing
             string json = JsonSerializer.Serialize<T>(obj, options);
 
             StreamWriter writer = new StreamWriter(path);
-                
+
             writer.WriteLine(json);
 
             writer.Close();

@@ -29,10 +29,10 @@
                     Height -= height;
                 else if (Width >= Height && Width >= Length)
                     Width -= width;
-                else if(Length >= Height && Length >= Width)
+                else if (Length >= Height && Length >= Width)
                     Length -= length;
-            else
-                throw new Exception("This work piece is too small for this detail");
+                else
+                    throw new Exception("This work piece is too small for this detail");
         }
         public double GetPrice() => _price;
         public override int GetHashCode()

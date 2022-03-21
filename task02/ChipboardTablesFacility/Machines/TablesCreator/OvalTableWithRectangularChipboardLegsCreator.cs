@@ -116,7 +116,7 @@ namespace Facility.TablesCreator
 
                 RectangleChipboardLeg leg = new RectangleChipboardLeg(material, height, width, lenght, priceForProcessing);
 
-                tables.Add(new OvalTableWithRectangularChipboardLegs(name,top, legCount, leg));
+                tables.Add(new OvalTableWithRectangularChipboardLegs(name, top, legCount, leg));
             }
 
             reader.Close();

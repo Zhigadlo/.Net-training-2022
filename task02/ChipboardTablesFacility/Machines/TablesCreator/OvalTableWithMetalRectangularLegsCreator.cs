@@ -12,7 +12,7 @@ namespace Facility.TablesCreator
         {
             return new OvalTableWithMetalRectangularLegs(name, top, countOfLegs, leg);
         }
-        
+
         public List<OvalTableWithMetalRectangularLegs> GetTablesFromXmlFile(string path)
         {
             XmlReader xmlReader = XmlReader.Create(path);
@@ -100,7 +100,7 @@ namespace Facility.TablesCreator
             foreach (string[] obj in objValues)
             {
                 string name = obj[0];
-                
+
                 double height = double.Parse(obj[2]);
                 double legPrice = double.Parse(obj[3]);
 
@@ -119,7 +119,7 @@ namespace Facility.TablesCreator
                 OvalTableTop top = new OvalTableTop(material, height, largeRadius, smallRadius, priceForProcessing);
 
                 int legCount = int.Parse(obj[15]);
-                
+
                 tables.Add(new OvalTableWithMetalRectangularLegs(name, top, legCount, leg));
             }
 

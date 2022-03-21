@@ -1,13 +1,13 @@
-using Xunit;
 using Facility.Machines;
 using Facility.Materials;
+using Xunit;
 
 namespace FacilityTest
 {
     public class MachinesTests
     {
         [Theory]
-        [InlineData("SpecialChipboard", 2,  1.8, 10, 5, 1.7, 3, 2)]
+        [InlineData("SpecialChipboard", 2, 1.8, 10, 5, 1.7, 3, 2)]
         [InlineData("GeneralPurposeChipboard", 1.5, 1.3, 5, 6, 1, 2, 2.7)]
         [InlineData("SpecialChipboard", 3, 2.9, 7, 4, 2.9, 3.44, 2)]
         public void MachineForOvalDetailsTest(string typeOfMaterial, double maxHeight, double workPieceHeight, double workPieceWidth, double workPieceLength, double topHeight, double smallRadius, double largeRadius)

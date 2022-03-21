@@ -1,10 +1,10 @@
-﻿using Xunit;
-using Facility.TableDetails;
-using System.Collections.Generic;
-using Facility.Materials;
+﻿using Facility.Materials;
 using Facility.Parsing;
-using System.IO;
+using Facility.TableDetails;
 using Facility.Tables;
+using System.Collections.Generic;
+using System.IO;
+using Xunit;
 
 namespace FacilityTest
 {
@@ -83,7 +83,7 @@ namespace FacilityTest
             RoundTableWithRoundMetalLegs table5 = new RoundTableWithRoundMetalLegs("OvalTable5", _roundTop, 5, _metalRoundLeg);
 
             parser.WriteListOfObjects(_xmlPath2, table, table1, table2, table3, table4, table5);
-            
+
             reader = new StreamReader(_xmlPath1);
 
             string actualText = reader.ReadToEnd();

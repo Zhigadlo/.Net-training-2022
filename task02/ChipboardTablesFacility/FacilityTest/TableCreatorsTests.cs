@@ -1,10 +1,9 @@
-﻿using Xunit;
-using System.Collections.Generic;
+﻿using Facility.Materials;
+using Facility.TableDetails;
 using Facility.Tables;
 using Facility.TablesCreator;
-using Facility.Interfaces;
-using Facility.Materials;
-using Facility.TableDetails;
+using System.Collections.Generic;
+using Xunit;
 
 namespace FacilityTest
 {
@@ -32,7 +31,7 @@ namespace FacilityTest
         public void OvalTableWithRectangularChipboardLegsCreatorXmlTest()
         {
             OvalTableWithRectangularChipboardLegsCreator creator = new OvalTableWithRectangularChipboardLegsCreator();
-             
+
             List<OvalTableWithRectangularChipboardLegs> expectedTables = new List<OvalTableWithRectangularChipboardLegs>();
             expectedTables.Add(new OvalTableWithRectangularChipboardLegs("OvalTable", _top, 5, _leg));
             expectedTables.Add(new OvalTableWithRectangularChipboardLegs("OvalTable2", _top, 5, _leg));

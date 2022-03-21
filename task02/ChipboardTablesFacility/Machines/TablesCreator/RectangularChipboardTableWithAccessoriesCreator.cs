@@ -80,7 +80,7 @@ namespace Facility.TablesCreator
 
             StreamReader reader = new StreamReader(path);
 
-            
+
 
             string textFromXml = reader.ReadToEnd();
             var str = string.Concat(textFromXml.Split('\t'));
@@ -144,7 +144,7 @@ namespace Facility.TablesCreator
 
         private List<Dictionary<TableAccessoriesType, int>> GetTableAccessories(string path)
         {
-            StreamReader reader = new StreamReader(path);  
+            StreamReader reader = new StreamReader(path);
             string textFromXml = reader.ReadToEnd();
             var str = string.Concat(textFromXml.Split('\t'));
 
@@ -190,7 +190,7 @@ namespace Facility.TablesCreator
                 listOfDict.Add(mydict);
 
             }
-            
+
             reader.Close();
 
             return listOfDict;

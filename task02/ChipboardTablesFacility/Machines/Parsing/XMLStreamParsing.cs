@@ -1,5 +1,4 @@
 ﻿using Facility.TableDetails;
-using System.Text;
 
 namespace Facility.Parsing
 {
@@ -50,7 +49,7 @@ namespace Facility.Parsing
                 }
                 else
                 {
-                    WriteStringElement(property.Name, value.ToString(),writer);
+                    WriteStringElement(property.Name, value.ToString(), writer);
                 }
 
             }

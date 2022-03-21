@@ -1,10 +1,5 @@
-﻿using Facility.Tables;
-using Facility.Interfaces;
-using Facility.TableDetails;
+﻿using Facility.Interfaces;
 using Facility.Materials;
-using Facility.Machines;
-using System;
-
 
 namespace Facility
 {
