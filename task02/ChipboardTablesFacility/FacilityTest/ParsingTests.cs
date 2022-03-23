@@ -10,10 +10,10 @@ namespace FacilityTest
 {
     public class ParsingTests
     {
-        private string _xmlPath1 = "D:/Epam-тренинг/external training/.Net-training-2022/task02/ChipboardTablesFacility/Machines/Parsing/XMLFile1.xml";
-        private string _xmlPath2 = "D:/Epam-тренинг/external training/.Net-training-2022/task02/ChipboardTablesFacility/FacilityTest/XMLFileForTest.xml";
-        private string _jsonPath1 = "C:/Users/Lenovo/Desktop/JSONFileForTest.json";
-        private string _jsonPath2 = "C:/Users/Lenovo/Desktop/newjsonfile.json";
+        private string _xmlPath1 = @"..\..\..\XMLFile1.xml";
+        private string _xmlPath2 = @"..\..\..\XMLFileForTest.xml";
+        private string _jsonPath1 = @"..\..\..\JSONFileForTest.json";
+        private string _jsonPath2 = @"..\..\..\newjsonfile.json";
 
         private RoundTableTop _roundTop = new RoundTableTop(MaterialType.GeneralPurposeChipboard, 3, 0.8, 15);
         private Dictionary<TableAccessoriesType, int> _accessories = new Dictionary<TableAccessoriesType, int>

@@ -24,8 +24,8 @@ namespace FacilityTest
         private MetalRectangleLeg _metalRectangleLeg = new MetalRectangleLeg(5, 0.03, 0.04, 20);
         private MetalRoundLeg _metalRoundLeg = new MetalRoundLeg(0.8, 0.3, 23);
 
-        private string _path1 = "D:/Epam-тренинг/external training/.Net-training-2022/task02/ChipboardTablesFacility/Machines/Parsing/XMLFile1.xml";
-        private string _path2 = "D:/Epam-тренинг/external training/.Net-training-2022/task02/ChipboardTablesFacility/Machines/Parsing/XMLFile2.xml";
+        private string _path1 = @"..\..\..\XMLFile1.xml";
+        private string _path2 = @"..\..\..\XMLFile2.xml";
 
         [Fact]
         public void OvalTableWithRectangularChipboardLegsCreatorXmlTest()

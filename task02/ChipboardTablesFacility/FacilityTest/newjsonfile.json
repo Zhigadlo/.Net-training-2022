@@ -1,0 +1,17 @@
+{
+  "Name": "OvalTable3",
+  "TableLeg": {
+    "Height": 5,
+    "Price": 20,
+    "Width": 0.03,
+    "Length": 0.04
+  },
+  "TableTop": {
+    "Height": 0.05,
+    "Material": 6,
+    "SmallRadius": 1,
+    "LargeRadius": 2,
+    "PriceForProcessing": 50
+  },
+  "LegsCount": 3
+}
