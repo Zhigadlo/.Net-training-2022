@@ -1,4 +1,4 @@
-﻿using Eatery.Models;
+﻿using Eatery.Food;
 
 namespace Eatery.Employees
 {

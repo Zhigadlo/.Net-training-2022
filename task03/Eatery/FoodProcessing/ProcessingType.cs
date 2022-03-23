@@ -1,4 +1,4 @@
-﻿namespace Eatery.Models
+﻿namespace Eatery.FoodProcessing
 {
     public class ProcessingType
     {

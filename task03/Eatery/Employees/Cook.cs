@@ -1,4 +1,4 @@
-﻿using Eatery.Models;
+﻿using Eatery.Food;
 using Eatery.Employees.Interfaces;
 
 namespace Eatery.Employees
@@ -14,7 +14,7 @@ namespace Eatery.Employees
             Surname = surname;
         }
 
-        public Dish CookDish(Recipe recipe)
+        public ProcessedIngredient ProcessIngredient(Ingredient ingredient)
         {
             throw new NotImplementedException();
         }
