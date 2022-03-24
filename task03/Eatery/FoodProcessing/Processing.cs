@@ -8,10 +8,11 @@ namespace Eatery.FoodProcessing
         public Ingredient Ingredient { get; }
         public int CountOfIngredients { get; }
 
-        public Processing(ProcessingType type, int countOfIngredients)
+        public Processing(ProcessingType type, Ingredient ingredient,int countOfIngredients)
         {
             CountOfIngredients = countOfIngredients;
             Type = type;
+            Ingredient = ingredient;
         }
 
         public override bool Equals(object? obj)

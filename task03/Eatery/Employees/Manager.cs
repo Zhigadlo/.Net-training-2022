@@ -18,7 +18,7 @@ namespace Eatery.Employees
 
         public void GetOrder(int numberOfClient, List<string> listOfDishNames)
         {
-            throw new NotImplementedException();
+            Orders.Add(new Order(numberOfClient, listOfDishNames));
         }
     }
 }

@@ -9,16 +9,14 @@ namespace Eatery.Food
         public string Name { get; }
         public int Price { get; set; }
         public StorageType StoragePlace { get; }
-        public Processing TypeOfProcessing { get; }
+        public ProcessingType ProcessingType { get; }
 
-        public ProcessedIngredient(string name, int price, Processing typeOfProcessing)
+        public ProcessedIngredient(string name, int price, ProcessingType processingType)
         {
             Name = name;
             Price = price;
-            TypeOfProcessing = typeOfProcessing;
+            ProcessingType = processingType;
             StoragePlace = StorageType.Warehouse;
         }
-
-        
     }
 }

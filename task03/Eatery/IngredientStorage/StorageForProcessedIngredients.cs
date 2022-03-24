@@ -5,11 +5,11 @@ namespace Eatery.IngredientStorage
 {
     public class StorageForProcessedIngredients : IStorage<ProcessedIngredient>
     {
-        public List<ProcessedIngredient> Ingredients { get; }
+        public Dictionary<ProcessedIngredient, int>  Ingredients { get; }
 
         public StorageForProcessedIngredients()
         {
-            Ingredients = new List<ProcessedIngredient>();
+            Ingredients = new Dictionary<ProcessedIngredient, int>();
         }
     }
 }

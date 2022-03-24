@@ -5,6 +5,6 @@ namespace Eatery.IngredientStorage.Interfaces
     public interface IStorage<T>
         where T : IIngredient
     {
-        public List<T> Ingredients { get; }
+        public Dictionary<T, int> Ingredients { get; }
     }
 }

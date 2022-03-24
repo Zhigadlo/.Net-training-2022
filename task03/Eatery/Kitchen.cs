@@ -11,49 +11,104 @@ namespace Eatery
     public class Kitchen
     {
         public List<StorageForIngredients> Storages { get; }
-        public Dictionary<Ingredient, int> Ingredients { get; set; }
-        public List<WorkPlace> WorkPlaces { get; set; }
+        public List<Cook> Cooks { get; set; }
         public List<Dish> Dishes { get; set; }
         public List<Recipe> Recipes { get; set; }
         public Chef Chef { get; }
         public Manager Manager { get; }
         
-        public Kitchen(Dictionary<Ingredient, int> ingredients, List<WorkPlace> workPlaces, List<Recipe> recipes, Chef chef, Manager manager)
+        public Kitchen(Dictionary<Ingredient, int> ingredients, List<Cook> cooks, List<Recipe> recipes, Chef chef, Manager manager)
         {
-            Ingredients = ingredients;
             Chef = chef;
             Manager = manager;
-            WorkPlaces = workPlaces;
+            Cooks = cooks;
             Recipes = recipes;
             Dishes = new List<Dish>();
             Storages = new List<StorageForIngredients>()
             {
-                new StorageForIngredients(StorageType.Freezer, new List<Ingredient>()),
-                new StorageForIngredients(StorageType.Fridge, new List<Ingredient>()),
-                new StorageForIngredients(StorageType.Warehouse, new List<Ingredient>())
+                new StorageForIngredients(StorageType.Freezer, new Dictionary<Ingredient, int>()),
+                new StorageForIngredients(StorageType.Fridge, new Dictionary<Ingredient, int>()),
+                new StorageForIngredients(StorageType.Warehouse, new Dictionary<Ingredient, int>())
             };
+
+            foreach (var ingredient in ingredients)
+            {
+                switch (ingredient.Key.StoragePlace)
+                { 
+                    case StorageType.Freezer:
+                        Storages[0].Ingredients.Add(ingredient.Key, ingredient.Value);
+                        break;
+                    case StorageType.Fridge:
+                        Storages[1].Ingredients.Add(ingredient.Key, ingredient.Value);
+                        break;
+                    case StorageType.Warehouse:
+                        Storages[2].Ingredients.Add(ingredient.Key, ingredient.Value);
+                        break;
+                    default:
+                        throw new Exception("There is no place for " + ingredient.Key.Name);
+                }
+            }
         }
 
-        public Dish MakeDish(Recipe recipe)
+        public Dish MakeDish(string name)
         {
-            throw new NotImplementedException();
+            foreach (var recipe in Recipes)
+            {
+                if (recipe.Name.ToLower() == name.ToLower())
+                {
+                    return new Dish(recipe);
+                }
+            }
+            
+            throw new Exception("There is no recipe for this dish");
         }
 
-        public List<Order> GetOrders()
-        {
-            throw new NotImplementedException();
-        }
+        public List<Order> GetOrders() => Manager.Orders;
 
         private ProcessedIngredient GetProcessedIngredient(Ingredient ingredient, ProcessingType processingType)
         {
-            throw new NotImplementedException();
+            Ingredient ingredientForProcessing = FindIngredientFromStorages(ingredient.Name);
+            foreach (var cook in Cooks)
+            {
+                if (cook.WorkPlace.ProcessingType == processingType)
+                {
+                    DeleteIngredient(ingredientForProcessing);
+                    return cook.ProcessIngredient(ingredientForProcessing);
+                }
+            }
+
+            throw new Exception("There is no work place for this processing");
         }
 
-        private Ingredient FindIngredientFromStorages()
+        private Ingredient FindIngredientFromStorages(string name)
         {
-            throw new NotImplementedException();
+            foreach (var storage in Storages)
+            {
+                foreach(var ingredient in storage.Ingredients)
+                {
+                    if(ingredient.Key.Name.ToLower() == name.ToLower())
+                        return ingredient.Key;
+                }
+            }
+
+            throw new Exception("There is no required ingredient in storages");
         }
 
-        
+        private void DeleteIngredient(Ingredient ingredientForDelete)
+        {
+            foreach (var storage in Storages)
+            {
+                foreach (var ingredient in storage.Ingredients)
+                {
+                    if (ingredient.Key.Equals(ingredientForDelete))
+                    {
+                        if (storage.Ingredients[ingredient.Key] > 0)
+                            storage.Ingredients[ingredient.Key] -= 1;
+                        else
+                            throw new Exception("There is no such ingredient");
+                    }
+                }
+            }
+        }
     }
 }

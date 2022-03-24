@@ -7,16 +7,17 @@ namespace Eatery.Employees
     {
         public string Name { get; }
         public string Surname { get; }
-
-        public Cook(string name, string surname)
+        public WorkPlace WorkPlace { get; set; }
+        public Cook(string name, string surname, WorkPlace workPlace)
         {
             Name = name;
             Surname = surname;
+            WorkPlace = workPlace;
         }
 
         public ProcessedIngredient ProcessIngredient(Ingredient ingredient)
         {
-            throw new NotImplementedException();
+            return new ProcessedIngredient(ingredient.Name, ingredient.Price + (int)WorkPlace.ProcessingType, WorkPlace.ProcessingType);
         }
     }
 }

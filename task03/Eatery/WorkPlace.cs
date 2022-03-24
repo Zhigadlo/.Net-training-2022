@@ -1,5 +1,4 @@
-﻿using Eatery.Employees;
-using Eatery.FoodProcessing;
+﻿using Eatery.FoodProcessing;
 
 namespace Eatery
 {
@@ -7,13 +6,11 @@ namespace Eatery
     {
         public int MaxCountOfIngredients { get; }
         public int TimeOfProcessing { get; }
-        public Cook Cook { get; }
         public ProcessingType ProcessingType { get; }
 
-        public WorkPlace(int maxCountOfIngredients, int timeOfProcessing, Cook cook, ProcessingType processingType)
+        public WorkPlace(int maxCountOfIngredients, int timeOfProcessing, ProcessingType processingType)
         {
             TimeOfProcessing = timeOfProcessing;
-            Cook = cook;
             MaxCountOfIngredients = maxCountOfIngredients;
             ProcessingType = processingType;
         }
