@@ -1,0 +1,32 @@
+﻿using Eatery.Food;
+
+namespace Eatery.FoodProcessing
+{
+    public class Processing
+    {
+        public ProcessingType Type { get; }
+        public Ingredient Ingredient { get; }
+        public int CountOfIngredients { get; }
+
+        public Processing(ProcessingType type, int countOfIngredients)
+        {
+            CountOfIngredients = countOfIngredients;
+            Type = type;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || obj is not Processing)
+                return false;
+            else
+            {
+                var newObj = obj as Processing;
+                return CountOfIngredients == newObj.CountOfIngredients && Type == newObj.Type
+                    && Ingredient.Equals(newObj.Ingredient);
+            }
+        }
+
+
+
+    }
+}

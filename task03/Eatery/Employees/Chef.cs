@@ -12,5 +12,10 @@ namespace Eatery.Employees
         {
             throw new NotImplementedException();
         }
+
+        public Dish MakeDish(Order order)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

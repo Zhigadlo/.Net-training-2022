@@ -1,5 +1,6 @@
 ﻿using Eatery.IngredientStorage;
 using Eatery.Food.Interfaces;
+using Eatery.FoodProcessing;
 
 namespace Eatery.Food
 {
@@ -9,15 +10,15 @@ namespace Eatery.Food
     public class Ingredient : IIngredient
     {
         public string Name { get; }
-        public int Weight { get; set; }
         public int Price { get; set; }
         public StorageType StoragePlace { get; }
-        public Ingredient(string name, int weight, int price, StorageType storagePlace)
+        public List<ProcessingType> PossibleTypesOfProcessing { get; }
+        public Ingredient(string name, int price, StorageType storagePlace, params ProcessingType[] possibleTypesOfProcessing)
         {
             Name = name;
-            Weight = weight;
             Price = price;
             StoragePlace = storagePlace;
+            PossibleTypesOfProcessing = possibleTypesOfProcessing.ToList();
         }
     }
 }
