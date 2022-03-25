@@ -4,15 +4,14 @@
     {
         public string Name { get; }
         public int Price { get;}
-        public Recipe DishRecipe { get; }
-        public Dish(Recipe dishRecipe)
+        public Dictionary<ProcessedIngredient, int> ProcessedIngredients { get; }
+        public Dish(string name, Dictionary<ProcessedIngredient, int> processedIngredients)
         {
-            DishRecipe = dishRecipe;
-            Price = dishRecipe.Price;
-            Name = dishRecipe.Name;
+            Name = name;
+            ProcessedIngredients = processedIngredients;
+            foreach(var ingredient in processedIngredients)
+                Price += ingredient.Key.Price * ingredient.Value;
         }
-
-        public List<Ingredient> GetIngredients() => DishRecipe.GetIngridients();
 
         public override bool Equals(object? obj)
         {
@@ -21,12 +20,12 @@
             else
             {
                 var newObj = obj as Dish;
-                return newObj.Name == Name && newObj.Price == Price && newObj.DishRecipe.Equals(DishRecipe);
+                return newObj.Name == Name && newObj.Price == Price && Enumerable.SequenceEqual(ProcessedIngredients, newObj.ProcessedIngredients);
             }
         }
         public override int GetHashCode()
         {
-            return Name.GetHashCode() + Price.GetHashCode() + DishRecipe.GetHashCode();
+            return Name.GetHashCode() + Price.GetHashCode() + ProcessedIngredients.GetHashCode();
         }
         public override string ToString()
         {

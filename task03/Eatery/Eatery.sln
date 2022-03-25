@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eatery", "Eatery.csproj", "{8A54EA54-FBBA-45DC-A6B6-8591BB913DEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KitchenTests", "..\KitchenTests\KitchenTests.csproj", "{77299633-8DBF-44C9-8957-874B9CC4C56E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EateryTests", "..\KitchenTests\EateryTests.csproj", "{77299633-8DBF-44C9-8957-874B9CC4C56E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -10,7 +10,8 @@ namespace Eatery
     /// </summary>
     public class Kitchen
     {
-        public List<StorageForIngredients> Storages { get; }
+        public List<StorageForIngredients> Storages { get; set; }
+        public StorageForProcessedIngredients StorageForProcessedIngredients { get; set; }
         public List<Cook> Cooks { get; set; }
         public List<Dish> Dishes { get; set; }
         public List<Recipe> Recipes { get; set; }
@@ -24,6 +25,7 @@ namespace Eatery
             Cooks = cooks;
             Recipes = recipes;
             Dishes = new List<Dish>();
+            StorageForProcessedIngredients = new StorageForProcessedIngredients();
             Storages = new List<StorageForIngredients>()
             {
                 new StorageForIngredients(StorageType.Freezer, new Dictionary<Ingredient, int>()),
@@ -52,17 +54,10 @@ namespace Eatery
 
         public Dish MakeDish(string name)
         {
-            foreach (var recipe in Recipes)
-            {
-                if (recipe.Name.ToLower() == name.ToLower())
-                {
-                    List<Processing> processings = GetProcessings(recipe);
-                    Recipe requiredRecipe = new Recipe(recipe.Name, processings.ToArray());
-                    return new Dish(requiredRecipe);
-                }
-            }
-            
-            throw new Exception("There is no recipe for this dish");
+            Recipe recipe = FindRecipeByName(name);
+            Dictionary<ProcessedIngredient, int> ingredientsForDish = GetProcessedIngredientsByRecipe(recipe);
+            DeleteIngredientsForStorage(ingredientsForDish, StorageForProcessedIngredients);
+            return new Dish(recipe.Name, ingredientsForDish);
         }
 
         public List<Order> GetOrders() => Manager.Orders;
@@ -89,17 +84,29 @@ namespace Eatery
             return "Kitchen";
         }
 
-        private List<Processing> GetProcessings(Recipe recipe)
+        private Dictionary<ProcessedIngredient, int> GetProcessedIngredientsByRecipe(Recipe recipe)
         {
-            List<Processing> processings = new List<Processing>();
+            throw new NotImplementedException();
+        }
+        private Recipe FindRecipeByName(string name)
+        {
+            foreach (var recipe in Recipes)
+            {
+                if (recipe.Name.ToLower() == name.ToLower())
+                {
+                    return recipe;
+                }
+            }
 
-            
-
-            return processings;
+            throw new Exception("There is no recipe for this dish");
+        }
+        private void DeleteIngredientsForStorage<Ingredient, Storage>(Dictionary<Ingredient, int> ingredients, Storage storage)
+        {
+            throw new NotImplementedException();
         }
         private ProcessedIngredient GetProcessedIngredient(Ingredient ingredient, ProcessingType processingType)
         {
-            Ingredient ingredientForProcessing = FindIngredientFromStorages(ingredient.Name);
+            Ingredient ingredientForProcessing = FindIngredientFromStorages(ingredient.Name, processingType);
             foreach (var cook in Cooks)
             {
                 if (cook.WorkPlace.ProcessingType == processingType)
@@ -111,19 +118,6 @@ namespace Eatery
             }
 
             throw new Exception("There is no work place for this processing");
-        }
-        private Ingredient FindIngredientFromStorages(string name)
-        {
-            foreach (var storage in Storages)
-            {
-                foreach(var ingredient in storage.Ingredients)
-                {
-                    if(ingredient.Key.Name.ToLower() == name.ToLower())
-                        return ingredient.Key;
-                }
-            }
-
-            throw new Exception("There is no required ingredient in storages");
         }
         private Ingredient FindIngredientFromStorages(string name, ProcessingType processingType)
         {
