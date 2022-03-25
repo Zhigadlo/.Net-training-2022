@@ -19,5 +19,24 @@ namespace Eatery.Employees
         {
             return new ProcessedIngredient(ingredient.Name, ingredient.Price + (int)WorkPlace.ProcessingType, WorkPlace.ProcessingType);
         }
+
+        public override bool Equals(object? obj)
+        {
+            if(obj == null || obj is not Cook)
+                return false;
+            else
+            {
+                var newObj = obj as Cook;
+                return newObj.Name == Name && newObj.Surname == Surname && newObj.WorkPlace.Equals(WorkPlace);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode() + Surname.GetHashCode() + WorkPlace.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return "Name: " + Name + "\nSurname: " + Surname;
+        }
     }
 }

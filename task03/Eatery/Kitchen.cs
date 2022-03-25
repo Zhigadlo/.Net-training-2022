@@ -56,7 +56,9 @@ namespace Eatery
             {
                 if (recipe.Name.ToLower() == name.ToLower())
                 {
-                    return new Dish(recipe);
+                    List<Processing> processings = GetProcessings(recipe);
+                    Recipe requiredRecipe = new Recipe(recipe.Name, processings.ToArray());
+                    return new Dish(requiredRecipe);
                 }
             }
             
@@ -65,6 +67,36 @@ namespace Eatery
 
         public List<Order> GetOrders() => Manager.Orders;
 
+        public override bool Equals(object? obj)
+        {
+            if(obj == null || obj is not Kitchen)
+                return false;
+            else
+            {
+                var newObj = obj as Kitchen;
+                return Storages.SequenceEqual(newObj.Storages) && Cooks.SequenceEqual(newObj.Cooks)
+                    && Dishes.SequenceEqual(newObj.Dishes) && Recipes.SequenceEqual(newObj.Recipes)
+                    && Chef.Equals(newObj.Chef) && Manager.Equals(newObj.Manager);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return Storages.GetHashCode() + Cooks.GetHashCode() + Dishes.GetHashCode() 
+                + Recipes.GetHashCode() + Chef.GetHashCode() + Manager.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return "Kitchen";
+        }
+
+        private List<Processing> GetProcessings(Recipe recipe)
+        {
+            List<Processing> processings = new List<Processing>();
+
+            
+
+            return processings;
+        }
         private ProcessedIngredient GetProcessedIngredient(Ingredient ingredient, ProcessingType processingType)
         {
             Ingredient ingredientForProcessing = FindIngredientFromStorages(ingredient.Name);
@@ -72,14 +104,14 @@ namespace Eatery
             {
                 if (cook.WorkPlace.ProcessingType == processingType)
                 {
+                    var processedIngredient = cook.ProcessIngredient(ingredientForProcessing);
                     DeleteIngredient(ingredientForProcessing);
-                    return cook.ProcessIngredient(ingredientForProcessing);
+                    return processedIngredient;
                 }
             }
 
             throw new Exception("There is no work place for this processing");
         }
-
         private Ingredient FindIngredientFromStorages(string name)
         {
             foreach (var storage in Storages)
@@ -93,7 +125,29 @@ namespace Eatery
 
             throw new Exception("There is no required ingredient in storages");
         }
+        private Ingredient FindIngredientFromStorages(string name, ProcessingType processingType)
+        {
+            foreach (var storage in Storages)
+            {
+                foreach (var ingredient in storage.Ingredients)
+                {
+                    bool isProcessingExist = false;
+                    foreach (var type in ingredient.Key.PossibleTypesOfProcessing)
+                    {
+                        if (type == processingType)
+                        {
+                            isProcessingExist = true;
+                            break;
+                        }
+                    }
+                    
+                    if (ingredient.Key.Name.ToLower() == name.ToLower() && isProcessingExist)
+                        return ingredient.Key;
+                }
+            }
 
+            throw new Exception("There is no required ingredient in storages");
+        }
         private void DeleteIngredient(Ingredient ingredientForDelete)
         {
             foreach (var storage in Storages)

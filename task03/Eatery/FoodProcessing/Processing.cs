@@ -26,8 +26,14 @@ namespace Eatery.FoodProcessing
                     && Ingredient.Equals(newObj.Ingredient);
             }
         }
-
-
-
+        public override int GetHashCode()
+        {
+            return Type.GetHashCode() + Ingredient.GetHashCode() + CountOfIngredients.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return "Processing type: " + Type + "\nIngredient: " + Ingredient.ToString() 
+                + "\nCount of ingredients: " + CountOfIngredients;
+        }
     }
 }

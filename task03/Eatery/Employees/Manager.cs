@@ -20,5 +20,24 @@ namespace Eatery.Employees
         {
             Orders.Add(new Order(numberOfClient, listOfDishNames));
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || obj is not Manager)
+                return false;
+            else
+            {
+                var newObj = obj as Manager;
+                return newObj.Name == Name && newObj.Surname == Surname && newObj.Orders.SequenceEqual(Orders);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode() + Surname.GetHashCode() + Orders.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return "Name: " + Name + "\nSurname: " + Surname;
+        }
     }
 }

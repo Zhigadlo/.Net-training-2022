@@ -14,5 +14,17 @@ namespace Eatery
             MaxCountOfIngredients = maxCountOfIngredients;
             ProcessingType = processingType;
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || obj is not WorkPlace)
+                return false;
+            else
+            {
+                var newObj = obj as WorkPlace;
+                return MaxCountOfIngredients == newObj.MaxCountOfIngredients &&
+                    TimeOfProcessing == newObj.TimeOfProcessing && ProcessingType == newObj.ProcessingType;
+            }
+        }
     }
 }

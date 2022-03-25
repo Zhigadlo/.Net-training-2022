@@ -20,5 +20,26 @@ namespace Eatery.Food
             StoragePlace = storagePlace;
             PossibleTypesOfProcessing = possibleTypesOfProcessing.ToList();
         }
+
+        public override bool Equals(object? obj)
+        {
+            if(obj == null || obj is not Ingredient)
+                return false;
+            else
+            {
+                var newObj = obj as Ingredient;
+                return Name == newObj.Name && Price == newObj.Price && StoragePlace == newObj.StoragePlace
+                    && PossibleTypesOfProcessing.SequenceEqual(newObj.PossibleTypesOfProcessing);
+            }
+            
+        }
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode() + Price.GetHashCode() + StoragePlace.GetHashCode() + PossibleTypesOfProcessing.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

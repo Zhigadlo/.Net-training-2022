@@ -22,5 +22,24 @@ namespace Eatery.Food
             return ingredients;
         }
 
+        public override bool Equals(object? obj)
+        {
+            if(obj == null || obj is not Recipe)
+                return false;
+            else
+            {
+                var newObj = obj as Recipe;
+                return newObj.Name == Name && newObj.ListOfProcessing.SequenceEqual(ListOfProcessing)
+                    && Price == newObj.Price;
+            }
+        }
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode() + ListOfProcessing.GetHashCode() + Price.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

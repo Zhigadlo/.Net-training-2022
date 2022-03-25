@@ -11,5 +11,24 @@ namespace Eatery.IngredientStorage
         {
             Ingredients = new Dictionary<ProcessedIngredient, int>();
         }
+
+        public override bool Equals(object? obj)
+        {
+            if(obj == null || obj is not StorageForProcessedIngredients)
+                return false;
+            else
+            {
+                var newObj = obj as StorageForProcessedIngredients;
+                return Enumerable.SequenceEqual(Ingredients, newObj.Ingredients);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return Ingredients.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return "Storage for processed ingredients";
+        }
     }
 }

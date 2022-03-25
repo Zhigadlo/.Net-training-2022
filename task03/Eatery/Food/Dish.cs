@@ -13,5 +13,24 @@
         }
 
         public List<Ingredient> GetIngredients() => DishRecipe.GetIngridients();
+
+        public override bool Equals(object? obj)
+        {
+            if(obj == null || obj is not Dish) 
+                return false;
+            else
+            {
+                var newObj = obj as Dish;
+                return newObj.Name == Name && newObj.Price == Price && newObj.DishRecipe.Equals(DishRecipe);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode() + Price.GetHashCode() + DishRecipe.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

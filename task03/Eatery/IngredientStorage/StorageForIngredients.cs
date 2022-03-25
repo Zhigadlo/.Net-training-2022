@@ -13,5 +13,24 @@ namespace Eatery.IngredientStorage
             Type = type;
             Ingredients = ingredients;
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || obj is not StorageForIngredients) 
+                return false;
+            else
+            {
+                var newObj = obj as StorageForIngredients;
+                return Type == newObj.Type && Enumerable.SequenceEqual(Ingredients, newObj.Ingredients);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return Type.GetHashCode() + Ingredients.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return Type.ToString();
+        }
     }
 }
