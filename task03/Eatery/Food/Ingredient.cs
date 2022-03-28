@@ -21,6 +21,15 @@ namespace Eatery.Food
             PossibleTypesOfProcessing = possibleTypesOfProcessing.ToList();
         }
 
+        public bool IsProcessingSuitable(ProcessingType processingType)
+        {
+            foreach(var type in PossibleTypesOfProcessing)
+                if(type == processingType)
+                    return true;
+
+            return false;
+        }
+
         public override bool Equals(object? obj)
         {
             if(obj == null || obj is not Ingredient)

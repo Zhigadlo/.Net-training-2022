@@ -7,6 +7,7 @@
         Fry = 8, 
         Cook = 5,
         Grind = 3,
-        Pickle = 6
+        Pickle = 6,
+        Stew = 7
     }
 }

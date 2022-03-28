@@ -2,6 +2,8 @@
 using Eatery.Employees;
 using Eatery.Food;
 using Eatery.FoodProcessing;
+using Eatery.Food.Interfaces;
+using Eatery.IngredientStorage.Interfaces;
 
 namespace Eatery
 {
@@ -13,7 +15,6 @@ namespace Eatery
         public List<StorageForIngredients> Storages { get; set; }
         public StorageForProcessedIngredients StorageForProcessedIngredients { get; set; }
         public List<Cook> Cooks { get; set; }
-        public List<Dish> Dishes { get; set; }
         public List<Recipe> Recipes { get; set; }
         public Chef Chef { get; }
         public Manager Manager { get; }
@@ -24,7 +25,6 @@ namespace Eatery
             Manager = manager;
             Cooks = cooks;
             Recipes = recipes;
-            Dishes = new List<Dish>();
             StorageForProcessedIngredients = new StorageForProcessedIngredients();
             Storages = new List<StorageForIngredients>()
             {
@@ -56,7 +56,7 @@ namespace Eatery
         {
             Recipe recipe = FindRecipeByName(name);
             Dictionary<ProcessedIngredient, int> ingredientsForDish = GetProcessedIngredientsByRecipe(recipe);
-            DeleteIngredientsForStorage(ingredientsForDish, StorageForProcessedIngredients);
+            //DeleteIngredientsForStorage(ingredientsForDish, StorageForProcessedIngredients);
             return new Dish(recipe.Name, ingredientsForDish);
         }
 
@@ -70,13 +70,13 @@ namespace Eatery
             {
                 var newObj = obj as Kitchen;
                 return Storages.SequenceEqual(newObj.Storages) && Cooks.SequenceEqual(newObj.Cooks)
-                    && Dishes.SequenceEqual(newObj.Dishes) && Recipes.SequenceEqual(newObj.Recipes)
+                     && Recipes.SequenceEqual(newObj.Recipes)
                     && Chef.Equals(newObj.Chef) && Manager.Equals(newObj.Manager);
             }
         }
         public override int GetHashCode()
         {
-            return Storages.GetHashCode() + Cooks.GetHashCode() + Dishes.GetHashCode() 
+            return Storages.GetHashCode() + Cooks.GetHashCode()
                 + Recipes.GetHashCode() + Chef.GetHashCode() + Manager.GetHashCode();
         }
         public override string ToString()
@@ -86,7 +86,27 @@ namespace Eatery
 
         private Dictionary<ProcessedIngredient, int> GetProcessedIngredientsByRecipe(Recipe recipe)
         {
-            throw new NotImplementedException();
+            Dictionary<ProcessedIngredient, int> processedIngredients = new Dictionary<ProcessedIngredient, int>();
+            foreach (var processedIngredient in recipe.ProcessedIngredients)
+            {
+                if(StorageForProcessedIngredients.Ingredients.ContainsKey(processedIngredient))
+                {
+                    if (processedIngredients.ContainsKey(processedIngredient))
+                        processedIngredients[processedIngredient] += 1;
+                    else
+                        processedIngredients.Add(processedIngredient, 1);
+                }
+                else
+                {
+                    Ingredient ingredientForProcessing = FindIngredientFromStorages(processedIngredient.Name, processedIngredient.ProcessingType, processedIngredient.Price - (int)processedIngredient.ProcessingType);
+                    ProcessedIngredient processedIngredientForDish = GetProcessedIngredient(ingredientForProcessing, processedIngredient.ProcessingType);
+                    if (processedIngredients.ContainsKey(processedIngredientForDish))
+                        processedIngredients[processedIngredientForDish] += 1;
+                    else
+                        processedIngredients.Add(processedIngredientForDish, 1);
+                }
+            }
+            return processedIngredients;
         }
         private Recipe FindRecipeByName(string name)
         {
@@ -100,13 +120,18 @@ namespace Eatery
 
             throw new Exception("There is no recipe for this dish");
         }
-        private void DeleteIngredientsForStorage<Ingredient, Storage>(Dictionary<Ingredient, int> ingredients, Storage storage)
+        /*private void DeleteIngredientsForStorage<Ingredient, Storage>(Dictionary<Ingredient, int> ingredients, Storage storage) 
+            where Ingredient : IIngredient
+            where Storage : IStorage<Ingredient>
         {
-            throw new NotImplementedException();
-        }
+            foreach(var ingredient in ingredients)
+            {
+                storage.Ingredients[ingredient.Key] -= ingredient.Value;
+            }
+        }*/
         private ProcessedIngredient GetProcessedIngredient(Ingredient ingredient, ProcessingType processingType)
         {
-            Ingredient ingredientForProcessing = FindIngredientFromStorages(ingredient.Name, processingType);
+            Ingredient ingredientForProcessing = FindIngredientFromStorages(ingredient.Name, processingType, ingredient.Price);
             foreach (var cook in Cooks)
             {
                 if (cook.WorkPlace.ProcessingType == processingType)
@@ -119,7 +144,7 @@ namespace Eatery
 
             throw new Exception("There is no work place for this processing");
         }
-        private Ingredient FindIngredientFromStorages(string name, ProcessingType processingType)
+        private Ingredient FindIngredientFromStorages(string name, ProcessingType processingType, int price)
         {
             foreach (var storage in Storages)
             {
@@ -135,7 +160,8 @@ namespace Eatery
                         }
                     }
                     
-                    if (ingredient.Key.Name.ToLower() == name.ToLower() && isProcessingExist)
+                    if (ingredient.Key.Name.ToLower() == name.ToLower() && isProcessingExist
+                        && ingredient.Key.Price == price)
                         return ingredient.Key;
                 }
             }

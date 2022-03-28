@@ -6,12 +6,20 @@ namespace Eatery.Food
     {
         public string Name { get; set; }
         public List<Processing> ListOfProcessing { get; }
+        public List<ProcessedIngredient> ProcessedIngredients { get; }
         public int Price { get; }
         public Recipe(string name, params Processing[] listOfProcessing)
         {
             Name = name;
             ListOfProcessing = listOfProcessing.ToList();
+            ProcessedIngredients = new List<ProcessedIngredient>();
+            foreach(var process in listOfProcessing)
+            {
+                for(int i = 0; i < process.CountOfIngredients; i++)
+                    ProcessedIngredients.Add(new ProcessedIngredient(process.Ingredient.Name, process.Ingredient.Price + (int)process.Type, process.Type));
+            }
         }
+    
 
         public List<Ingredient> GetIngridients()
         {
