@@ -7,7 +7,7 @@ namespace Eatery.IngredientStorage
     {
         public StorageType Type { get; }
         public Dictionary<Ingredient, int> Ingredients { get; set; }
-        
+
         public StorageForIngredients(StorageType type, Dictionary<Ingredient, int> ingredients)
         {
             Type = type;
@@ -16,7 +16,7 @@ namespace Eatery.IngredientStorage
 
         public override bool Equals(object? obj)
         {
-            if (obj == null || obj is not StorageForIngredients) 
+            if (obj == null || obj is not StorageForIngredients)
                 return false;
             else
             {

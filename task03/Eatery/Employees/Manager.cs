@@ -3,12 +3,15 @@ using Eatery.Food;
 
 namespace Eatery.Employees
 {
+    /// <summary>
+    /// Manager can get orders
+    /// </summary>
     public class Manager : IEmploye
     {
         public string Name { get; }
         public string Surname { get; }
         public List<Order> Orders { get; set; }
-        
+
         public Manager(string name, string surname)
         {
             Name = name;

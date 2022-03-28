@@ -1,11 +1,11 @@
-﻿using Eatery.IngredientStorage.Interfaces;
-using Eatery.Food;
+﻿using Eatery.Food;
+using Eatery.IngredientStorage.Interfaces;
 
 namespace Eatery.IngredientStorage
 {
     public class StorageForProcessedIngredients : IStorage<ProcessedIngredient>
     {
-        public Dictionary<ProcessedIngredient, int>  Ingredients { get; }
+        public Dictionary<ProcessedIngredient, int> Ingredients { get; }
 
         public StorageForProcessedIngredients()
         {
@@ -14,7 +14,7 @@ namespace Eatery.IngredientStorage
 
         public override bool Equals(object? obj)
         {
-            if(obj == null || obj is not StorageForProcessedIngredients)
+            if (obj == null || obj is not StorageForProcessedIngredients)
                 return false;
             else
             {

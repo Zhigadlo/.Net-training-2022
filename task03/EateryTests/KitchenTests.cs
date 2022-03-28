@@ -1,4 +1,4 @@
-using Eatery.Employees;
+﻿using Eatery.Employees;
 using Eatery.Food;
 using Eatery.FoodProcessing;
 using Eatery.IngredientStorage;
@@ -17,7 +17,7 @@ namespace KitchenTests
         [InlineData(13, 111111, 10, 4, 40, 20, 7, 5, 2, 4, 1, 2, 3, 3)]
         [InlineData(0, 10103, 10, 4, 40, 20, 7, 5, 2, 4, 1, 2, 2, 3)]
         public void MakeDishTest(int tomatoCount, int bananaCount, int onionCount, int porkCount, int carrotCount,
-            int garlicCount, int pepperCount, int riceCount, int requiredOnionCount, int requiredCarrotCount, 
+            int garlicCount, int pepperCount, int riceCount, int requiredOnionCount, int requiredCarrotCount,
             int requiredPorkCount, int requiredPepperCount, int requiredRiceCount, int requiredGarlicCount)
         {
             var tomato = new Ingredient("Tomato", 30, StorageType.Fridge, ProcessingType.Slice, ProcessingType.Cook, ProcessingType.Pickle, ProcessingType.Stew);
@@ -59,9 +59,9 @@ namespace KitchenTests
             Processing processing3 = new Processing(ProcessingType.Fry, pork, requiredPorkCount);
             Processing processing4 = new Processing(ProcessingType.Slice, pepper, requiredPepperCount);
             Processing processing5 = new Processing(ProcessingType.Cook, rice, requiredRiceCount);
-            Processing processing6 = new Processing(ProcessingType.Cook, garlic, requiredGarlicCount); 
+            Processing processing6 = new Processing(ProcessingType.Cook, garlic, requiredGarlicCount);
 
-            Recipe pilafRecipe = new Recipe("Pilaf", processing1, processing2, processing3, processing4, processing5, 
+            Recipe pilafRecipe = new Recipe("Pilaf", processing1, processing2, processing3, processing4, processing5,
                 processing6);
             Recipe bananaJuice = new Recipe("BananaJusice");
 

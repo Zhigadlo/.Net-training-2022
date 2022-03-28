@@ -1,14 +1,12 @@
-﻿using Eatery.IngredientStorage;
-using Eatery.Employees;
+﻿using Eatery.Employees;
 using Eatery.Food;
 using Eatery.FoodProcessing;
-using Eatery.Food.Interfaces;
-using Eatery.IngredientStorage.Interfaces;
+using Eatery.IngredientStorage;
 
 namespace Eatery
 {
     /// <summary>
-    /// Kitchen can get orders from manager and make dishes
+    /// Kitchen can get orders from manager, make dishes and create recipes
     /// </summary>
     public class Kitchen
     {
@@ -18,7 +16,7 @@ namespace Eatery
         public List<Recipe> Recipes { get; set; }
         public Chef Chef { get; }
         public Manager Manager { get; }
-        
+
         public Kitchen(Dictionary<Ingredient, int> ingredients, List<Cook> cooks, List<Recipe> recipes, Chef chef, Manager manager)
         {
             Chef = chef;
@@ -36,7 +34,7 @@ namespace Eatery
             foreach (var ingredient in ingredients)
             {
                 switch (ingredient.Key.StoragePlace)
-                { 
+                {
                     case StorageType.Freezer:
                         Storages[0].Ingredients.Add(ingredient.Key, ingredient.Value);
                         break;
@@ -56,15 +54,18 @@ namespace Eatery
         {
             Recipe recipe = FindRecipeByName(name);
             Dictionary<ProcessedIngredient, int> ingredientsForDish = GetProcessedIngredientsByRecipe(recipe);
-            //DeleteIngredientsForStorage(ingredientsForDish, StorageForProcessedIngredients);
             return new Dish(recipe.Name, ingredientsForDish);
         }
 
         public List<Order> GetOrders() => Manager.Orders;
+        public void CreateNewRecipe(string name, params Processing[] processings)
+        {
+            Recipes.Add(Chef.CreateNewRecipe(name, processings));
+        }
 
         public override bool Equals(object? obj)
         {
-            if(obj == null || obj is not Kitchen)
+            if (obj == null || obj is not Kitchen)
                 return false;
             else
             {
@@ -89,7 +90,7 @@ namespace Eatery
             Dictionary<ProcessedIngredient, int> processedIngredients = new Dictionary<ProcessedIngredient, int>();
             foreach (var processedIngredient in recipe.ProcessedIngredients)
             {
-                if(StorageForProcessedIngredients.Ingredients.ContainsKey(processedIngredient))
+                if (StorageForProcessedIngredients.Ingredients.ContainsKey(processedIngredient))
                 {
                     if (processedIngredients.ContainsKey(processedIngredient))
                         processedIngredients[processedIngredient] += 1;
@@ -120,15 +121,6 @@ namespace Eatery
 
             throw new Exception("There is no recipe for this dish");
         }
-        /*private void DeleteIngredientsForStorage<Ingredient, Storage>(Dictionary<Ingredient, int> ingredients, Storage storage) 
-            where Ingredient : IIngredient
-            where Storage : IStorage<Ingredient>
-        {
-            foreach(var ingredient in ingredients)
-            {
-                storage.Ingredients[ingredient.Key] -= ingredient.Value;
-            }
-        }*/
         private ProcessedIngredient GetProcessedIngredient(Ingredient ingredient, ProcessingType processingType)
         {
             Ingredient ingredientForProcessing = FindIngredientFromStorages(ingredient.Name, processingType, ingredient.Price);
@@ -159,7 +151,7 @@ namespace Eatery
                             break;
                         }
                     }
-                    
+
                     if (ingredient.Key.Name.ToLower() == name.ToLower() && isProcessingExist
                         && ingredient.Key.Price == price)
                         return ingredient.Key;

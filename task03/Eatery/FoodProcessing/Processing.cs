@@ -8,7 +8,7 @@ namespace Eatery.FoodProcessing
         public Ingredient Ingredient { get; }
         public int CountOfIngredients { get; }
 
-        public Processing(ProcessingType type, Ingredient ingredient,int countOfIngredients)
+        public Processing(ProcessingType type, Ingredient ingredient, int countOfIngredients)
         {
             CountOfIngredients = countOfIngredients;
             Type = type;
@@ -32,7 +32,7 @@ namespace Eatery.FoodProcessing
         }
         public override string ToString()
         {
-            return "Processing type: " + Type + "\nIngredient: " + Ingredient.ToString() 
+            return "Processing type: " + Type + "\nIngredient: " + Ingredient.ToString()
                 + "\nCount of ingredients: " + CountOfIngredients;
         }
     }

@@ -15,6 +15,14 @@ namespace Eatery
             ProcessingType = processingType;
         }
 
+        public override string ToString()
+        {
+            return "Work place for " + ProcessingType.ToString();
+        }
+        public override int GetHashCode()
+        {
+            return MaxCountOfIngredients.GetHashCode() + TimeOfProcessing.GetHashCode() + ProcessingType.GetHashCode();
+        }
         public override bool Equals(object? obj)
         {
             if (obj == null || obj is not WorkPlace)

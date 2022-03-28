@@ -1,6 +1,6 @@
-﻿using Eatery.IngredientStorage;
-using Eatery.Food.Interfaces;
+﻿using Eatery.Food.Interfaces;
 using Eatery.FoodProcessing;
+using Eatery.IngredientStorage;
 
 namespace Eatery.Food
 {
@@ -23,8 +23,8 @@ namespace Eatery.Food
 
         public bool IsProcessingSuitable(ProcessingType processingType)
         {
-            foreach(var type in PossibleTypesOfProcessing)
-                if(type == processingType)
+            foreach (var type in PossibleTypesOfProcessing)
+                if (type == processingType)
                     return true;
 
             return false;
@@ -32,7 +32,7 @@ namespace Eatery.Food
 
         public override bool Equals(object? obj)
         {
-            if(obj == null || obj is not Ingredient)
+            if (obj == null || obj is not Ingredient)
                 return false;
             else
             {
@@ -40,7 +40,7 @@ namespace Eatery.Food
                 return Name == newObj.Name && Price == newObj.Price && StoragePlace == newObj.StoragePlace
                     && PossibleTypesOfProcessing.SequenceEqual(newObj.PossibleTypesOfProcessing);
             }
-            
+
         }
         public override int GetHashCode()
         {

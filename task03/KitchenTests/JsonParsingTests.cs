@@ -1,23 +1,26 @@
-using Eatery.Employees;
+﻿using Eatery;
 using Eatery.Food;
-using Eatery.FoodProcessing;
 using Eatery.IngredientStorage;
-using Eatery;
+using Eatery.Employees;
+using Eatery.FoodProcessing;
 using System.Collections.Generic;
+using System.IO;
 using Xunit;
 
 namespace KitchenTests
 {
-    public class KitchenTests
+    public class JsonParsingTests
     {
+        private string _jsonPath = @"..\..\..\JsonFileForTest.json";
+
         [Theory]
         [InlineData(20, 15, 10, 4, 40, 20, 7, 5, 2, 4, 1, 2, 1, 1)]
         [InlineData(13, 0, 10, 4, 5, 20, 7, 5, 3, 5, 2, 3, 2, 2)]
         [InlineData(17, 8, 1, 4, 21, 3, 7, 5, 1, 3, 1, 2, 1, 1)]
         [InlineData(13, 111111, 10, 4, 40, 20, 7, 5, 2, 4, 1, 2, 3, 3)]
         [InlineData(0, 10103, 10, 4, 40, 20, 7, 5, 2, 4, 1, 2, 2, 3)]
-        public void MakeDishTest(int tomatoCount, int bananaCount, int onionCount, int porkCount, int carrotCount,
-            int garlicCount, int pepperCount, int riceCount, int requiredOnionCount, int requiredCarrotCount, 
+        public void JsonParsingTest(int tomatoCount, int bananaCount, int onionCount, int porkCount, int carrotCount,
+            int garlicCount, int pepperCount, int riceCount, int requiredOnionCount, int requiredCarrotCount,
             int requiredPorkCount, int requiredPepperCount, int requiredRiceCount, int requiredGarlicCount)
         {
             var tomato = new Ingredient("Tomato", 30, StorageType.Fridge, ProcessingType.Slice, ProcessingType.Cook, ProcessingType.Pickle, ProcessingType.Stew);
@@ -59,9 +62,9 @@ namespace KitchenTests
             Processing processing3 = new Processing(ProcessingType.Fry, pork, requiredPorkCount);
             Processing processing4 = new Processing(ProcessingType.Slice, pepper, requiredPepperCount);
             Processing processing5 = new Processing(ProcessingType.Cook, rice, requiredRiceCount);
-            Processing processing6 = new Processing(ProcessingType.Cook, garlic, requiredGarlicCount); 
+            Processing processing6 = new Processing(ProcessingType.Cook, garlic, requiredGarlicCount);
 
-            Recipe pilafRecipe = new Recipe("Pilaf", processing1, processing2, processing3, processing4, processing5, 
+            Recipe pilafRecipe = new Recipe("Pilaf", processing1, processing2, processing3, processing4, processing5,
                 processing6);
             Recipe bananaJuice = new Recipe("BananaJusice");
 
@@ -76,32 +79,24 @@ namespace KitchenTests
 
             Kitchen kitchen = new Kitchen(ingredients, cooks, recipes, chef, manager);
 
-            var processedOnion = new ProcessedIngredient("Onion", onion.Price + (int)ProcessingType.Slice, ProcessingType.Slice);
-            var processedCarrot = new ProcessedIngredient("Carrot", carrot.Price + (int)ProcessingType.Slice, ProcessingType.Slice);
-            var processedPork = new ProcessedIngredient("Pork", pork.Price + (int)ProcessingType.Fry, ProcessingType.Fry);
-            var processedPepper = new ProcessedIngredient("Pepper", pepper.Price + (int)ProcessingType.Slice, ProcessingType.Slice);
-            var processedRice = new ProcessedIngredient("Rice", rice.Price + (int)ProcessingType.Cook, ProcessingType.Cook);
-            var processedGarlic = new ProcessedIngredient("Garlic", garlic.Price + (int)ProcessingType.Cook, ProcessingType.Cook);
+            JsonParsing<Kitchen>.WriteObjectInJsonFile(kitchen, _jsonPath);
 
-            Dish actualDish = kitchen.MakeDish("pilaf");
-            Dictionary<ProcessedIngredient, int> processedIngredients = new Dictionary<ProcessedIngredient, int>
-            {
-                { processedOnion, requiredOnionCount },
-                { processedCarrot, requiredCarrotCount },
-                { processedPork, requiredPorkCount },
-                { processedPepper, requiredPepperCount },
-                { processedRice, requiredRiceCount },
-                { processedGarlic, requiredGarlicCount }
-            };
-            Dish expectedDish = new Dish("Pilaf", processedIngredients);
+            StreamReader reader1 = new StreamReader(_jsonPath);
 
-            Assert.True(actualDish.Equals(expectedDish));
-            Assert.Equal(onionCount - processedIngredients[processedOnion], kitchen.Storages[1].Ingredients[onion]);
-            Assert.Equal(carrotCount - processedIngredients[processedCarrot], kitchen.Storages[1].Ingredients[carrot]);
-            Assert.Equal(porkCount - processedIngredients[processedPork], kitchen.Storages[0].Ingredients[pork]);
-            Assert.Equal(pepperCount - processedIngredients[processedPepper], kitchen.Storages[1].Ingredients[pepper]);
-            Assert.Equal(riceCount - processedIngredients[processedRice], kitchen.Storages[2].Ingredients[rice]);
-            Assert.Equal(garlicCount - processedIngredients[processedGarlic], kitchen.Storages[1].Ingredients[garlic]);
+            string actualText = reader1.ReadToEnd();
+            actualText.Replace("\t", "");
+            actualText.Replace("\n", "");
+            reader1.Dispose();
+
+            StreamReader reader2 = new StreamReader(_jsonPath);
+
+            string expectedText = reader2.ReadToEnd();
+            expectedText.Replace("\t", "");
+            expectedText.Replace("\n", "");
+
+            reader2.Dispose();
+
+            Assert.True(expectedText.Equals(actualText));
         }
     }
 }

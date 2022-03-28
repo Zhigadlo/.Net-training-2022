@@ -1,8 +1,11 @@
-﻿using Eatery.Food;
-using Eatery.Employees.Interfaces;
+﻿using Eatery.Employees.Interfaces;
+using Eatery.Food;
 
 namespace Eatery.Employees
 {
+    /// <summary>
+    /// Cook has their own work place and can process ingredients
+    /// </summary>
     public class Cook : IEmploye
     {
         public string Name { get; }
@@ -22,7 +25,7 @@ namespace Eatery.Employees
 
         public override bool Equals(object? obj)
         {
-            if(obj == null || obj is not Cook)
+            if (obj == null || obj is not Cook)
                 return false;
             else
             {

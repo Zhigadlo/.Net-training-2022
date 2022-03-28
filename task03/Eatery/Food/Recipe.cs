@@ -13,13 +13,13 @@ namespace Eatery.Food
             Name = name;
             ListOfProcessing = listOfProcessing.ToList();
             ProcessedIngredients = new List<ProcessedIngredient>();
-            foreach(var process in listOfProcessing)
+            foreach (var process in listOfProcessing)
             {
-                for(int i = 0; i < process.CountOfIngredients; i++)
+                for (int i = 0; i < process.CountOfIngredients; i++)
                     ProcessedIngredients.Add(new ProcessedIngredient(process.Ingredient.Name, process.Ingredient.Price + (int)process.Type, process.Type));
             }
         }
-    
+
 
         public List<Ingredient> GetIngridients()
         {
@@ -32,7 +32,7 @@ namespace Eatery.Food
 
         public override bool Equals(object? obj)
         {
-            if(obj == null || obj is not Recipe)
+            if (obj == null || obj is not Recipe)
                 return false;
             else
             {

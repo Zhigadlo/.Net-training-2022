@@ -1,6 +1,6 @@
 ﻿using Eatery.Food.Interfaces;
-using Eatery.IngredientStorage;
 using Eatery.FoodProcessing;
+using Eatery.IngredientStorage;
 
 namespace Eatery.Food
 {
@@ -21,14 +21,14 @@ namespace Eatery.Food
 
         public override bool Equals(object? obj)
         {
-            if(obj == null || obj is not ProcessedIngredient)
+            if (obj == null || obj is not ProcessedIngredient)
                 return false;
             else
             {
                 var newObj = obj as ProcessedIngredient;
-                return Name == newObj.Name && Price == newObj.Price && 
+                return Name == newObj.Name && Price == newObj.Price &&
                     ProcessingType == newObj.ProcessingType && StoragePlace == newObj.StoragePlace;
-            }    
+            }
         }
         public override int GetHashCode()
         {
