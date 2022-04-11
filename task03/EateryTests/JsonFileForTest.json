@@ -1,0 +1,286 @@
+{
+  "Storages": [
+    {
+      "Type": 2,
+      "Ingredients": {
+        "Pork": 4
+      }
+    },
+    {
+      "Type": 1,
+      "Ingredients": {
+        "Tomato": 13,
+        "Onion": 10,
+        "Carrot": 5,
+        "Garlic": 20,
+        "Pepper": 7
+      }
+    },
+    {
+      "Type": 0,
+      "Ingredients": {
+        "Banana": 0,
+        "Rice": 5
+      }
+    }
+  ],
+  "StorageForProcessedIngredients": {
+    "Ingredients": {}
+  },
+  "Cooks": [
+    {
+      "Name": "Ivan",
+      "Surname": "Ivanov",
+      "WorkPlace": {
+        "MaxCountOfIngredients": 5,
+        "TimeOfProcessing": 5,
+        "ProcessingType": 3
+      }
+    },
+    {
+      "Name": "Jhon",
+      "Surname": "Wick",
+      "WorkPlace": {
+        "MaxCountOfIngredients": 10,
+        "TimeOfProcessing": 20,
+        "ProcessingType": 5
+      }
+    },
+    {
+      "Name": "Donovan",
+      "Surname": "Gold",
+      "WorkPlace": {
+        "MaxCountOfIngredients": 7,
+        "TimeOfProcessing": 6,
+        "ProcessingType": 7
+      }
+    },
+    {
+      "Name": "Fry",
+      "Surname": "Man",
+      "WorkPlace": {
+        "MaxCountOfIngredients": 20,
+        "TimeOfProcessing": 4,
+        "ProcessingType": 8
+      }
+    }
+  ],
+  "Recipes": [
+    {
+      "Name": "Pilaf",
+      "ListOfProcessing": [
+        {
+          "Type": 3,
+          "Ingredient": {
+            "Name": "Onion",
+            "Price": 20,
+            "StoragePlace": 1,
+            "PossibleTypesOfProcessing": [
+              3,
+              8,
+              7
+            ]
+          },
+          "CountOfIngredients": 3
+        },
+        {
+          "Type": 3,
+          "Ingredient": {
+            "Name": "Carrot",
+            "Price": 4,
+            "StoragePlace": 1,
+            "PossibleTypesOfProcessing": [
+              3,
+              5,
+              8,
+              7
+            ]
+          },
+          "CountOfIngredients": 5
+        },
+        {
+          "Type": 8,
+          "Ingredient": {
+            "Name": "Pork",
+            "Price": 70,
+            "StoragePlace": 2,
+            "PossibleTypesOfProcessing": [
+              10,
+              3,
+              5,
+              8,
+              7
+            ]
+          },
+          "CountOfIngredients": 2
+        },
+        {
+          "Type": 3,
+          "Ingredient": {
+            "Name": "Pepper",
+            "Price": 47,
+            "StoragePlace": 1,
+            "PossibleTypesOfProcessing": [
+              3,
+              8
+            ]
+          },
+          "CountOfIngredients": 3
+        },
+        {
+          "Type": 5,
+          "Ingredient": {
+            "Name": "Rice",
+            "Price": 20,
+            "StoragePlace": 0,
+            "PossibleTypesOfProcessing": [
+              5,
+              7
+            ]
+          },
+          "CountOfIngredients": 2
+        },
+        {
+          "Type": 5,
+          "Ingredient": {
+            "Name": "Garlic",
+            "Price": 10,
+            "StoragePlace": 1,
+            "PossibleTypesOfProcessing": [
+              3,
+              8,
+              5,
+              7
+            ]
+          },
+          "CountOfIngredients": 2
+        }
+      ],
+      "ProcessedIngredients": [
+        {
+          "Name": "Onion",
+          "Price": 23,
+          "StoragePlace": 0,
+          "ProcessingType": 3
+        },
+        {
+          "Name": "Onion",
+          "Price": 23,
+          "StoragePlace": 0,
+          "ProcessingType": 3
+        },
+        {
+          "Name": "Onion",
+          "Price": 23,
+          "StoragePlace": 0,
+          "ProcessingType": 3
+        },
+        {
+          "Name": "Carrot",
+          "Price": 7,
+          "StoragePlace": 0,
+          "ProcessingType": 3
+        },
+        {
+          "Name": "Carrot",
+          "Price": 7,
+          "StoragePlace": 0,
+          "ProcessingType": 3
+        },
+        {
+          "Name": "Carrot",
+          "Price": 7,
+          "StoragePlace": 0,
+          "ProcessingType": 3
+        },
+        {
+          "Name": "Carrot",
+          "Price": 7,
+          "StoragePlace": 0,
+          "ProcessingType": 3
+        },
+        {
+          "Name": "Carrot",
+          "Price": 7,
+          "StoragePlace": 0,
+          "ProcessingType": 3
+        },
+        {
+          "Name": "Pork",
+          "Price": 78,
+          "StoragePlace": 0,
+          "ProcessingType": 8
+        },
+        {
+          "Name": "Pork",
+          "Price": 78,
+          "StoragePlace": 0,
+          "ProcessingType": 8
+        },
+        {
+          "Name": "Pepper",
+          "Price": 50,
+          "StoragePlace": 0,
+          "ProcessingType": 3
+        },
+        {
+          "Name": "Pepper",
+          "Price": 50,
+          "StoragePlace": 0,
+          "ProcessingType": 3
+        },
+        {
+          "Name": "Pepper",
+          "Price": 50,
+          "StoragePlace": 0,
+          "ProcessingType": 3
+        },
+        {
+          "Name": "Rice",
+          "Price": 25,
+          "StoragePlace": 0,
+          "ProcessingType": 5
+        },
+        {
+          "Name": "Rice",
+          "Price": 25,
+          "StoragePlace": 0,
+          "ProcessingType": 5
+        },
+        {
+          "Name": "Garlic",
+          "Price": 15,
+          "StoragePlace": 0,
+          "ProcessingType": 5
+        },
+        {
+          "Name": "Garlic",
+          "Price": 15,
+          "StoragePlace": 0,
+          "ProcessingType": 5
+        }
+      ],
+      "Price": 0
+    },
+    {
+      "Name": "BananaJusice",
+      "ListOfProcessing": [],
+      "ProcessedIngredients": [],
+      "Price": 0
+    }
+  ],
+  "Chef": {
+    "Name": "ChefName",
+    "Surname": "ChefSurname",
+    "WorkPlace": {
+      "MaxCountOfIngredients": 10,
+      "TimeOfProcessing": 20,
+      "ProcessingType": 10
+    }
+  },
+  "Manager": {
+    "Name": "ManagerName",
+    "Surname": "ManagerSurname",
+    "Orders": []
+  }
+}
