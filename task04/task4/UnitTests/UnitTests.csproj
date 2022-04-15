@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ServerLibrary\ServerLibrary.csproj" />
+    <ProjectReference Include="..\SolvingSOLE\SolvingSOLE.csproj" />
   </ItemGroup>
 
 </Project>
