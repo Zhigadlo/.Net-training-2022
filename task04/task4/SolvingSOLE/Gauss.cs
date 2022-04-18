@@ -4,21 +4,24 @@ namespace SolvingSOLE
 {
     public class Gauss : ISolving
     {
-        public double[] Solve(double[,] matrix)
+        public virtual double[] Solve(double[,] matrix)
         {
-            if (matrix.GetLength(0) + 1 != matrix.GetLength(1))
-                throw new Exception("The matrix is not of a suitable size," +
-                                    " make sure that the number of rows is 1 less than the number of columns");
+            IsMatrixSuitableSize(matrix);
 
             Matrix resultMatrix = new Matrix(matrix);
 
-            DirectMove(resultMatrix);
-            ReverseMove(resultMatrix);
+            return Solve(resultMatrix);
+        }
+
+        public virtual double[] Solve(Matrix matrix)
+        {
+            DirectMove(matrix);
+            ReverseMove(matrix);
 
             double[] results = new double[matrix.GetLength(0)];
             for (int i = 0; i < results.Length; i++)
             {
-                results[i] = resultMatrix[i][resultMatrix.GetLength(1) - 1];
+                results[i] = matrix[i][matrix.GetLength(1) - 1];
             }
 
             return results;
@@ -53,6 +56,13 @@ namespace SolvingSOLE
                     matrix[j] = matrix[j] - matrix[i] * koof;
                 }
             }
+        }
+
+        protected void IsMatrixSuitableSize(double[,] matrix)
+        {
+            if (matrix.GetLength(0) + 1 != matrix.GetLength(1))
+                throw new Exception("The matrix is not of a suitable size," +
+                                    " make sure that the number of rows is 1 less than the number of columns");
         }
     }
 }

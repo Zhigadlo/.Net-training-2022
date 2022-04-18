@@ -6,7 +6,7 @@ namespace ServerLibrary
 {
     public class TcpServer : IServer, IDisposable
     {
-        private static TcpListener _server;
+        protected static TcpListener _server;
         public delegate double[] Operation(double[,] matrix);
         public event Operation OperationEvent;
         public TcpServer(IPAddress ip, int port)
@@ -15,7 +15,7 @@ namespace ServerLibrary
             _server.Start();
         }
 
-        public string Read()
+        public virtual string Read()
         {
             TcpClient client = _server.AcceptTcpClient();
             NetworkStream stream = client.GetStream();
@@ -26,7 +26,7 @@ namespace ServerLibrary
             do
             {
                 bytes = stream.Read(data, 0, data.Length);
-                builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
+                builder.Append(Encoding.UTF8.GetString(data, 0, bytes));
             }
             while (stream.DataAvailable);
 
@@ -34,7 +34,7 @@ namespace ServerLibrary
 
             return message;
         }
-        public string DoOperation(double[,] matrix)
+        public virtual string DoOperation(double[,] matrix)
         {
             if (OperationEvent != null)
             {
@@ -44,7 +44,7 @@ namespace ServerLibrary
             else
                 throw new Exception("Operation is null");
         }
-        public void Write(string messege)
+        public virtual void Write(string messege)
         {
             TcpClient client = _server.AcceptTcpClient();
             NetworkStream stream = client.GetStream();

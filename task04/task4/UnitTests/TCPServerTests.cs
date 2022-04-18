@@ -21,7 +21,7 @@ namespace UnitTests
             NetworkStream stream = client.GetStream();
             double[] values = new double[] { 3, 5, 6, 1 };
             string message = Parsing.ArrayToString(values);
-            byte[] data = Encoding.Unicode.GetBytes(message);
+            byte[] data = Encoding.UTF8.GetBytes(message);
             stream.Write(data, 0, data.Length);
 
             string actual = server.Read();
@@ -31,6 +31,12 @@ namespace UnitTests
                 Assert.Equal(values[i], actualArray[i]);
 
             server.Dispose();
+        }
+        [Fact]
+        public void Test()
+        {
+            //TcpServer server = new TcpServer(_ip, _port);
+            //server.Read();
         }
 
         [Fact]
