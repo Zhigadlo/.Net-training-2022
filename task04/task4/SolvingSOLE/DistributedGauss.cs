@@ -13,8 +13,6 @@ namespace SolvingSOLE
         {
             return base.Solve(new Matrix(matrix));
         }
-
-
         protected override void DirectMove(Matrix matrix)
         {
             int n = matrix.GetLength(0);
@@ -30,7 +28,6 @@ namespace SolvingSOLE
             }
 
         }
-
         protected override void ReverseMove(Matrix matrix)
         {
             int n = matrix.GetLength(0);

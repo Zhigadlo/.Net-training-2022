@@ -9,32 +9,50 @@ namespace ServerLibrary
         protected static TcpListener _server;
         public delegate double[] Operation(double[,] matrix);
         public event Operation OperationEvent;
+        private bool _isNotDisposed;
         public TcpServer(IPAddress ip, int port)
         {
             _server = new TcpListener(ip, port);
-            _server.Start();
         }
-
-        public virtual string Read()
+        public void StartAsync()
         {
-            TcpClient client = _server.AcceptTcpClient();
-            NetworkStream stream = client.GetStream();
-            byte[] data = new byte[64]; // буфер для получаемых данных
-            
-            StringBuilder builder = new StringBuilder();
-            int bytes;
-            do
-            {
-                bytes = stream.Read(data, 0, data.Length);
-                builder.Append(Encoding.UTF8.GetString(data, 0, bytes));
-            }
-            while (stream.DataAvailable);
-
-            string message = builder.ToString();
-
-            return message;
+            _server.Start();
+            _isNotDisposed = true;
+            ListenAsync();
         }
-        public virtual string DoOperation(double[,] matrix)
+        public async virtual void ListenAsync()
+        {
+            while (_isNotDisposed)
+            {
+                try
+                {
+                    TcpClient client = await _server.AcceptTcpClientAsync();
+
+                    NetworkStream stream = client.GetStream();
+
+                    byte[] bytes = new byte[1024];     // готовим место для принятия сообщения
+                    int data = stream.Read(bytes, 0, bytes.Length);   // читаем сообщение от клиента
+                    string message = Encoding.Default.GetString(bytes, 0, data); // выводим на экран полученное сообщение в виде строки
+                    try
+                    {
+                        double[,] matrix = Parsing.StringToTwoDemensionalDoubleArray(message);
+                        string mesaageToClient = DoOperation(matrix);
+                        bytes = Encoding.Unicode.GetBytes(mesaageToClient);
+                        stream.Write(bytes, 0, bytes.Length);
+                    }
+                    catch
+                    {
+                        throw new Exception("Parsing exception, client message is not correct");
+                    }
+                    client.Close();
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+        }
+        protected virtual string DoOperation(double[,] matrix)
         {
             if (OperationEvent != null)
             {
@@ -44,17 +62,12 @@ namespace ServerLibrary
             else
                 throw new Exception("Operation is null");
         }
-        public virtual void Write(string messege)
-        {
-            TcpClient client = _server.AcceptTcpClient();
-            NetworkStream stream = client.GetStream();
-            byte[] bytes = Encoding.Unicode.GetBytes(messege);
-            stream.Write(bytes);
-        }
 
         public void Dispose()
         {
             _server.Stop();
+            _isNotDisposed = false;
+            GC.SuppressFinalize(this);
         }
     }
 }

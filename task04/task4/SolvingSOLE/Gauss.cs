@@ -41,7 +41,6 @@ namespace SolvingSOLE
                 }
             }
         }
-
         protected virtual void ReverseMove(Matrix matrix)
         {
             int n = matrix.GetLength(0);
@@ -57,7 +56,6 @@ namespace SolvingSOLE
                 }
             }
         }
-
         protected void IsMatrixSuitableSize(double[,] matrix)
         {
             if (matrix.GetLength(0) + 1 != matrix.GetLength(1))

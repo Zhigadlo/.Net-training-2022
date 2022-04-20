@@ -13,7 +13,7 @@
         public static string ArrayToString<T>(T[][] array)
         {
             string result = "";
-            for(int i = 0; i < array.Length; i++)
+            for (int i = 0; i < array.Length; i++)
                 result += ArrayToString(array[i]) + "\n";
 
             return result;
@@ -29,16 +29,37 @@
             return result;
         }
 
-        public static double[][] StringToTwoDemensionalDoubleArray(string text)
+        public static double[,] StringToTwoDemensionalDoubleArray(string text)
         {
+            text = text.Replace("\0", "");
             string[] values = text.Split('\n');
-            double[][] result = new double[values.Length - 1][];
-            for(int i = 0; i < result.Length; i++)
-                result[i] = StringToDoubleArray(values[i]);
-
+            int rows = values.Length - 1;
+            int cols = StringToDoubleArray(values[0]).Length;
+            double[,] result = new double[rows, cols];
+            for (int i = 0; i < result.GetLength(0); i++)
+            {
+                double[] array = StringToDoubleArray(values[i]);
+                for (int j = 0; j < result.GetLength(1); j++)
+                {
+                    result[i, j] = array[j];
+                }
+            }
             return result;
         }
 
+        public static string TwoDemensionalDoubleArrayToString(double[,] array)
+        {
+            string result = "";
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for(int j = 0; j < array.GetLength(1); j++)
+                {
+                    result += array[i, j].ToString() + "\t";
+                }
+                result += "\n";
+            }
+            return result; 
+        }
         public static int[] StringToIntArray(string text)
         {
             string[] values = text.Split('\t');

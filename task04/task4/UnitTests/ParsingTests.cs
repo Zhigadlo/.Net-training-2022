@@ -35,9 +35,9 @@ namespace UnitTests
         //public void StringToTwoDemensionalDoubleArrayTest(double[,] values)
         //{
         //    string line = Parsing.ArrayToString(values);
-
+        //
         //    double[,] actualValues = Parsing.StringToTwoDemensionalDoubleArray(line);
-
+        //
         //    Assert.Equal(values, actualValues);
         //}
     }

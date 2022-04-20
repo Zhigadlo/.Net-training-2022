@@ -13,74 +13,37 @@ namespace UnitTests
         private int _port = 8005;
 
         [Fact]
-        public void ServerReadTest()
+        public void ServerTest()
         {
-            TcpServer server = new TcpServer(_ip, _port);
-            TcpClient client = new TcpClient();
-            client.Connect(_ip, 8005);
-            NetworkStream stream = client.GetStream();
-            double[] values = new double[] { 3, 5, 6, 1 };
-            string message = Parsing.ArrayToString(values);
-            byte[] data = Encoding.UTF8.GetBytes(message);
-            stream.Write(data, 0, data.Length);
-
-            string actual = server.Read();
-            double[] actualArray = Parsing.StringToDoubleArray(actual);
-
-            for (int i = 0; i < actualArray.Length; i++)
-                Assert.Equal(values[i], actualArray[i]);
-
-            server.Dispose();
-        }
-        [Fact]
-        public void Test()
-        {
-            //TcpServer server = new TcpServer(_ip, _port);
-            //server.Read();
-        }
-
-        [Fact]
-        public void ServerWriteTest()
-        {
-            TcpServer server = new TcpServer(_ip, _port);
-            TcpClient client = new TcpClient();
-            client.Connect(_ip, _port);
-            string myMessege = "Hello World";
-            server.Write(myMessege);
-            NetworkStream stream = client.GetStream();
-            byte[] data = new byte[64];
-
-            StringBuilder builder = new StringBuilder();
-            int bytes;
-            do
-            {
-                bytes = stream.Read(data, 0, data.Length);
-                builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
-            }
-            while (stream.DataAvailable);
-
-            string message = builder.ToString();
-
-            server.Dispose();
-
-            Assert.Equal(message, myMessege);
-        }
-
-        [Fact]
-        public void ServerDoOperationTest()
-        {
-            TcpServer server = new TcpServer(_ip, _port);
+            double[] answers = { 1, 1, 1 };
+            TcpServer tcpServer = new TcpServer(_ip, _port);
             Gauss gauss = new Gauss();
+            tcpServer.OperationEvent += gauss.Solve;
+            tcpServer.StartAsync();
+
+            //ClientSendRequest();
+            double[] actualAnswers = ClientRequest();
+            
+            for (int i = 0; i < actualAnswers.Length; i++)
+                Assert.Equal(answers[i], actualAnswers[i]);
+
+            tcpServer.Dispose();
+
+        }
+
+        private double[] ClientRequest()
+        {
             double[,] matrix = new double[,] { { 3, -3, 2, 2 }, { 4, -5, 2, 1 }, { 5, -6, 4, 3 } };
-            server.OperationEvent += gauss.Solve;
-            string answer = server.DoOperation(matrix);
-            double[] actualAnswers = Parsing.StringToDoubleArray(answer);
+            TcpClient tcpClient = new TcpClient();
+            tcpClient.Connect(_ip, _port);
+            NetworkStream stream = tcpClient.GetStream();
+            string message = Parsing.TwoDemensionalDoubleArrayToString(matrix);
+            stream.Write(Encoding.Unicode.GetBytes(message));
+            byte[] bytes = new byte[10000];
+            stream.Read(bytes, 0, bytes.Length);
 
-            double[] expectedAnswers = { 1, 1, 1 };
-
-            for(int i = 0; i < actualAnswers.Length; i++)
-                Assert.Equal(expectedAnswers[i], actualAnswers[i]);
-            server.Dispose();
+            message = Encoding.Unicode.GetString(bytes);
+            return Parsing.StringToDoubleArray(message);
         }
     }
 }
