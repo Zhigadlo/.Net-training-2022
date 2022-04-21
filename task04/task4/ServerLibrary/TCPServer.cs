@@ -14,7 +14,7 @@ namespace ServerLibrary
         {
             _server = new TcpListener(ip, port);
         }
-        public void StartAsync()
+        public virtual void StartAsync()
         {
             _server.Start();
             _isNotDisposed = true;
@@ -30,15 +30,13 @@ namespace ServerLibrary
 
                     NetworkStream stream = client.GetStream();
 
-                    byte[] bytes = new byte[1024];     // готовим место для принятия сообщения
-                    int data = stream.Read(bytes, 0, bytes.Length);   // читаем сообщение от клиента
-                    string message = Encoding.Default.GetString(bytes, 0, data); // выводим на экран полученное сообщение в виде строки
+                    byte[] bytes = new byte[1024];
+                    string message = Read(stream, bytes); 
                     try
                     {
                         double[,] matrix = Parsing.StringToTwoDemensionalDoubleArray(message);
-                        string mesaageToClient = DoOperation(matrix);
-                        bytes = Encoding.Unicode.GetBytes(mesaageToClient);
-                        stream.Write(bytes, 0, bytes.Length);
+                        string messageToClient = DoOperation(matrix);
+                        Write(stream, bytes, messageToClient);
                     }
                     catch
                     {
@@ -49,8 +47,20 @@ namespace ServerLibrary
                 catch
                 {
                     continue;
+
                 }
             }
+        }
+
+        protected virtual string Read(NetworkStream stream, byte[] bytes)
+        {
+            int data = stream.Read(bytes, 0, bytes.Length);
+            return Encoding.Unicode.GetString(bytes, 0, data);
+        }
+        protected virtual void Write(NetworkStream stream, byte[] bytes, string message)
+        {
+            bytes = Encoding.Unicode.GetBytes(message);
+            stream.Write(bytes, 0, bytes.Length);
         }
         protected virtual string DoOperation(double[,] matrix)
         {

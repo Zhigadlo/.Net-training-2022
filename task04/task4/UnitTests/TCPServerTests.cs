@@ -9,7 +9,7 @@ namespace UnitTests
 {
     public class TCPServerTests
     {
-        private IPAddress _ip = IPAddress.Parse("127.0.0.1");
+        private IPAddress _ip = IPAddress.Parse("127.0.0.2");
         private int _port = 8005;
 
         [Fact]
@@ -18,8 +18,9 @@ namespace UnitTests
             double[] answers = { 1, 1, 1 };
             TcpServer tcpServer = new TcpServer(_ip, _port);
             Gauss gauss = new Gauss();
-            tcpServer.OperationEvent += gauss.Solve;
             tcpServer.StartAsync();
+            tcpServer.OperationEvent += gauss.Solve;
+            
 
             //ClientSendRequest();
             double[] actualAnswers = ClientRequest();
@@ -28,7 +29,6 @@ namespace UnitTests
                 Assert.Equal(answers[i], actualAnswers[i]);
 
             tcpServer.Dispose();
-
         }
 
         private double[] ClientRequest()
