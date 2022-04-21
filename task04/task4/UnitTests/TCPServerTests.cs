@@ -21,8 +21,6 @@ namespace UnitTests
             tcpServer.StartAsync();
             tcpServer.OperationEvent += gauss.Solve;
             
-
-            //ClientSendRequest();
             double[] actualAnswers = ClientRequest();
             
             for (int i = 0; i < actualAnswers.Length; i++)
@@ -37,7 +35,7 @@ namespace UnitTests
             TcpClient tcpClient = new TcpClient();
             tcpClient.Connect(_ip, _port);
             NetworkStream stream = tcpClient.GetStream();
-            string message = Parsing.TwoDemensionalDoubleArrayToString(matrix);
+            string message = Parsing.MultidemensionalDoubleArrayToString(matrix);
             stream.Write(Encoding.Unicode.GetBytes(message));
             byte[] bytes = new byte[10000];
             stream.Read(bytes, 0, bytes.Length);

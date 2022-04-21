@@ -8,7 +8,6 @@ namespace SolvingSOLE
         {
             return base.Solve(matrix);
         }
-
         public override double[] Solve(double[,] matrix)
         {
             return base.Solve(new Matrix(matrix));

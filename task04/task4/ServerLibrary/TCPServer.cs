@@ -4,7 +4,13 @@ using System.Text;
 
 namespace ServerLibrary
 {
-    public class TcpServer : IServer, IDisposable
+    /// <summary>
+    /// Before starting the server, you need to sign the event to OperationEvent.
+    /// After starting, the server waits for requests, the request contains a matrix,
+    /// after recieving the request, the server sends the solved SOLE.
+    /// At the and of the server operation, you must call the Dispose method.
+    /// </summary>
+    public class TcpServer : IDisposable
     {
         protected static TcpListener _server;
         public delegate double[] Operation(double[,] matrix);
@@ -14,13 +20,19 @@ namespace ServerLibrary
         {
             _server = new TcpListener(ip, port);
         }
+        /// <summary>
+        /// Starts server
+        /// </summary>
         public virtual void StartAsync()
         {
             _server.Start();
             _isNotDisposed = true;
             ListenAsync();
         }
-        public async virtual void ListenAsync()
+        /// <summary>
+        /// Starts listening of requests
+        /// </summary>
+        protected async virtual void ListenAsync()
         {
             while (_isNotDisposed)
             {
@@ -34,7 +46,7 @@ namespace ServerLibrary
                     string message = Read(stream, bytes); 
                     try
                     {
-                        double[,] matrix = Parsing.StringToTwoDemensionalDoubleArray(message);
+                        double[,] matrix = Parsing.StringToMultidemensionalDoubleArray(message);
                         string messageToClient = DoOperation(matrix);
                         Write(stream, bytes, messageToClient);
                     }
@@ -51,17 +63,34 @@ namespace ServerLibrary
                 }
             }
         }
-
+        /// <summary>
+        /// Read request of client from network stream
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
         protected virtual string Read(NetworkStream stream, byte[] bytes)
         {
             int data = stream.Read(bytes, 0, bytes.Length);
             return Encoding.Unicode.GetString(bytes, 0, data);
         }
+        /// <summary>
+        /// Write request to network stream
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="bytes"></param>
+        /// <param name="message"></param>
         protected virtual void Write(NetworkStream stream, byte[] bytes, string message)
         {
             bytes = Encoding.Unicode.GetBytes(message);
             stream.Write(bytes, 0, bytes.Length);
         }
+        /// <summary>
+        /// Do some operation 
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         protected virtual string DoOperation(double[,] matrix)
         {
             if (OperationEvent != null)

@@ -1,7 +1,16 @@
 ﻿namespace ServerLibrary
 {
+    /// <summary>
+    /// Class with static methods for array parsing
+    /// </summary>
     public class Parsing
     {
+        /// <summary>
+        /// Converts array to string
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <returns></returns>
         public static string ArrayToString<T>(T[] array)
         {
             string result = "";
@@ -9,16 +18,11 @@
                 result += array[i].ToString() + "\t";
             return result;
         }
-
-        public static string ArrayToString<T>(T[][] array)
-        {
-            string result = "";
-            for (int i = 0; i < array.Length; i++)
-                result += ArrayToString(array[i]) + "\n";
-
-            return result;
-        }
-
+        /// <summary>
+        /// Converts string to double array
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public static double[] StringToDoubleArray(string text)
         {
             string[] values = text.Split('\t');
@@ -28,8 +32,12 @@
 
             return result;
         }
-
-        public static double[,] StringToTwoDemensionalDoubleArray(string text)
+        /// <summary>
+        /// Converts string to multidemensional double array
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static double[,] StringToMultidemensionalDoubleArray(string text)
         {
             text = text.Replace("\0", "");
             string[] values = text.Split('\n');
@@ -46,8 +54,12 @@
             }
             return result;
         }
-
-        public static string TwoDemensionalDoubleArrayToString(double[,] array)
+        /// <summary>
+        /// Converts multidemensional array to string
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        public static string MultidemensionalDoubleArrayToString<T>(T[,] array)
         {
             string result = "";
             for (int i = 0; i < array.GetLength(0); i++)
@@ -60,6 +72,11 @@
             }
             return result; 
         }
+        /// <summary>
+        /// Converts string to int array
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public static int[] StringToIntArray(string text)
         {
             string[] values = text.Split('\t');

@@ -30,14 +30,13 @@ namespace UnitTests
 
             httpServer.Dispose();
         }
-
         private double[] ClientRequest()
         {
             double[,] matrix = new double[,] { { 3, -3, 2, 2 }, { 4, -5, 2, 1 }, { 5, -6, 4, 3 } };
             TcpClient tcpClient = new TcpClient();
             tcpClient.Connect(_ip, _port);
             NetworkStream stream = tcpClient.GetStream();
-            string message = Parsing.TwoDemensionalDoubleArrayToString(matrix);
+            string message = Parsing.MultidemensionalDoubleArrayToString(matrix);
 
             message = "HTTP/1.1 200 OK\n" +
                       "Content-type: text/html\n" +

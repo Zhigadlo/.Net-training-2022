@@ -4,6 +4,11 @@ namespace SolvingSOLE
 {
     public class Gauss : ISolving
     {
+        /// <summary>
+        /// Solves a system of linear equations
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
         public virtual double[] Solve(double[,] matrix)
         {
             IsMatrixSuitableSize(matrix);
@@ -12,7 +17,11 @@ namespace SolvingSOLE
 
             return Solve(resultMatrix);
         }
-
+        /// <summary>
+        /// Solves a system of linear equations
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
         public virtual double[] Solve(Matrix matrix)
         {
             DirectMove(matrix);
