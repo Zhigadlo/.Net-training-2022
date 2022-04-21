@@ -28,7 +28,7 @@
         /// <param name="row">row for division</param>
         /// <param name="a">value</param>
         /// <returns></returns>
-        public static MatrixRow operator / (MatrixRow row, double a)
+        public static MatrixRow operator /(MatrixRow row, double a)
         {
             var newRow = new MatrixRow(new double[row.Length]);
             for (int i = 0; i < row.Length; i++)
@@ -44,7 +44,7 @@
         /// <param name="row">row for division</param>
         /// <param name="a">value</param>
         /// <returns></returns>
-        public static MatrixRow operator * (MatrixRow row, double a)
+        public static MatrixRow operator *(MatrixRow row, double a)
         {
             var newRow = new MatrixRow(new double[row.Length]);
             for (int i = 0; i < row.Length; i++)
@@ -60,7 +60,7 @@
         /// <param name="rowA">first row</param>
         /// <param name="rowB">second row</param>
         /// <returns></returns>
-        public static MatrixRow operator - (MatrixRow rowA, MatrixRow rowB)
+        public static MatrixRow operator -(MatrixRow rowA, MatrixRow rowB)
         {
             var newRow = new MatrixRow(new double[rowA.Length]);
             for (int i = 0; i < rowA.Length; i++)
@@ -76,7 +76,7 @@
         /// <param name="rowA">first row</param>
         /// <param name="rowB">second row</param>
         /// <returns></returns>
-        public static MatrixRow operator + (MatrixRow rowA, MatrixRow rowB)
+        public static MatrixRow operator +(MatrixRow rowA, MatrixRow rowB)
         {
             var newRow = new MatrixRow(new double[rowA.Length]);
             for (int i = 0; i < rowA.Length; i++)

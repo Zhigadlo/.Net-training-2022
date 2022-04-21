@@ -1,11 +1,9 @@
-﻿using Xunit;
-using ServerLibrary;
-using System.Net;
-using System.Net.Http;
+﻿using ServerLibrary;
 using SolvingSOLE;
-using System.IO;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using Xunit;
 
 namespace UnitTests
 {
@@ -13,7 +11,7 @@ namespace UnitTests
     {
         private IPAddress _ip = IPAddress.Parse("127.0.1.1");
         private int _port = 8008;
-        
+
         [Fact]
         public async void HttpServerWriteTest()
         {

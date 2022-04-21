@@ -1,9 +1,9 @@
-using Xunit;
 using ServerLibrary;
+using SolvingSOLE;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using SolvingSOLE;
+using Xunit;
 
 namespace UnitTests
 {
@@ -20,9 +20,9 @@ namespace UnitTests
             Gauss gauss = new Gauss();
             tcpServer.StartAsync();
             tcpServer.OperationEvent += gauss.Solve;
-            
+
             double[] actualAnswers = ClientRequest();
-            
+
             for (int i = 0; i < actualAnswers.Length; i++)
                 Assert.Equal(answers[i], actualAnswers[i]);
 

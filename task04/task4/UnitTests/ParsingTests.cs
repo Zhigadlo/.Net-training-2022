@@ -1,5 +1,5 @@
-﻿using Xunit;
-using ServerLibrary;
+﻿using ServerLibrary;
+using Xunit;
 
 namespace UnitTests
 {

@@ -43,7 +43,7 @@ namespace ServerLibrary
                     NetworkStream stream = client.GetStream();
 
                     byte[] bytes = new byte[1024];
-                    string message = Read(stream, bytes); 
+                    string message = Read(stream, bytes);
                     try
                     {
                         double[,] matrix = Parsing.StringToMultidemensionalDoubleArray(message);
