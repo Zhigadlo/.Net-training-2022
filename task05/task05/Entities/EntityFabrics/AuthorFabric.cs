@@ -9,10 +9,12 @@ namespace Entities.EntityFabrics
     public class AuthorFabric : IEntityFabric<Author>
     {
         public SqlConnection Connection { get; set; }
-        private string _table = typeof(Author).GetCustomAttribute<DataTableName>().Name;
-        public AuthorFabric(string connectionString)
+        private string _table;
+        public AuthorFabric(SqlConnection connection)
         {
-            Connection = new SqlConnection(connectionString);
+            Connection = connection;
+            var authorAttribute = typeof(Author).GetCustomAttribute<DataTableName>() ?? new DataTableName("Authors");
+            _table = authorAttribute.Name;
         }
 
         public void Delete(int id)
@@ -45,6 +47,7 @@ namespace Entities.EntityFabrics
             string lastName = row.ItemArray[2].ToString();
 
             Author author = new Author(name, lastName);
+            author.Id = id;
             return author;
         }
         public void Update(int id, Author newEntity)

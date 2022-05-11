@@ -4,15 +4,17 @@ using ORM;
 using System.Reflection;
 using System.Data;
 
-namespace Entities.Fabrics
+namespace Entities.EntityFabrics
 {
     public class GenreFabric : IEntityFabric<Genre>
     {
         public SqlConnection Connection { get; }
-        private string _table = typeof(Genre).GetCustomAttribute<DataTableName>().Name;
-        public GenreFabric(string connectionString)
+        private string _table;
+        public GenreFabric(SqlConnection connection)
         {
-            Connection = new SqlConnection(connectionString);
+            Connection = connection;
+            var genreAttribute = typeof(Genre).GetCustomAttribute<DataTableName>() ?? new DataTableName("Genres");
+            _table = genreAttribute.Name;
         }
         public void Insert(Genre entity)
         {

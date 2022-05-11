@@ -8,8 +8,15 @@ namespace Entities.EntityFabrics
 {
     public class AbonentFactory : IEntityFabric<Abonent>
     {
-        public SqlConnection Connection { get;set; }
-        private string _table = typeof(Author).GetCustomAttribute<DataTableName>().Name;
+        public SqlConnection Connection { get; set; }
+        private string _table;
+
+        public AbonentFactory(SqlConnection connection)
+        {
+            Connection = connection;
+            var abonentAttribute = typeof(Abonent).GetCustomAttribute<DataTableName>() ?? new DataTableName("Abonents");
+            _table = abonentAttribute.Name;
+        }
 
         public void Delete(int id)
         {
@@ -41,7 +48,9 @@ namespace Entities.EntityFabrics
             int sex = (int)row.ItemArray[4];
             DateTime birthDate = (DateTime)row.ItemArray[5];
 
-            return new Abonent(name, lastName, middleName, sex, birthDate);
+            Abonent abonent = new Abonent(name, lastName, middleName, sex, birthDate);
+            abonent.Id = id;
+            return abonent;
         }
         public void Update(int id, Abonent newEntity)
         {
