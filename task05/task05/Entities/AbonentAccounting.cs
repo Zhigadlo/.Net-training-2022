@@ -1,6 +1,9 @@
-﻿namespace Entities
+﻿using ORM;
+
+namespace Entities
 {
-    public class AbonentAccounting
+    [DataTableName("AbonentAccountings")]
+    public class AbonentAccounting : IEntity
     {
         public Abonent Abonent { get; set; }
         public Book Book { get; set; }

@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{7BF690D5-B840-4F87-94A9-B881B03A9C62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{7BF690D5-B840-4F87-94A9-B881B03A9C62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORM", "ORM\ORM.csproj", "{6830942F-8E2B-4D61-94BC-B74157D335D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ORM", "ORM\ORM.csproj", "{6830942F-8E2B-4D61-94BC-B74157D335D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConstoleApp", "TestConstoleApp\TestConstoleApp.csproj", "{FC3DF3B8-429B-415D-81C9-2303F54345F3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseTests", "DatabaseTests\DatabaseTests.csproj", "{BF55F4CB-51A1-44CB-9A6C-12B1050FCAFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseTests", "DatabaseTests\DatabaseTests.csproj", "{BF55F4CB-51A1-44CB-9A6C-12B1050FCAFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{6830942F-8E2B-4D61-94BC-B74157D335D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6830942F-8E2B-4D61-94BC-B74157D335D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6830942F-8E2B-4D61-94BC-B74157D335D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC3DF3B8-429B-415D-81C9-2303F54345F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC3DF3B8-429B-415D-81C9-2303F54345F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC3DF3B8-429B-415D-81C9-2303F54345F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC3DF3B8-429B-415D-81C9-2303F54345F3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BF55F4CB-51A1-44CB-9A6C-12B1050FCAFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BF55F4CB-51A1-44CB-9A6C-12B1050FCAFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF55F4CB-51A1-44CB-9A6C-12B1050FCAFA}.Release|Any CPU.ActiveCfg = Release|Any CPU

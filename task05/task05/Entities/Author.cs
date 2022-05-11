@@ -1,11 +1,14 @@
-﻿namespace Entities
+﻿using ORM;
+
+namespace Entities
 {
-    public class Human
+    [DataTableName("Authors")]
+    public class Author : IEntity
     {
         public string Name { get; set; }
         public string LastName { get; set; }
 
-        public Human(string name, string lastName)
+        public Author(string name, string lastName)
         {
             Name = name;
             LastName = lastName;
