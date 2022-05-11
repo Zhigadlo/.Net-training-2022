@@ -6,24 +6,24 @@ namespace Entities
     [DataTableName("Abonents")]
     public class Abonent : Author, IEntity
     {
-        public string MidleName { get; set; }
+        public string MiddleName { get; set; }
         public int Sex { get; set; }
         public DateTime BirthDate { get; set; }
-        public Abonent(string name, string lastName, string midleName, int sex, DateTime birthDate) : base(name, lastName)
+        public Abonent(string name, string lastName, string middleName, int sex, DateTime birthDate) : base(name, lastName)
         {
-            MidleName = midleName;
+            MiddleName = middleName;
             Sex = sex;
             BirthDate = birthDate;
         }
 
         public override string ToString()
         {
-            return Name + " " + LastName + " " + MidleName;
+            return Name + " " + LastName + " " + MiddleName;
         }
 
         public override int GetHashCode()
         {
-            return base.GetHashCode() + MidleName.GetHashCode() 
+            return base.GetHashCode() + MiddleName.GetHashCode() 
                 + Sex.GetHashCode() + BirthDate.GetHashCode();
         }
         public override bool Equals(object? obj)
@@ -33,7 +33,7 @@ namespace Entities
             else
             {
                 Abonent newObj = obj as Abonent;
-                return MidleName == newObj.MidleName && Sex == newObj.Sex && BirthDate == newObj.BirthDate
+                return MiddleName == newObj.MiddleName && Sex == newObj.Sex && BirthDate == newObj.BirthDate
                     && Name == newObj.Name && LastName == newObj.LastName; 
             }
         }

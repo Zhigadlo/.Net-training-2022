@@ -6,14 +6,10 @@ using System.Reflection;
 
 namespace Entities.EntityFabrics
 {
-    public class AuthorFabric : IEntityFabric<Author>
+    public class AbonentFactory : IEntityFabric<Abonent>
     {
-        public SqlConnection Connection { get; set; }
+        public SqlConnection Connection { get;set; }
         private string _table = typeof(Author).GetCustomAttribute<DataTableName>().Name;
-        public AuthorFabric(string connectionString)
-        {
-            Connection = new SqlConnection(connectionString);
-        }
 
         public void Delete(int id)
         {
@@ -21,17 +17,15 @@ namespace Entities.EntityFabrics
             SqlCommand command = new SqlCommand(commandText, Connection);
             command.ExecuteNonQuery();
         }
-        public void Dispose()
+        public void Insert(Abonent entity)
         {
-            Connection.Dispose();
-        }
-        public void Insert(Author entity)
-        {
-            string commandText = $"insert into {_table} (Name, LastName) values ('{entity.Name}', '{entity.LastName}')";
+            string commandText = $"insert into {_table} (Name, LastName, MiddleName, Sex, BirthDate) " +
+                $"values ('{entity.Name}', '{entity.LastName}', '{entity.MiddleName}', {entity.Sex}, " +
+                $"'{entity.BirthDate.ToShortDateString()}')";
             SqlCommand command = new SqlCommand(commandText, Connection);
             command.ExecuteNonQuery();
         }
-        public Author Read(int id)
+        public Abonent Read(int id)
         {
             string commandString = $"select * from {_table} where Id={id}";
 
@@ -43,15 +37,22 @@ namespace Entities.EntityFabrics
             DataRow row = dataTable.Rows[0];
             string name = row.ItemArray[1].ToString();
             string lastName = row.ItemArray[2].ToString();
+            string middleName = row.ItemArray[3].ToString();
+            int sex = (int)row.ItemArray[4];
+            DateTime birthDate = (DateTime)row.ItemArray[5];
 
-            Author author = new Author(name, lastName);
-            return author;
+            return new Abonent(name, lastName, middleName, sex, birthDate);
         }
-        public void Update(int id, Author newEntity)
+        public void Update(int id, Abonent newEntity)
         {
-            string commandText = $"update {_table} set Name='{newEntity.Name}' and LastName='{newEntity.LastName}' where Id={id}";
+            string commandText = $"update {_table} set Name='{newEntity.Name}' and LastName='{newEntity.LastName}' and " +
+                $"MiddleName='{newEntity.MiddleName}' and Sex='{newEntity.Sex}' and BirthDate='{newEntity.BirthDate.ToShortDateString()}'";
             SqlCommand command = new SqlCommand(commandText, Connection);
             command.ExecuteNonQuery();
+        }
+        public void Dispose()
+        {
+            Connection?.Dispose();
         }
     }
 }
