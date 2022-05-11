@@ -1,23 +1,27 @@
 ﻿using Xunit;
 using ORM;
-using System.Collections.Generic;
 using Entities;
+using Entities.Fabrics;
 
 namespace DatabaseTests
 {
     public class InsertTests
     {
-        private AdoORM _orm = new AdoORM("librarydb", "Genres");
         [Theory]
         [InlineData("Adventure")]
         [InlineData("Detective")]
         [InlineData("Novel")]
         [InlineData("Fantastic")]
         [InlineData("Scientific")]
-        public void GenreInsert(string genre)
+        public void GenreInsert(string genreName)
         {
-            _orm.Table = "Genres";
-            _orm.Insert(new Genre(genre));
+            GenreFabric genreFabric = new GenreFabric(DbConnection.Instance.GetConnectionString());
+            
+            genreFabric.Connection.Open();
+            Genre genre = new Genre(genreName);
+            genreFabric.Insert(genre);
+
+            genreFabric.Dispose();
         }
 
         [Theory]
@@ -28,8 +32,7 @@ namespace DatabaseTests
         [InlineData("Alexandr", "Pushkin")]
         public void AuthorsInsert(string name, string lastName)
         {
-            _orm.Table = "Authors";
-            _orm.Insert(new Author(name, lastName));
+
         }
 
 

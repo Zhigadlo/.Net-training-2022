@@ -19,7 +19,8 @@ namespace DatabaseTests
         private DbConnection()
         {
             ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
-            _connectionString = settings["ado"].ConnectionString;
+            //_connectionString = settings["ado"].ConnectionString;
+            _connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=librarydb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;";
         }
 
         public string GetConnectionString()
