@@ -17,18 +17,14 @@ namespace Entities.Fabrics
         public void Insert(Genre entity)
         {
             string commandText = $"insert into {_table} (Name) values ('{entity.Name}')";
-            SqlCommand command = new SqlCommand();
-            command.CommandText = commandText;
-            command.Connection = Connection;
+            SqlCommand command = new SqlCommand(commandText, Connection);
             command.ExecuteNonQuery();
         }
 
         public void Delete(int id)
         {
             string commandText = $"delete from {_table} where Id={id}";
-            SqlCommand command = new SqlCommand();
-            command.CommandText = commandText;
-            command.Connection = Connection;
+            SqlCommand command = new SqlCommand(commandText, Connection);
             command.ExecuteNonQuery();
         }
 
@@ -49,9 +45,7 @@ namespace Entities.Fabrics
         public void Update(int id, Genre newEntity)
         {
             string commandText = $"update {_table} set Name='{newEntity.Name}' where Id={id}";
-            SqlCommand command = new SqlCommand();
-            command.CommandText = commandText;
-            command.Connection = Connection;
+            SqlCommand command = new SqlCommand(commandText, Connection);
             command.ExecuteNonQuery();
         }
 
