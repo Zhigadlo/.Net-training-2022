@@ -58,7 +58,7 @@ namespace Entities.EntityFabrics
         }
         public void Update(int id, Author newEntity)
         {
-            string commandText = $"update {_table} set Name=@name and LastName=@lastName where Id=@id";
+            string commandText = $"update {_table} set Name=@name, LastName=@lastName where Id=@id";
             SqlCommand command = new SqlCommand(commandText, Connection);
             SqlParameter idParam = new SqlParameter("@id", id);
             SqlParameter name = new SqlParameter("@name", newEntity.Name);

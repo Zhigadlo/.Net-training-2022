@@ -46,7 +46,7 @@ namespace DatabaseTests
                                                              "Name varchar(20)," +
                                                              "LastName varchar(20)," +
                                                              "MiddleName varchar(20)," +
-                                                             "Sex bit," +
+                                                             "IsMale bit," +
                                                              "BirthDate date)";
                 command.ExecuteNonQuery();
                 

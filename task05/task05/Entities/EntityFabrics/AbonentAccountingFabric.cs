@@ -67,8 +67,8 @@ namespace Entities.EntityFabrics
 
         public void Update(int id, AbonentAccounting newEntity)
         {
-            string commandText = $"update {_table} set AbonentId=@abonentId and BookId=@bookId and" +
-                $"IsBookReturned=@isBookReturned and BookCondition=@bookCondition where id=@id";
+            string commandText = $"update {_table} set AbonentId=@abonentId, BookId=@bookId," +
+                $"IsBookReturned=@isBookReturned, BookCondition=@bookCondition where id=@id";
 
             SqlCommand command = new SqlCommand(commandText, Connection);
             SqlParameter abonentId = new SqlParameter("@abonentId", newEntity.Abonent.Id);

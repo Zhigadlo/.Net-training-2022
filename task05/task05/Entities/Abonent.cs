@@ -7,12 +7,12 @@ namespace Entities
     public class Abonent : Author, IEntity
     {
         public string MiddleName { get; set; }
-        public int Sex { get; set; }
+        public bool IsMale { get; set; }
         public DateTime BirthDate { get; set; }
-        public Abonent(string name, string lastName, string middleName, int sex, DateTime birthDate) : base(name, lastName)
+        public Abonent(string name, string lastName, string middleName, bool isMale, DateTime birthDate) : base(name, lastName)
         {
             MiddleName = middleName;
-            Sex = sex;
+            IsMale = isMale;
             BirthDate = birthDate;
         }
 
@@ -24,7 +24,7 @@ namespace Entities
         public override int GetHashCode()
         {
             return base.GetHashCode() + MiddleName.GetHashCode() 
-                + Sex.GetHashCode() + BirthDate.GetHashCode();
+                + IsMale.GetHashCode() + BirthDate.GetHashCode();
         }
         public override bool Equals(object? obj)
         {
@@ -33,7 +33,7 @@ namespace Entities
             else
             {
                 Abonent newObj = obj as Abonent;
-                return MiddleName == newObj.MiddleName && Sex == newObj.Sex && BirthDate == newObj.BirthDate
+                return MiddleName == newObj.MiddleName && IsMale == newObj.IsMale && BirthDate == newObj.BirthDate
                     && Name == newObj.Name && LastName == newObj.LastName; 
             }
         }

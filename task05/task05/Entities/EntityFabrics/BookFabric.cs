@@ -84,8 +84,8 @@ namespace Entities.EntityFabrics
             int authorId = newEntity.Author.Id;
 
             string commandText = $"update ({_table} inner join {authorTable} on {authorTable}.Id={_table}.AuthorId) " +
-                $"inner join {genreTable} on {_table}.GenreId={genreTable}.Id set Name=@name and AuthorId=@authorId " +
-                $"and GenreId=@genreId where Id=@id";
+                $"inner join {genreTable} on {_table}.GenreId={genreTable}.Id set Name=@name, AuthorId=@authorId, " +
+                $"GenreId=@genreId where Id=@id";
             SqlCommand command = new SqlCommand(commandText, Connection);
             SqlParameter idParam = new SqlParameter("@id", id);
             SqlParameter nameParam = new SqlParameter("@name", newEntity.Name);
