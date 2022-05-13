@@ -29,14 +29,15 @@ namespace Entities.EntityFabrics
         }
         public void Insert(AbonentAccounting entity)
         {
-            string commandText = $"insert into {_table} (AbonentId, BookId, IsBookReturned, BookCondition) " +
-                $"values (@abonentId, @bookId, @isBookReturned, @bookCondition)";
+            string commandText = $"insert into {_table} (AbonentId, BookId, TakeDate, IsBookReturned, BookCondition) " +
+                $"values (@abonentId, @bookId, @takeDate, @isBookReturned, @bookCondition)";
             SqlCommand command = new SqlCommand(commandText, Connection);
             SqlParameter abonentId = new SqlParameter("@abonentId", entity.Abonent.Id);
             SqlParameter bookId = new SqlParameter("@bookId", entity.Book.Id);
+            SqlParameter takeDate = new SqlParameter("@takeDate", entity.TakeDate);
             SqlParameter isBookReturned = new SqlParameter("@isBookReturned", entity.IsBookReturned);
             SqlParameter bookCondition = new SqlParameter("bookCondition", entity.BookCondition);
-            command.Parameters.AddRange(new SqlParameter [] { abonentId, bookId, isBookReturned, bookCondition });
+            command.Parameters.AddRange(new SqlParameter [] { abonentId, bookId, takeDate, isBookReturned, bookCondition });
             
             command.ExecuteNonQuery();
         }
@@ -55,7 +56,7 @@ namespace Entities.EntityFabrics
             DataRow row = dataTable.Rows[0];
             int abonentId = (int)row.ItemArray[1];
             int bookId = (int)row.ItemArray[2];
-            DateOnly takeDate = (DateOnly)row.ItemArray[3];
+            DateTime takeDate = (DateTime)row.ItemArray[3];
             bool isBookReturned = (bool)row.ItemArray[4];
             string bookCondition = row.ItemArray[5].ToString();
 
@@ -75,8 +76,9 @@ namespace Entities.EntityFabrics
             SqlParameter bookId = new SqlParameter("@bookId", newEntity.Book.Id);
             SqlParameter isBookReturned = new SqlParameter("@isBookReturned", newEntity.IsBookReturned);
             SqlParameter bookCondition = new SqlParameter("@bookCondition", newEntity.BookCondition);
+            SqlParameter idParameter = new SqlParameter("@id", id);
 
-            command.Parameters.AddRange(new SqlParameter[] { abonentId, bookId, isBookReturned, bookCondition });
+            command.Parameters.AddRange(new SqlParameter[] { abonentId, bookId, isBookReturned, bookCondition, idParameter });
             command.ExecuteNonQuery();
         }
         public void Dispose()

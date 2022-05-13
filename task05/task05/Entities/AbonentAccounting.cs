@@ -9,11 +9,11 @@ namespace Entities
         public int Id { get; set; }
         public Abonent Abonent { get; set; }
         public Book Book { get; set; }
-        public DateOnly TakeDate { get; set; }
+        public DateTime TakeDate { get; set; }
         public bool IsBookReturned { get; set; }
         public string BookCondition { get; set; }
 
-        public AbonentAccounting(Abonent abonent, Book book, DateOnly takeDate, bool isBookReturned, string bookCondition)
+        public AbonentAccounting(Abonent abonent, Book book, DateTime takeDate, bool isBookReturned, string bookCondition)
         {
             Abonent = abonent;
             Book = book;
