@@ -6,14 +6,14 @@ using System.Reflection;
 
 namespace Entities.EntityFabrics
 {
-    public class BookFacility : IEntityFabric<Book>
+    public class BookFabric : IEntityFabric<Book>
     {
         public SqlConnection Connection { get; set; }
         private string _table;
         private GenreFabric _genreFabric;
         private AuthorFabric _authorFabric;
 
-        public BookFacility(SqlConnection connection)
+        public BookFabric(SqlConnection connection)
         {
             Connection = connection;
             _genreFabric = new GenreFabric(Connection);
@@ -23,12 +23,15 @@ namespace Entities.EntityFabrics
         }
         public void Delete(int id)
         {
-            string commandText = $"delete from {_table} where Id={id}";
+            string commandText = $"delete from {_table} where Id=@id";
             SqlCommand command = new SqlCommand(commandText, Connection);
+            command.Parameters.Add(new SqlParameter("@id", id));
             command.ExecuteNonQuery();
         }
         public void Dispose()
         {
+            _authorFabric.Dispose();
+            _genreFabric.Dispose();
             Connection?.Close();
         }
         public void Insert(Book entity)
@@ -41,14 +44,22 @@ namespace Entities.EntityFabrics
             int genreId = entity.Genre.Id;
             int authorId = entity.Author.Id;
             string commandText = $"insert into ({_table} inner join {authorTable} on {authorTable}.Id={_table}.AuthorId) " +
-                $"inner join {genreTable} on {_table}.GenreId={genreTable}.Id (Name, AuthorId, GenreId) values ('{entity.Name}'," +
-                $"{authorId}, {genreId})";
+                $"inner join {genreTable} on {_table}.GenreId={genreTable}.Id (Name, AuthorId, GenreId) " +
+                $"values (@name, @authorId, @genreId)";
+            SqlCommand command = new SqlCommand(commandText, Connection);
+            SqlParameter name = new SqlParameter("@name", entity.Name);
+            SqlParameter authorIdParam = new SqlParameter("@authorId", authorId);
+            SqlParameter genreIdParam = new SqlParameter("@genreId", genreId);
+            command.Parameters.AddRange(new SqlParameter[] {name, authorIdParam, genreIdParam});
+            command.ExecuteNonQuery();
         }
         public Book Read(int id)
         {
-            string commandString = $"select * from {_table} where Id={id}";
+            string commandString = $"select * from {_table} where Id=@id";
+            SqlCommand command = new SqlCommand(commandString, Connection);
+            command.Parameters.Add(new SqlParameter("@id", id));
 
-            SqlDataAdapter adapter = new SqlDataAdapter(commandString, Connection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
             DataTable dataTable = dataSet.Tables[0];
@@ -73,9 +84,15 @@ namespace Entities.EntityFabrics
             int authorId = newEntity.Author.Id;
 
             string commandText = $"update ({_table} inner join {authorTable} on {authorTable}.Id={_table}.AuthorId) " +
-                $"inner join {genreTable} on {_table}.GenreId={genreTable}.Id set Name='{newEntity.Name}' and AuthorId={authorId} " +
-                $"and GenreId={genreId} where Id={id}";
+                $"inner join {genreTable} on {_table}.GenreId={genreTable}.Id set Name=@name and AuthorId=@authorId " +
+                $"and GenreId=@genreId where Id=@id";
             SqlCommand command = new SqlCommand(commandText, Connection);
+            SqlParameter idParam = new SqlParameter("@id", id);
+            SqlParameter nameParam = new SqlParameter("@name", newEntity.Name);
+            SqlParameter authorIdParam = new SqlParameter("@authorId", authorId);
+            SqlParameter genreIdParam = new SqlParameter("@genreId", genreId);
+
+            command.Parameters.AddRange(new SqlParameter[] { idParam, nameParam, authorIdParam, genreIdParam });
             command.ExecuteNonQuery();
         }
     }

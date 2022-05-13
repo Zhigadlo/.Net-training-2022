@@ -9,7 +9,7 @@ namespace DatabaseTests
         [Fact]
         public async Task CreatingDB()
         {
-            using (SqlConnection connection = new SqlConnection(DbConnection.Instance.GetConnectionString()))
+            using (SqlConnection connection = new SqlConnection(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = master; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;"))
             {
                 await connection.OpenAsync();
                 SqlCommand command = new SqlCommand("create database librarydb", connection);
@@ -49,11 +49,12 @@ namespace DatabaseTests
                                                              "Sex bit," +
                                                              "BirthDate date)";
                 command.ExecuteNonQuery();
-
+                
                 // create AbonentAccounting table
                 command.CommandText = "create table AbonentAccountings (Id int identity(0,1) primary key," +
                                                                        "AbonentId int foreign key references Abonents(Id)," +
                                                                        "BookId int foreign key references Books(Id)," +
+                                                                       "TakeDate date," +
                                                                        "IsBookReturned bit," +
                                                                        "BookConditionId int foreign key references BookConditions(Id))";
                 command.ExecuteNonQuery();

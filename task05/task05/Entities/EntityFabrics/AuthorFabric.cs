@@ -19,8 +19,10 @@ namespace Entities.EntityFabrics
 
         public void Delete(int id)
         {
-            string commandText = $"delete from {_table} where Id={id}";
+            string commandText = $"delete from {_table} where Id=@id";
             SqlCommand command = new SqlCommand(commandText, Connection);
+            SqlParameter idParam = new SqlParameter("@id", id);
+            command.Parameters.Add(idParam);
             command.ExecuteNonQuery();
         }
         public void Dispose()
@@ -29,15 +31,19 @@ namespace Entities.EntityFabrics
         }
         public void Insert(Author entity)
         {
-            string commandText = $"insert into {_table} (Name, LastName) values ('{entity.Name}', '{entity.LastName}')";
+            string commandText = $"insert into {_table} (Name, LastName) values (@name, @lastName)";
             SqlCommand command = new SqlCommand(commandText, Connection);
+            SqlParameter name = new SqlParameter("@name", entity.Name);
+            SqlParameter lastName = new SqlParameter("@lastName", entity.LastName);
+            command.Parameters.AddRange(new SqlParameter[] { name, lastName });
             command.ExecuteNonQuery();
         }
         public Author Read(int id)
         {
-            string commandString = $"select * from {_table} where Id={id}";
-
-            SqlDataAdapter adapter = new SqlDataAdapter(commandString, Connection);
+            string commandString = $"select * from {_table} where Id=@id";
+            SqlCommand command = new SqlCommand(commandString, Connection);
+            command.Parameters.Add(new SqlParameter("@id", id));
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
             DataTable dataTable = dataSet.Tables[0];
@@ -52,8 +58,12 @@ namespace Entities.EntityFabrics
         }
         public void Update(int id, Author newEntity)
         {
-            string commandText = $"update {_table} set Name='{newEntity.Name}' and LastName='{newEntity.LastName}' where Id={id}";
+            string commandText = $"update {_table} set Name=@name and LastName=@lastName where Id=@id";
             SqlCommand command = new SqlCommand(commandText, Connection);
+            SqlParameter idParam = new SqlParameter("@id", id);
+            SqlParameter name = new SqlParameter("@name", newEntity.Name);
+            SqlParameter lastName = new SqlParameter("@lastName", newEntity.LastName);
+            command.Parameters.AddRange(new SqlParameter[] { idParam, name, lastName });
             command.ExecuteNonQuery();
         }
     }
