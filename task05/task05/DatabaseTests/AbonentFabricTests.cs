@@ -42,5 +42,25 @@ namespace DatabaseTests
             abonentFabric.Dispose();
             Assert.True(expectedAbonent.Equals(actualAbonent));
         }
+
+        [Theory]
+        [InlineData(0, "Vladislav", "Zhogol", "Dmitrievich", true, 2003, 8, 23)]
+        [InlineData(1, "Ivan", "Andreevec", "Ivanovich", true, 2002, 9, 17)]
+        public void Update(int id, string name, string lastName, string middleName, bool isMale, int year, int month, int day)
+        {
+            AbonentFabric abonentFabric = new AbonentFabric(_connection);
+            abonentFabric.Connection.Open();
+
+            Abonent expectedAbonent = new Abonent(name, lastName, middleName, isMale, new DateTime(year, month, day));
+
+            abonentFabric.Update(id, expectedAbonent);
+
+            Abonent actualAbonent = abonentFabric.Read(id);
+
+            abonentFabric.Dispose();
+
+            Assert.True(expectedAbonent.Equals(actualAbonent));
+        }
+
     }
 }

@@ -43,8 +43,7 @@ namespace Entities.EntityFabrics
 
             int genreId = entity.Genre.Id;
             int authorId = entity.Author.Id;
-            string commandText = $"insert into ({_table} inner join {authorTable} on {authorTable}.Id={_table}.AuthorId) " +
-                $"inner join {genreTable} on {_table}.GenreId={genreTable}.Id (Name, AuthorId, GenreId) " +
+            string commandText = $"insert into {_table} (Name, AuthorId, GenreId) " +
                 $"values (@name, @authorId, @genreId)";
             SqlCommand command = new SqlCommand(commandText, Connection);
             SqlParameter name = new SqlParameter("@name", entity.Name);
@@ -83,8 +82,7 @@ namespace Entities.EntityFabrics
             int genreId = newEntity.Genre.Id;
             int authorId = newEntity.Author.Id;
 
-            string commandText = $"update ({_table} inner join {authorTable} on {authorTable}.Id={_table}.AuthorId) " +
-                $"inner join {genreTable} on {_table}.GenreId={genreTable}.Id set Name=@name, AuthorId=@authorId, " +
+            string commandText = $"update {_table} set Name=@name, AuthorId=@authorId, " +
                 $"GenreId=@genreId where Id=@id";
             SqlCommand command = new SqlCommand(commandText, Connection);
             SqlParameter idParam = new SqlParameter("@id", id);

@@ -32,9 +32,6 @@ namespace DatabaseTests
                 // create Genres table
                 command.CommandText = "create table Genres (Id int identity(0,1) primary key, Name varchar(20))";
                 command.ExecuteNonQuery();
-                // create Book conditions table
-                command.CommandText = "create table BookConditions (Id int identity(0,1) primary key, Name varchar(20))";
-                command.ExecuteNonQuery();
                 // create Books table
                 command.CommandText = "create table Books (Id int identity(0,1) primary key," +
                                                            "Name varchar(20), " +
@@ -56,7 +53,7 @@ namespace DatabaseTests
                                                                        "BookId int foreign key references Books(Id)," +
                                                                        "TakeDate date," +
                                                                        "IsBookReturned bit," +
-                                                                       "BookConditionId int foreign key references BookConditions(Id))";
+                                                                       "BookCondition varchar(30))";
                 command.ExecuteNonQuery();
             }
         }

@@ -12,7 +12,7 @@ namespace DatabaseTests
         [InlineData("Lev", "Tolstoy")]
         [InlineData("Fedor", "Dostoyevkiy")]
         [InlineData("Alexander", "Pushkin")]
-        public void AuthorInsert(string name, string lastName)
+        public void Insert(string name, string lastName)
         {
             AuthorFabric authorFabric = new AuthorFabric(_connection);
             
