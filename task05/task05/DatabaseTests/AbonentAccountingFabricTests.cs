@@ -34,8 +34,8 @@ namespace DatabaseTests
         }
 
         [Theory]
-        [InlineData(0, 0, 1, 2022, 2, 12, true, "good")]
-        [InlineData(1, 1, 0, 2022, 5, 13, false, "average")]
+        [InlineData(1, 0, 1, 2022, 2, 12, true, "fixed")]
+        [InlineData(0, 1, 0, 2022, 5, 13, false, "bad")]
         public void Read(int id, int abonentId, int bookId, int year, int month, int day, bool isBookReturned, string bookCondition)
         {
             AbonentAccountingFabric abonentAccountingFabric = new AbonentAccountingFabric(_connection);

@@ -13,6 +13,7 @@ namespace DatabaseTests
         [Theory]
         [InlineData("Vladislav", "Zhogol", "Dmitrievich", true, 2003, 8, 23)]
         [InlineData("Ivan", "Andreevec", "Ivanovich", true, 2002, 9, 17)]
+        [InlineData("Andrey", "Vishnyak", "Andreivich", true, 2001, 8, 17)]
         public void Insert(string name, string lastName, string middleName, bool isMale, int year, int month, int day)
         {
             AbonentFabric abonentFabric = new AbonentFabric(_connection);
@@ -27,8 +28,9 @@ namespace DatabaseTests
         }
 
         [Theory]
-        [InlineData(1, "Vladislav", "Zhogol", "Dmitrievich", true, 2003, 8, 23)]
-        [InlineData(0, "Ivan", "Andreevec", "Ivanovich", true, 2002, 9, 17)]
+        [InlineData(0, "Vladislav", "Zhogol", "Dmitrievich", true, 2003, 8, 23)]
+        [InlineData(1, "Ivan", "Andreevec", "Ivanovich", true, 2002, 9, 17)]
+        [InlineData(2, "Andrey", "Vishnyak", "Andreivich", true, 2001, 8, 17)]
         public void Read(int id, string name, string lastName, string middleName, bool isMale, int year, int month, int day)
         {
             AbonentFabric abonentFabric = new AbonentFabric(_connection);
@@ -46,6 +48,7 @@ namespace DatabaseTests
         [Theory]
         [InlineData(0, "Vladislav", "Zhogol", "Dmitrievich", true, 2003, 8, 23)]
         [InlineData(1, "Ivan", "Andreevec", "Ivanovich", true, 2002, 9, 17)]
+        [InlineData(2, "Andrey", "Vishnyak", "Andreivich", true, 2001, 8, 17)]
         public void Update(int id, string name, string lastName, string middleName, bool isMale, int year, int month, int day)
         {
             AbonentFabric abonentFabric = new AbonentFabric(_connection);

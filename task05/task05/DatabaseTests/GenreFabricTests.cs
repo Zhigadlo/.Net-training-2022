@@ -27,10 +27,10 @@ namespace DatabaseTests
         }
 
         [Theory]
-        [InlineData(0, "Novel")]
-        [InlineData(1, "Fantastic")]
-        [InlineData(2, "Adventure")]
-        [InlineData(3, "Detective")]
+        [InlineData(0, "Adventure")]
+        [InlineData(1, "Detective")]
+        [InlineData(2, "Novel")]
+        [InlineData(3, "Fantastic")]
         [InlineData(4, "Scientific")]
         public void ReadTest(int id, string genreName)
         {

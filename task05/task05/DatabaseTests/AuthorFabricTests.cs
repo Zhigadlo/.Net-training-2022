@@ -24,9 +24,9 @@ namespace DatabaseTests
         }
 
         [Theory]
-        [InlineData(0, "Fedor", "Dostoyevkiy")]
-        [InlineData(1, "Alexander", "Pushkin")]
-        [InlineData(2, "Lev", "Tolstoy")]
+        [InlineData(0, "Lev", "Tolstoy")]
+        [InlineData(1, "Fedor", "Dostoyevkiy")]
+        [InlineData(2, "Alexander", "Pushkin")]
         public void Read(int id, string name, string lastName)
         {
             AuthorFabric authorFabric = new AuthorFabric(_connection);

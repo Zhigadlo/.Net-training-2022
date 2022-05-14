@@ -13,6 +13,8 @@ namespace DatabaseTests
         [Theory]
         [InlineData("book1", 3, 2)]
         [InlineData("book2", 0, 0)]
+        [InlineData("book3", 2, 2)]
+        [InlineData("book4", 4, 1)]
         public void Insert(string name, int genreId, int authorId)
         { 
             BookFabric bookFabric = new BookFabric(_connection);
@@ -31,8 +33,10 @@ namespace DatabaseTests
         }
 
         [Theory]
-        [InlineData(1, "book1", 3, 2)]
-        [InlineData(0, "book2", 0, 0)]
+        [InlineData(0, "book1", 3, 2)]
+        [InlineData(1, "book2", 0, 0)]
+        [InlineData(2, "book3", 2, 2)]
+        [InlineData(3, "book4", 4, 1)]
         public void Read(int id, string name, int genreId, int authorId)
         {
             BookFabric bookFabric = new BookFabric(_connection);
@@ -55,8 +59,10 @@ namespace DatabaseTests
         }
 
         [Theory]
-        [InlineData(0, "book1", 1, 0)]
-        [InlineData(1, "book2", 4, 1)]
+        [InlineData(0, "book1", 3, 2)]
+        [InlineData(1, "book2", 0, 0)]
+        [InlineData(2, "book3", 2, 2)]
+        [InlineData(3, "book4", 4, 1)]
         public void Update(int id, string name, int genreId, int authorId)
         {
             BookFabric bookFabric = new BookFabric(_connection);
