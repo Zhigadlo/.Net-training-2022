@@ -76,5 +76,29 @@ namespace Entities.EntityFabrics
         {
             Connection?.Dispose();
         }
+        public List<Abonent> ReadAll()
+        {
+            string commandString = $"select * from {_table}";
+            SqlCommand command = new SqlCommand(commandString, Connection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataSet dataSet = new DataSet();
+            adapter.Fill(dataSet);
+            DataTable dataTable = dataSet.Tables[0];
+            List<Abonent> abonents = new List<Abonent>();
+            DataRowCollection rows = dataTable.Rows;
+            foreach (DataRow row in rows)
+            {
+                string name = row.ItemArray[1].ToString();
+                string lastName = row.ItemArray[2].ToString();
+                string middleName = row.ItemArray[3].ToString();
+                bool isMale = (bool)row.ItemArray[4];
+                DateTime birthDate = (DateTime)row.ItemArray[5];
+
+                Abonent abonent = new Abonent(name, lastName, middleName, isMale, birthDate);
+                abonent.Id = (int)row.ItemArray[0];
+                abonents.Add(abonent);
+            }
+            return abonents;
+        }
     }
 }

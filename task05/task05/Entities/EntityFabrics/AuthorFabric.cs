@@ -66,5 +66,28 @@ namespace Entities.EntityFabrics
             command.Parameters.AddRange(new SqlParameter[] { idParam, name, lastName });
             command.ExecuteNonQuery();
         }
+        public List<Author> ReadAll()
+        {
+            string commandString = $"select * from {_table}";
+            SqlCommand command = new SqlCommand(commandString, Connection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataSet dataSet = new DataSet();
+            adapter.Fill(dataSet);
+            DataTable dataTable = dataSet.Tables[0];
+
+            List<Author> authors = new List<Author>();
+
+            DataRowCollection rows = dataTable.Rows;
+            foreach (DataRow row in rows)
+            {
+                string name = row.ItemArray[1].ToString();
+                string lastName = row.ItemArray[2].ToString();
+
+                Author author = new Author(name, lastName);
+                author.Id = (int)row.ItemArray[0];
+                authors.Add(author);
+            }
+            return authors;
+        }
     }
 }

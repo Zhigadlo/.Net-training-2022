@@ -30,5 +30,10 @@ namespace ORM.Interfaces
         /// </summary>
         /// <param name="id"></param>
         public void Delete(int id);
+        /// <summary>
+        /// Gets list of all objects from database
+        /// </summary>
+        /// <returns></returns>
+        public List<T> ReadAll();
     }
 }

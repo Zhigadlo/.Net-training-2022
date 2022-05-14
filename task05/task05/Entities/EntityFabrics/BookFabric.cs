@@ -93,5 +93,28 @@ namespace Entities.EntityFabrics
             command.Parameters.AddRange(new SqlParameter[] { idParam, nameParam, authorIdParam, genreIdParam });
             command.ExecuteNonQuery();
         }
+        public List<Book> ReadAll()
+        {
+            string commandString = $"select * from {_table}";
+            SqlCommand command = new SqlCommand(commandString, Connection);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataSet dataSet = new DataSet();
+            adapter.Fill(dataSet);
+            DataTable dataTable = dataSet.Tables[0];
+            List<Book> books = new List<Book>();
+            DataRowCollection rows = dataTable.Rows;
+            foreach(DataRow row in rows)
+            {
+                string name = row.ItemArray[1].ToString();
+                int authorId = (int)row.ItemArray[2];
+                int genreId = (int)row.ItemArray[3];
+                Book book = new Book(name, _genreFabric.Read(genreId), _authorFabric.Read(authorId));
+                book.Id = (int)row.ItemArray[0];
+                books.Add(book);
+            }
+
+            return books;
+        }
     }
 }

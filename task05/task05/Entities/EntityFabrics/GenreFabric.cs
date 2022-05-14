@@ -63,6 +63,27 @@ namespace Entities.EntityFabrics
             command.ExecuteNonQuery();
         }
 
+        public List<Genre> ReadAll()
+        {
+            string commandString = $"select * from {_table}";
+            SqlCommand command = new SqlCommand(commandString, Connection);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataSet dataSet = new DataSet();
+            adapter.Fill(dataSet);
+            DataTable dataTable = dataSet.Tables[0];
+            List<Genre> genres = new List<Genre>();
+            DataRowCollection rows = dataTable.Rows;
+
+            foreach (DataRow row in rows)
+            {
+                Genre genre = new Genre(row.ItemArray[1].ToString());
+                genre.Id = (int)row.ItemArray[0];
+                genres.Add(genre);
+            }
+            return genres;
+        }
+
         public void Dispose()
         {
             Connection.Close();
